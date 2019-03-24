@@ -1,9 +1,10 @@
-const logger = require("../logs/logger")
+// const logger = require("../logs/logger")
 
 module.exports = {
     dash: function(req, res){
-        res.render("prueba.ejs", {
-            p: "hola mundo"
+        res.render("prueba", {
+            title: "prueba Pug",
+            message: "Hello World"
         })
     }
 }
