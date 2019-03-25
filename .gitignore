@@ -1,5 +1,5 @@
 #ignore logs
-logs/*
+logs/*.log
 
 #ignore node_modules
 node_modules/*

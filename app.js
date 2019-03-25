@@ -13,18 +13,18 @@ const moment    = require("moment")
 // Requiere de carpetas y Archivos
 const web = require('./routes/web.js');
 // require('./passport/passport.js')(passport);
-// const logger = require("./logs/logger")
+const logger = require("./logs/logger")
 
 //Configuraciones Generales
 app.set('port', process.env.PORT || 8000)
 // app.set('socket.io', io);
 
 //CONFIGURACION PARA LOGS
-// logger.stream = {
-//     write: function (message, encoding) {
-//         logger.http(message);
-//     }
-// };
+logger.stream = {
+    write: function (message, encoding) {
+        logger.http(message);
+    }
+};
 
 //Sockets
 //conexion de sockets
@@ -52,7 +52,7 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended:true}));
 app.use(express.static(path.join(__dirname, 'public')));
 // app.use(flash());
-// app.use(morgan('combined', { "stream": logger.stream }))
+app.use(morgan('combined', { "stream": logger.stream }))
 app.use(morgan('dev'))
 
 // app.use(passport.initialize());
@@ -77,5 +77,5 @@ app.set('views', path.join(__dirname, 'views'));
 
 //Subir el servidor
 app.listen(app.get('port'), () => {
-    console.log("Servidor Arrancando en el puerto: " + app.get('port'))
+    logger.info("Servidor Arrancando en el puerto: " + app.get('port'))
 })
