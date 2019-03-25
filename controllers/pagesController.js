@@ -7,4 +7,8 @@ module.exports = {
 	    console.log("Sending to the Service")
 	    res.render('service')
 	},
+	about: (req,res) => {
+	    console.log("Sending to the About")
+	    res.render('aboutFull')
+	},
 }

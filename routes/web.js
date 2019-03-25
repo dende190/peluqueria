@@ -28,6 +28,9 @@ const PagesController = require('../controllers/pagesController')
 router.get("/", PagesController.homePage);
 
 //Services
-router.get("/service", PagesController.homePage);
+router.get("/service", PagesController.service);
+
+//About
+router.get("/about", PagesController.about);
 
 module.exports = router;
