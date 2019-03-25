@@ -1,5 +1,9 @@
 #ignore logs
+<<<<<<< HEAD
 logs/*.log
 
+=======
+logs
+>>>>>>> 6d2ea23216c0fa786ada83e41366f08f5a378121
 #ignore node_modules
-node_modules/*
+node_modules

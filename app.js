@@ -10,6 +10,7 @@ const moment    = require("moment")
 // const io        = require('socket.io')(http);
 
 
+
 // Requiere de carpetas y Archivos
 const web = require('./routes/web.js');
 // require('./passport/passport.js')(passport);
@@ -72,8 +73,9 @@ app.use(morgan('dev'))
 app.use("/", web);
 
 //Pug
-app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
+app.use('/static', express.static(__dirname + '/public'))
 
 //Subir el servidor
 app.listen(app.get('port'), () => {
