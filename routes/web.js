@@ -3,7 +3,7 @@ var router = express.Router();
 var passport = require("passport");
 
 // LLAMADO DE CONTROLADORES
-const prueba = require('../controller/prueba')
+const ServiceController = require("../controller/ServiceController")
 
 //CONTROLADOR DE MIDDLEWARE
 // var AuthMiddleware = require('../middleware/auth')
@@ -24,7 +24,7 @@ const prueba = require('../controller/prueba')
 
 //RUTAS SOLO PARA AUTENTICADOS
 
-//DASHBOARD
-router.get("/" , prueba.dash);
+//Servicios
+router.get("/service" , ServiceController.dash);
 
 module.exports = router;
