@@ -1,405 +1,407 @@
+extends layout
+
+block content
+
+	//Content section for main image
+	section(class="beautypress-inner-welocme-section beautypress-bg parallax-bg" data-parallax="scroll" data-image-src="../img/service_bg.jpg")
+		.beautypress-black-overlay
+		.container
+			.beautypress-inner-welcome-content
+				img(src="../../img/inner-welcome-icon.png" alt="")
+				h1.color-white Nuestros Servicios
+				p.color-white Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel magni tenetur praesentium nostrum, similique, maxime cumque unde aut, laboriosam itaque eaque dolor exercitationem fugiat mollitia expedita est. Hic, mollitia, laborum!
+	//Content section for main image END
+
+	//list of services with description
+	section(class="beautypress-service-section section-padding")
+		.container
+			.beautypress-tab
+				.tabbable
+					ul
+						li.active
+							a(href="#makeup" data-toggle="tab")
+								i(class="xsicon icon-cosmetics")
+									span maquillaje
+						li
+							a(href="#haircut" data-toggle="tab")
+								i(class="xsicon icon-hair-cut")
+									span Corte de Cabello
+						li
+							a(href="#nail" data-toggle="tab")
+								i(class="xsicon icon-nail")
+									span Cuidado de Uñas
+						li
+							a(href="#waxing" data-toggle="tab")
+								i(class="xsicon icon-hair-removal")
+									span Depilacion
+					//Service List and prices
+					.tab-content
+						//Makeup List
+						#makeup(class="tab-pane active")
+							.tabbable
+								ul(class="nav nav-tabs beautypress-side-nav") 
+									li.active
+										a(href='#women_makeup' data-toggle='tab') Maquillaje para mujeres
+									li
+										a(href='#child_makeup' data-toggle='tab') Maquillaje para niñas
+									li
+										a(href='#stylish_makeup' data-toggle='tab') Maquillaje elegante
+								.tab-content
+									#women_makeup(class="tab-pane beautypress-tab-content active")
+										.beautypress-spilit-container
+											.beautypress-tab-image
+												img(src='../../img/service-tab-img-6.jpg' alt='Image')
+												.beautypress-tab-image-content
+													span(class="beautypress-iocn-btn full-round-btn bg-color-purple") $50
+											.beautypress-tab-text-content
+												h3 Maquillaje para Mujeres
+												p
+													| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
+												p
+													| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
+												.beautypress-btn-wraper
+													a(href='#' class="xs-btn round-btn box-shadow-btn bg-color-purple")
+														| Hacer reserva 
+														span
+									#child_makeup.tab-pane.beautypress-tab-content
+										.beautypress-spilit-container
+											.beautypress-tab-image
+												img(src='../../img/service-tab-img-2.jpg', alt='Image')
+												.beautypress-tab-image-content
+													span.beautypress-iocn-btn.full-round-btn.bg-color-purple $50
+											.beautypress-tab-text-content
+												h3 Maquillaje para Niñas
+												p
+													| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
+												p
+													| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
+												.beautypress-btn-wraper
+													a.xs-btn.round-btn.box-shadow-btn.bg-color-purple(href='#')
+														| Hacer reserva 
+														span
+									#stylish_makeup.tab-pane.beautypress-tab-content
+										.beautypress-spilit-container
+											.beautypress-tab-image
+												img(src='../../img/service-tab-img-3.jpg', alt='Image')
+												.beautypress-tab-image-content
+													span.beautypress-iocn-btn.full-round-btn.bg-color-purple $50
+											.beautypress-tab-text-content
+												h3 Maquillaje Elegante
+												p
+													| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
+												p
+													| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
+												.beautypress-btn-wraper
+													a.xs-btn.round-btn.box-shadow-btn.bg-color-purple(href='#')
+														| Hacer reserva 
+													span
+						//Makeup List END
+						//Haircut List
+						#haircut.tab-pane
+							.tabbable
+								ul.nav.nav-tabs.beautypress-side-nav
+									li.active
+										a(href='#mens_haircut111', data-toggle='tab') Corte de Hombres
+									li
+										a(href='#women_haircut', data-toggle='tab') Corte de Mujeres
+									li
+										a(href='#child_haircut', data-toggle='tab') Corte para Niños
+								.tab-content
+									#mens_haircut.tab-pane.beautypress-tab-content.active
+										.beautypress-spilit-container
+											.beautypress-tab-image
+												img(src='../../img/service-tab-img-1.jpg', alt='Image')
+												.beautypress-tab-image-content
+													span.beautypress-iocn-btn.full-round-btn.bg-color-purple $50
+											.beautypress-tab-text-content
+												h3 Corte de cabello para Hombres
+												p
+													| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
+												p
+													| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
+												.beautypress-btn-wraper
+													a.xs-btn.round-btn.box-shadow-btn.bg-color-purple(href='#')
+														| Hacer reserva 
+														span
+									#women_haircut.tab-pane.beautypress-tab-content
+										.beautypress-spilit-container
+											.beautypress-tab-image
+												img(src='../../img/service-tab-img-4.jpg', alt='Image')
+												.beautypress-tab-image-content
+													span.beautypress-iocn-btn.full-round-btn.bg-color-purple $50
+											.beautypress-tab-text-content
+												h3 Corte de cabello para Mujeres
+												p
+													| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
+												p
+													| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
+												.beautypress-btn-wraper
+													a.xs-btn.round-btn.box-shadow-btn.bg-color-purple(href='#')
+														| Hacer reserva 
+														span
+									#child_haircut.tab-pane.beautypress-tab-content
+										.beautypress-spilit-container
+											.beautypress-tab-image
+												img(src='../../img/service-tab-img-2.jpg', alt='Image')
+												.beautypress-tab-image-content
+													span.beautypress-iocn-btn.full-round-btn.bg-color-purple $50
+											.beautypress-tab-text-content
+												h3 Corte de cabello para Niños
+												p
+													| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
+												p
+													| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
+												.beautypress-btn-wraper
+													a.xs-btn.round-btn.box-shadow-btn.bg-color-purple(href='#')
+														| Hacer reserva 
+														span
+						//Haircut List END
+						//Nail List					
+						#nail.tab-pane
+							.tabbable
+								ul.nav.nav-tabs.beautypress-side-nav
+									li.active
+										a(href='#mens_nail', data-toggle='tab') Cuidado de uñas para Hombres
+									li
+										a(href='#women_nail', data-toggle='tab') Cuidado de uñas para Mujeres
+									li
+										a(href='#child_nail', data-toggle='tab') Cuidado de uñas para Niños
+									li
+										a(href='#stylish_nail', data-toggle='tab') Cuidado de uñas Elegante
+								.tab-content
+									#mens_nail.tab-pane.beautypress-tab-content.active
+										.beautypress-spilit-container
+											.beautypress-tab-image
+												img(src='../../img/service-tab-img-1.jpg', alt='Image')
+												.beautypress-tab-image-content
+													span.beautypress-iocn-btn.full-round-btn.bg-color-purple $50
+											.beautypress-tab-text-content
+												h3 Cuidado de uñas para Hombres
+												p
+													| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
+												p
+													| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
+												.beautypress-btn-wraper
+													a.xs-btn.round-btn.box-shadow-btn.bg-color-purple(href='#')
+														| Hacer reserva 
+														span
+									#women_nail.tab-pane.beautypress-tab-content
+										.beautypress-spilit-container
+											.beautypress-tab-image
+												img(src='../../img/service-tab-img-2.jpg', alt='Image')
+												.beautypress-tab-image-content
+													span.beautypress-iocn-btn.full-round-btn.bg-color-purple $50
+											.beautypress-tab-text-content
+												h3 Cuidado de uñas para Mujeres
+												p
+													| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
+												p
+													| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
+												.beautypress-btn-wraper
+													a.xs-btn.round-btn.box-shadow-btn.bg-color-purple(href='#')
+														| Hacer reserva 
+														span
+									// #women_nail END
+									#child_nail.tab-pane.beautypress-tab-content
+										.beautypress-spilit-container
+											.beautypress-tab-image
+												img(src='../../img/service-tab-img-3.jpg', alt='Image')
+												.beautypress-tab-image-content
+													span.beautypress-iocn-btn.full-round-btn.bg-color-purple $50
+											.beautypress-tab-text-content
+												h3 Cuidado de uñas para Niños
+												p
+													| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
+												p
+													| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
+												.beautypress-btn-wraper
+													a.xs-btn.round-btn.box-shadow-btn.bg-color-purple(href='#')
+														| Hacer reserva 
+														span
+									#stylish_nail.tab-pane.beautypress-tab-content
+										.beautypress-spilit-container
+											.beautypress-tab-image
+												img(src='../../img/service-tab-img-6.jpg', alt='Image')
+												.beautypress-tab-image-content
+													span.beautypress-iocn-btn.full-round-btn.bg-color-purple $50
+											.beautypress-tab-text-content
+												h3 Cuidado de uñas Elegante
+												p
+													| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
+												p
+													| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
+												.beautypress-btn-wraper
+													a.xs-btn.round-btn.box-shadow-btn.bg-color-purple(href='#')
+														| Hacer reserva 
+														span
+						//Nail List END
+						//Waxing List
+						#waxing.tab-pane
+							.tabbable
+								ul.nav.nav-tabs.beautypress-side-nav
+									li.active
+										a(href='#mens_waxing', data-toggle='tab') Depilacion Hombres
+									li
+										a(href='#women_waxing', data-toggle='tab') Depilacion Mujeres
+								.tab-content
+									#mens_waxing.tab-pane.beautypress-tab-content.active
+										.beautypress-spilit-container
+											.beautypress-tab-image
+												img(src='../../img/service-tab-img-1.jpg', alt='Image')
+												.beautypress-tab-image-content
+													span.beautypress-iocn-btn.full-round-btn.bg-color-purple $50
+											.beautypress-tab-text-content
+												h3 Depilacion Hombres
+												p
+													| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
+												p
+													| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
+												.beautypress-btn-wraper
+													a.xs-btn.round-btn.box-shadow-btn.bg-color-purple(href='#')
+														| Hacer reserva 
+														span
+									// #mens_waxing END
+									#women_waxing.tab-pane.beautypress-tab-content
+										.beautypress-spilit-container
+											.beautypress-tab-image
+												img(src='../../img/service-tab-img-2.jpg', alt='Image')
+												.beautypress-tab-image-content
+													span.beautypress-iocn-btn.full-round-btn.bg-color-purple $50
+											.beautypress-tab-text-content
+												h3 Depilacion Mujeres
+												p
+													| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
+												p
+													| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
+												.beautypress-btn-wraper
+													a.xs-btn.round-btn.box-shadow-btn.bg-color-purple(href='#')
+														| Hacer reserva 
+														span
+					//Service List and prices END
+	//list of services with description END
 
 
-//Content section for main image
-section(class="beautypress-inner-welocme-section beautypress-bg parallax-bg" data-parallax="scroll" data-image-src="../img/service_bg.jpg")
-	.beautypress-black-overlay
-	.container
-		.beautypress-inner-welcome-content
-			img(src="../../img/inner-welcome-icon.png" alt="")
-			h1.color-white Nuestros Servicios
-			p.color-white Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel magni tenetur praesentium nostrum, similique, maxime cumque unde aut, laboriosam itaque eaque dolor exercitationem fugiat mollitia expedita est. Hic, mollitia, laborum!
-//Content section for main image END
-
-//list of services with description
-section(class="beautypress-service-section section-padding")
-	.container
-		.beautypress-tab
-			.tabbable
-				ul
-					li.active
-						a(href="#makeup" data-toggle="tab")
-							i(class="xsicon icon-cosmetics")
-								span maquillaje
-					li
-						a(href="#haircut" data-toggle="tab")
-							i(class="xsicon icon-hair-cut")
-								span Corte de Cabello
-					li
-						a(href="#nail" data-toggle="tab")
-							i(class="xsicon icon-nail")
-								span Cuidado de Uñas
-					li
-						a(href="#waxing" data-toggle="tab")
-							i(class="xsicon icon-hair-removal")
-								span Depilacion
-				//Service List and prices
-				.tab-content
-					//Makeup List
-					#makeup(class="tab-pane active")
-						.tabbable
-							ul(class="nav nav-tabs beautypress-side-nav") 
-								li.active
-									a(href='#women_makeup' data-toggle='tab') Maquillaje para mujeres
-								li
-									a(href='#child_makeup' data-toggle='tab') Maquillaje para niñas
-								li
-									a(href='#stylish_makeup' data-toggle='tab') Maquillaje elegante
-							.tab-content
-								#women_makeup(class="tab-pane beautypress-tab-content active")
-									.beautypress-spilit-container
-										.beautypress-tab-image
-											img(src='../../img/service-tab-img-6.jpg' alt='Image')
-											.beautypress-tab-image-content
-												span(class="beautypress-iocn-btn full-round-btn bg-color-purple") $50
-										.beautypress-tab-text-content
-											h3 Maquillaje para Mujeres
-											p
-												| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
-											p
-												| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
-											.beautypress-btn-wraper
-												a(href='#' class="xs-btn round-btn box-shadow-btn bg-color-purple")
-													| Hacer reserva 
-													span
-								#child_makeup.tab-pane.beautypress-tab-content
-									.beautypress-spilit-container
-										.beautypress-tab-image
-											img(src='../../img/service-tab-img-2.jpg', alt='Image')
-											.beautypress-tab-image-content
-												span.beautypress-iocn-btn.full-round-btn.bg-color-purple $50
-										.beautypress-tab-text-content
-											h3 Maquillaje para Niñas
-											p
-												| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
-											p
-												| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
-											.beautypress-btn-wraper
-												a.xs-btn.round-btn.box-shadow-btn.bg-color-purple(href='#')
-													| Hacer reserva 
-													span
-								#stylish_makeup.tab-pane.beautypress-tab-content
-									.beautypress-spilit-container
-										.beautypress-tab-image
-											img(src='../../img/service-tab-img-3.jpg', alt='Image')
-											.beautypress-tab-image-content
-												span.beautypress-iocn-btn.full-round-btn.bg-color-purple $50
-										.beautypress-tab-text-content
-											h3 Maquillaje Elegante
-											p
-												| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
-											p
-												| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
-											.beautypress-btn-wraper
-												a.xs-btn.round-btn.box-shadow-btn.bg-color-purple(href='#')
-													| Hacer reserva 
-												span
-					//Makeup List END
-					//Haircut List
-					#haircut.tab-pane
-						.tabbable
-							ul.nav.nav-tabs.beautypress-side-nav
-								li.active
-									a(href='#mens_haircut111', data-toggle='tab') Corte de Hombres
-								li
-									a(href='#women_haircut', data-toggle='tab') Corte de Mujeres
-								li
-									a(href='#child_haircut', data-toggle='tab') Corte para Niños
-							.tab-content
-								#mens_haircut.tab-pane.beautypress-tab-content.active
-									.beautypress-spilit-container
-										.beautypress-tab-image
-											img(src='../../img/service-tab-img-1.jpg', alt='Image')
-											.beautypress-tab-image-content
-												span.beautypress-iocn-btn.full-round-btn.bg-color-purple $50
-										.beautypress-tab-text-content
-											h3 Corte de cabello para Hombres
-											p
-												| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
-											p
-												| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
-											.beautypress-btn-wraper
-												a.xs-btn.round-btn.box-shadow-btn.bg-color-purple(href='#')
-													| Hacer reserva 
-													span
-								#women_haircut.tab-pane.beautypress-tab-content
-									.beautypress-spilit-container
-										.beautypress-tab-image
-											img(src='../../img/service-tab-img-4.jpg', alt='Image')
-											.beautypress-tab-image-content
-												span.beautypress-iocn-btn.full-round-btn.bg-color-purple $50
-										.beautypress-tab-text-content
-											h3 Corte de cabello para Mujeres
-											p
-												| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
-											p
-												| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
-											.beautypress-btn-wraper
-												a.xs-btn.round-btn.box-shadow-btn.bg-color-purple(href='#')
-													| Hacer reserva 
-													span
-								#child_haircut.tab-pane.beautypress-tab-content
-									.beautypress-spilit-container
-										.beautypress-tab-image
-											img(src='../../img/service-tab-img-2.jpg', alt='Image')
-											.beautypress-tab-image-content
-												span.beautypress-iocn-btn.full-round-btn.bg-color-purple $50
-										.beautypress-tab-text-content
-											h3 Corte de cabello para Niños
-											p
-												| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
-											p
-												| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
-											.beautypress-btn-wraper
-												a.xs-btn.round-btn.box-shadow-btn.bg-color-purple(href='#')
-													| Hacer reserva 
-													span
-					//Haircut List END
-					//Nail List					
-					#nail.tab-pane
-						.tabbable
-							ul.nav.nav-tabs.beautypress-side-nav
-								li.active
-									a(href='#mens_nail', data-toggle='tab') Cuidado de uñas para Hombres
-								li
-									a(href='#women_nail', data-toggle='tab') Cuidado de uñas para Mujeres
-								li
-									a(href='#child_nail', data-toggle='tab') Cuidado de uñas para Niños
-								li
-									a(href='#stylish_nail', data-toggle='tab') Cuidado de uñas Elegante
-							.tab-content
-								#mens_nail.tab-pane.beautypress-tab-content.active
-									.beautypress-spilit-container
-										.beautypress-tab-image
-											img(src='../../img/service-tab-img-1.jpg', alt='Image')
-											.beautypress-tab-image-content
-												span.beautypress-iocn-btn.full-round-btn.bg-color-purple $50
-										.beautypress-tab-text-content
-											h3 Cuidado de uñas para Hombres
-											p
-												| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
-											p
-												| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
-											.beautypress-btn-wraper
-												a.xs-btn.round-btn.box-shadow-btn.bg-color-purple(href='#')
-													| Hacer reserva 
-													span
-								#women_nail.tab-pane.beautypress-tab-content
-									.beautypress-spilit-container
-										.beautypress-tab-image
-											img(src='../../img/service-tab-img-2.jpg', alt='Image')
-											.beautypress-tab-image-content
-												span.beautypress-iocn-btn.full-round-btn.bg-color-purple $50
-										.beautypress-tab-text-content
-											h3 Cuidado de uñas para Mujeres
-											p
-												| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
-											p
-												| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
-											.beautypress-btn-wraper
-												a.xs-btn.round-btn.box-shadow-btn.bg-color-purple(href='#')
-													| Hacer reserva 
-													span
-								// #women_nail END
-								#child_nail.tab-pane.beautypress-tab-content
-									.beautypress-spilit-container
-										.beautypress-tab-image
-											img(src='../../img/service-tab-img-3.jpg', alt='Image')
-											.beautypress-tab-image-content
-												span.beautypress-iocn-btn.full-round-btn.bg-color-purple $50
-										.beautypress-tab-text-content
-											h3 Cuidado de uñas para Niños
-											p
-												| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
-											p
-												| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
-											.beautypress-btn-wraper
-												a.xs-btn.round-btn.box-shadow-btn.bg-color-purple(href='#')
-													| Hacer reserva 
-													span
-								#stylish_nail.tab-pane.beautypress-tab-content
-									.beautypress-spilit-container
-										.beautypress-tab-image
-											img(src='../../img/service-tab-img-6.jpg', alt='Image')
-											.beautypress-tab-image-content
-												span.beautypress-iocn-btn.full-round-btn.bg-color-purple $50
-										.beautypress-tab-text-content
-											h3 Cuidado de uñas Elegante
-											p
-												| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
-											p
-												| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
-											.beautypress-btn-wraper
-												a.xs-btn.round-btn.box-shadow-btn.bg-color-purple(href='#')
-													| Hacer reserva 
-													span
-					//Nail List END
-					//Waxing List
-					#waxing.tab-pane
-						.tabbable
-							ul.nav.nav-tabs.beautypress-side-nav
-								li.active
-									a(href='#mens_waxing', data-toggle='tab') Depilacion Hombres
-								li
-									a(href='#women_waxing', data-toggle='tab') Depilacion Mujeres
-							.tab-content
-								#mens_waxing.tab-pane.beautypress-tab-content.active
-									.beautypress-spilit-container
-										.beautypress-tab-image
-											img(src='../../img/service-tab-img-1.jpg', alt='Image')
-											.beautypress-tab-image-content
-												span.beautypress-iocn-btn.full-round-btn.bg-color-purple $50
-										.beautypress-tab-text-content
-											h3 Depilacion Hombres
-											p
-												| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
-											p
-												| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
-											.beautypress-btn-wraper
-												a.xs-btn.round-btn.box-shadow-btn.bg-color-purple(href='#')
-													| Hacer reserva 
-													span
-								// #mens_waxing END
-								#women_waxing.tab-pane.beautypress-tab-content
-									.beautypress-spilit-container
-										.beautypress-tab-image
-											img(src='../../img/service-tab-img-2.jpg', alt='Image')
-											.beautypress-tab-image-content
-												span.beautypress-iocn-btn.full-round-btn.bg-color-purple $50
-										.beautypress-tab-text-content
-											h3 Depilacion Mujeres
-											p
-												| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
-											p
-												| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui placeat reiciendis sint aperiam sunt voluptate optio nihil, facilis aut veritatis, repellendus aspernatur et aliquam quibusdam consequatur vel ipsam. Debitis, quisquam.
-											.beautypress-btn-wraper
-												a.xs-btn.round-btn.box-shadow-btn.bg-color-purple(href='#')
-													| Hacer reserva 
-													span
-				//Service List and prices END
-//list of services with description END
+	// Somethings
+	section.beautypress-call-to-action-section.beautypress-bg.parallax-bg(data-parallax='scroll', data-image-src='../../img/call-to-action.jpg')
+		.container
+			.beautypress-call-to-action-content.beautypress-version-2
+				.beautypress-content-headinig
+					h2 Pensar en que agregar aca 
+					p
+						| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis temporibus tempora quibusdam, odit consequatur vitae, impedit voluptates accusamus in dolore eveniet vel iure, illum pariatur voluptas sit officia itaque delectus.
+				a.xs-btn.round-btn.box-shadow-btn.bg-color-purple(href='#')
+					| Hacer reserva 
+					span
+	// Somethings END
 
 
-// Somethings
-section.beautypress-call-to-action-section.beautypress-bg.parallax-bg(data-parallax='scroll', data-image-src='../../img/call-to-action.jpg')
-	.container
-		.beautypress-call-to-action-content.beautypress-version-2
-			.beautypress-content-headinig
-				h2 Pensar en que agregar aca 
-				p
-					| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis temporibus tempora quibusdam, odit consequatur vitae, impedit voluptates accusamus in dolore eveniet vel iure, illum pariatur voluptas sit officia itaque delectus.
-			a.xs-btn.round-btn.box-shadow-btn.bg-color-purple(href='#')
-				| Hacer reserva 
-				span
-// Somethings END
+	// Content section for Appointment
+	section.beautypress-booking-section.beautypress-padding-bottom
+		.container
+			.beautypress-section-headinig.beautypress-version-2
+				h3 Realizar una reserva:
+				img(src='../../img/section-heading-separetor-v2.png', alt='')
+			.row
+				.col-md-12.col-sm-12.col-lg-6.col-xl-6
+					.beautypress-booking-text-wraper
+						.beautypress-booking-content-text.beautypress-border.beautypress-version-3
+							.beautypress-booking-text
+								h2 Fechas de programacion
+								h3 Horario de atencion
+								.beautypress-icon-bg-text
 
-
-// Content section for Appointment
-section.beautypress-booking-section.beautypress-padding-bottom
-	.container
-		.beautypress-section-headinig.beautypress-version-2
-			h3 Realizar una reserva:
-			img(src='../../img/section-heading-separetor-v2.png', alt='')
-		.row
-			.col-md-12.col-sm-12.col-lg-6.col-xl-6
-				.beautypress-booking-text-wraper
-					.beautypress-booking-content-text.beautypress-border.beautypress-version-3
-						.beautypress-booking-text
-							h2 Fechas de programacion
-							h3 Horario de atencion
-							.beautypress-icon-bg-text
-
-							ul
-								li Lun - Vie : 8:00am - 06:00pm
-								li Sab : 10:00am - 10:00pm
-								li Dom: Close
-			.col-md-12.col-sm-12.col-lg-6.col-xl-6
-				.beautypress-booking-form-wraper
-					form#beautypress-booking-form(action='#', method='POST')
-						input(type='hidden', name='action', value='send_appointment_form')
-						#beautypress-form-msg.alert.hidden
-						.beautypress-service-and-date
-							h2 Seleccionar fecha y servicio deseado
-							.beautypress-select
-								.input-group
-									select#appointment-service.form-control(name='appointment-service')
-										option(value='') Selecciona tu servicio
-										option(value='Oil Massage') servicio1 ($59.00)
-										option(value='Relax Day') servicio2 ($199.00)
-										option(value='Spa & Beauty') servicio3  ($299.00)
-										option(value='Relax Day (for Two)') servicio4  (for Two $399.00)
-							// .beautypress-select END
-							.beautypress-spilit-container
-								.beautypress-date-select.beautypress-select
-									.input-group
-										input#appointment-date.form-control.datepicker(type='text', name='appointment-date', placeholder='Date Shedule')
-								// .beautypress-date-select END
+								ul
+									li Lun - Vie : 8:00am - 06:00pm
+									li Sab : 10:00am - 10:00pm
+									li Dom: Close
+				.col-md-12.col-sm-12.col-lg-6.col-xl-6
+					.beautypress-booking-form-wraper
+						form#beautypress-booking-form(action='#', method='POST')
+							input(type='hidden', name='action', value='send_appointment_form')
+							#beautypress-form-msg.alert.hidden
+							.beautypress-service-and-date
+								h2 Seleccionar fecha y servicio deseado
 								.beautypress-select
 									.input-group
-										select#appointment-time.form-control(name='appointment-time')
-											option(value='') Time Shedule
-											option(value='12:00 AM') 12:00 AM
-											option(value='12:30 AM') 12:30 AM
-											option(value='01:00 AM') 01:00 AM
-											option(value='01:30 AM') 01:30 AM
-											option(value='02:00 AM') 02:00 AM
-											option(value='02:30 AM') 02:30 AM
-											option(value='03:00 AM') 03:00 AM
-											option(value='03:30 AM') 03:30 AM
-											option(value='04:00 AM') 04:00 AM
-											option(value='04:30 AM') 04:30 AM
-											option(value='05:00 AM') 05:00 AM
-											option(value='05:30 AM') 05:30 AM
-											option(value='06:00 AM') 06:00 AM
-											option(value='06:30 AM') 06:30 AM
-											option(value='07:00 AM') 07:00 AM
-											option(value='07:30 AM') 07:30 AM
-											option(value='08:00 AM') 08:00 AM
-											option(value='08:30 AM') 08:30 AM
-											option(value='09:00 AM') 09:00 AM
-											option(value='09:30 AM') 09:30 AM
-											option(value='10:00 AM') 10:00 AM
-											option(value='10:30 AM') 10:30 AM
-											option(value='11:00 AM') 11:00 AM
-											option(value='11:30 AM') 11:30 AM
-											option(value='12:00 PM') 12:00 PM
-											option(value='12:30 PM') 12:30 PM
-											option(value='01:00 PM') 01:00 PM
-											option(value='01:30 PM') 01:30 PM
-											option(value='02:00 PM') 02:00 PM
-											option(value='02:30 PM') 02:30 PM
-											option(value='03:00 PM') 03:00 PM
-											option(value='03:30 PM') 03:30 PM
-											option(value='04:00 PM') 04:00 PM
-											option(value='04:30 PM') 04:30 PM
-											option(value='05:00 PM') 05:00 PM
-											option(value='05:30 PM') 05:30 PM
-											option(value='06:00 PM') 06:00 PM
-											option(value='06:30 PM') 06:30 PM
-											option(value='07:00 PM') 07:00 PM
-											option(value='07:30 PM') 07:30 PM
-											option(value='08:00 PM') 08:00 PM
-											option(value='08:30 PM') 08:30 PM
-											option(value='09:00 PM') 09:00 PM
-											option(value='09:30 PM') 09:30 PM
-											option(value='10:00 PM') 10:00 PM
-											option(value='10:30 PM') 10:30 PM
-											option(value='11:00 PM') 11:00 PM
-											option(value='11:30 PM') 11:30 PM
+										select#appointment-service.form-control(name='appointment-service')
+											option(value='') Selecciona tu servicio
+											option(value='Oil Massage') servicio1 ($59.00)
+											option(value='Relax Day') servicio2 ($199.00)
+											option(value='Spa & Beauty') servicio3  ($299.00)
+											option(value='Relax Day (for Two)') servicio4  (for Two $399.00)
 								// .beautypress-select END
-								// .beautypress-service-and-date END
-								.beautypress-personal-information
-									h2 Informacion Personal
-									.beautypress-spilit-container
-										.form-group.first-name-group
-											input#first-name.form-control(type='text', name='first-name', placeholder='Nombre:')
-										.form-group.email-group
-											input#email.form-control(type='email', name='email', placeholder='Correo electronico:')
-									.form-group.phone-group
-										input#phone.form-control(type='number', name='phone', placeholder='Numero de telefono:')
-									.form-group.massage-gropu
-										textarea#appointment-comment.form-control(rows='5', placeholder='Mensaje:')
-									.form-group.button-group
-										input#beautypress-submit(type='submit', name='submit', value='submit')
-								// .beautypress-personal-information END
-								// #beautypress-booking-form END
-// Content section for Appointment END
+								.beautypress-spilit-container
+									.beautypress-date-select.beautypress-select
+										.input-group
+											input#appointment-date.form-control.datepicker(type='text', name='appointment-date', placeholder='Date Shedule')
+									// .beautypress-date-select END
+									.beautypress-select
+										.input-group
+											select#appointment-time.form-control(name='appointment-time')
+												option(value='') Time Shedule
+												option(value='12:00 AM') 12:00 AM
+												option(value='12:30 AM') 12:30 AM
+												option(value='01:00 AM') 01:00 AM
+												option(value='01:30 AM') 01:30 AM
+												option(value='02:00 AM') 02:00 AM
+												option(value='02:30 AM') 02:30 AM
+												option(value='03:00 AM') 03:00 AM
+												option(value='03:30 AM') 03:30 AM
+												option(value='04:00 AM') 04:00 AM
+												option(value='04:30 AM') 04:30 AM
+												option(value='05:00 AM') 05:00 AM
+												option(value='05:30 AM') 05:30 AM
+												option(value='06:00 AM') 06:00 AM
+												option(value='06:30 AM') 06:30 AM
+												option(value='07:00 AM') 07:00 AM
+												option(value='07:30 AM') 07:30 AM
+												option(value='08:00 AM') 08:00 AM
+												option(value='08:30 AM') 08:30 AM
+												option(value='09:00 AM') 09:00 AM
+												option(value='09:30 AM') 09:30 AM
+												option(value='10:00 AM') 10:00 AM
+												option(value='10:30 AM') 10:30 AM
+												option(value='11:00 AM') 11:00 AM
+												option(value='11:30 AM') 11:30 AM
+												option(value='12:00 PM') 12:00 PM
+												option(value='12:30 PM') 12:30 PM
+												option(value='01:00 PM') 01:00 PM
+												option(value='01:30 PM') 01:30 PM
+												option(value='02:00 PM') 02:00 PM
+												option(value='02:30 PM') 02:30 PM
+												option(value='03:00 PM') 03:00 PM
+												option(value='03:30 PM') 03:30 PM
+												option(value='04:00 PM') 04:00 PM
+												option(value='04:30 PM') 04:30 PM
+												option(value='05:00 PM') 05:00 PM
+												option(value='05:30 PM') 05:30 PM
+												option(value='06:00 PM') 06:00 PM
+												option(value='06:30 PM') 06:30 PM
+												option(value='07:00 PM') 07:00 PM
+												option(value='07:30 PM') 07:30 PM
+												option(value='08:00 PM') 08:00 PM
+												option(value='08:30 PM') 08:30 PM
+												option(value='09:00 PM') 09:00 PM
+												option(value='09:30 PM') 09:30 PM
+												option(value='10:00 PM') 10:00 PM
+												option(value='10:30 PM') 10:30 PM
+												option(value='11:00 PM') 11:00 PM
+												option(value='11:30 PM') 11:30 PM
+									// .beautypress-select END
+									// .beautypress-service-and-date END
+									.beautypress-personal-information
+										h2 Informacion Personal
+										.beautypress-spilit-container
+											.form-group.first-name-group
+												input#first-name.form-control(type='text', name='first-name', placeholder='Nombre:')
+											.form-group.email-group
+												input#email.form-control(type='email', name='email', placeholder='Correo electronico:')
+										.form-group.phone-group
+											input#phone.form-control(type='number', name='phone', placeholder='Numero de telefono:')
+										.form-group.massage-gropu
+											textarea#appointment-comment.form-control(rows='5', placeholder='Mensaje:')
+										.form-group.button-group
+											input#beautypress-submit(type='submit', name='submit', value='submit')
+									// .beautypress-personal-information END
+									// #beautypress-booking-form END
+	// Content section for Appointment END
