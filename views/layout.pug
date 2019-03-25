@@ -1,0 +1,162 @@
+hmtl
+    head
+        meta(charset='utf-8')
+        meta(http-equiv="X-UA-Compatible" content="IE=edge")
+        title Barbie Peluqueria
+        meta(name="description" content="Peluqueria Barbie")
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        link(rel="apple-touch-icon" href="apple-touch-icon.png")
+        link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700%7CNiconne")
+        link(rel="icon" type="image/png" href="favicon.ico")
+        block styles
+            // Bootstrap.css
+            link(rel='stylesheet', href='/static/css/bootstrap.min.css')
+            // Date pixker
+            link(rel='stylesheet', href='/static/css/bootstrap-datepicker.min.css')
+            // Font awesome
+            link(rel='stylesheet', href='/static/css/font-awesome.min.css')
+            // XS Icon
+            link(rel='stylesheet', href='/static/css/xs-icon.css')
+            // Owl slider
+            link(rel='stylesheet', href='/static/css/owl.carousel.min.css')
+            // Isotope
+            link(rel='stylesheet', href='/static/css/isotope.css')
+            // magnific-popup
+            link(rel='stylesheet', href='/static/css/magnific-popup.css')
+            // For Plugins external css
+            link(rel='stylesheet', href='/static/css/plugins.css')
+            // Theme custom css
+            link(rel='stylesheet', href='/static/css/style.css')
+            // Theme Responsive css
+            link(rel='stylesheet', href='/static/css/responsive.css')
+    body
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        // Prelaoder
+        #preloader
+            .preloader-window.left-window
+            .preloader-window.right-window
+            .preloader-content
+                img(src="img/prelaoder-logo.png" alt="")
+                h2 Beautypress
+            .spinner-block
+                .spinner-eff.spinner-eff-3
+                    .circle.circle-1
+                    .circle.circle-2
+                    .circle.circle-3
+        // Prelaoder end
+
+        // Main menu
+        header.beautypress-header-section.beautypress-version-1.beautypress-extra-css.menu-skew.header-height-calc-minus.navbar-fixed
+            .container
+                .beautypress-logo-wraper
+                    a.beautypress-logo.beautypress-version-2.beautypress-version-4(href="index.html")
+                        img(src="img/logo-v1-1.png" alt="logo-peluqueria")
+                // .beautypress-logo-wraper END
+            .beautypress-header-top.bg-navy-blue
+                .container
+                    ul.beautypress-simple-iocn-list.beautypress-version-1
+                        li
+                            i.xsicon.icon-call
+                            | +00 11 222 333 444
+                        li
+                            i.xsicon.icon-envelope
+                            | info@xpeedstudio.com
+            .beautypress-main-header.bg-color-purple.color-white
+                .container
+                    nav.xs_nav.beautypress-nav.beautypress-mega-menu
+                        .nav-header
+                            .nav-toggle
+                        .nav-menus-wrapper
+                            ul.nav-menu
+                                li
+                                    a(href="#") Home
+                                    ul.nav-dropdown
+                                        li
+                                            a(href="index.html") home version 1
+                                li
+                                    a(href="#") Servicios
+                                    ul.nav-dropdown
+                                        li
+                                            a(href="service.html") service version 1
+                                li
+                                    a(href="#") Sobre Nosotros
+                                    ul.nav-dropdown
+                                        li
+                                            a(href="about.html") about version 1
+                                li
+                                    a(href="#") Contactanos
+                                    ul.nav-dropdown
+                                        li
+                                            a(href="contact.html") contact version 1
+            // .beautypress-main-header END
+        // .beautypress-header-section END
+        // Main menu closed
+
+        block content
+
+        // Footer section
+        footer.beautypress-footer-section
+            .container
+                .beautypress-footer-content
+                    .beautypress-footer-logo
+                        a(href="index.html")
+                            img(src="img/footer_logo.png" alt="")
+                    // .beautypress-footer-logo END
+                    .beautypress-subscribe-wraper
+                        h3 Subscribe For More Updates
+                        form.mc-form(action="#" method="POST")
+                            .beautypress-subscribe
+                                input#mc-email(type="email" placeholder="Enter your email address.....")
+                                input.beautypress-sub(type="submit" value="subscribe")
+                                label(for="mc-email")
+                            // .beautypress-subscribe END
+                    // .beautypress-subscribe-wraper END
+                    .row
+                        .col-md-12.col-sm-12.col-lg-4.col-xl-4
+                            .beautypress-single-footer
+                                p
+                                    | Then an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five.
+                            // .beautypress-single-footer END
+                        .col-md-12.col-sm-12.col-lg-4.col-xl-4
+                            .beautypress-single-footer.beautypress-single-footer-group
+                                p Mon-Fri: 9 AM – 6 PM
+                                p Saturday: 9 AM – 4 PM
+                                p Sunday: Closed
+                            // .beautypress-single-footer END
+                        .col-md-12.col-sm-12.col-lg-4.col-xl-4
+                            .beautypress-single-footer.beautypress-single-footer-group
+                                p 176 W street name, New York, NY 10014
+                                p Email: info@yoursite.com
+                                p Telephone: +1(800)123-4566
+                            // .beautypress-single-footer END
+            .beautypress-copyright-content
+                .container
+                    .beautypress-back-to-top-group
+                        .beautypress-back-to-top-wraper.show-last-pos.active.back-to-top-center
+                            a.beautypress-btn-2.beautypress-iocn-btn.full-round-btn.back-to-top(href="#")
+                                i.fa.fa-angle-up
+                        // .beautypress-back-to-top-wraper END
+                    .beautypress-copyright-text
+                        p
+                            a(href="https://xpeedstudio.com") XpeedStudio
+                            |  © 2018 All Rights Reserved.
+        // .beautypress-footer-section END
+        // Footer section end
+
+
+        block scripts
+            script(src="/static/js/jquery-3.2.1.min.js")
+            script(src="/static/js/plugins.js")
+            script(src="/static/js/bootstrap.min.js")
+            script(src="/static/js/bootstrap-datepicker.min.js")
+            script(src="/static/js/isotope.pkgd.min.js")
+            script(src="/static/js/jquery.ajaxchimp.min.js")
+            script(src="/static/js/owl.carousel.min.js")
+            script(src="/static/js/jquery.magnific-popup.min.js")
+            script(src="/static/js/appear.js")
+            script(src="/static/js/spectragram.min.js")
+            script(src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyCy7becgYuLwns3uumNm6WdBYkBpLfy44k")
+            script(src="/static/js/main.js")
