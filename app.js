@@ -3,9 +3,10 @@ const bodyparser = require('body-parser');
 const path      = require('path');
 const app       = express();
 const session   = require("express-session");
-// const passport  = require("passport");
+const passport  = require("passport");
 const morgan    = require("morgan")
 const moment    = require("moment")
+const flash     = require("connect-flash")
 // const http      = require('http').Server(app);
 // const io        = require('socket.io')(http);
 
@@ -13,7 +14,7 @@ const moment    = require("moment")
 
 // Requiere de carpetas y Archivos
 const web = require('./routes/web.js');
-// require('./passport/passport.js')(passport);
+require('./passport/passport.js')(passport);
 const logger = require("./logs/logger")
 
 //Configuraciones Generales
@@ -52,20 +53,17 @@ app.use(session({
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended:true}));
 app.use(express.static(path.join(__dirname, 'public')));
-// app.use(flash());
+app.use(flash());
 app.use(morgan('combined', { "stream": logger.stream }))
-app.use(morgan('dev'))
+// app.use(morgan('dev'))
 
-// app.use(passport.initialize());
-// app.use(passport.session());
+app.use(passport.initialize());
+app.use(passport.session());
 
-// app.use((req,res,next)=>{
-//     res.locals.user = req.user;
-    
-//     moment.locale('es');
-//     app.locals.moment = moment;
-//     next()
-// })
+app.use((req,res,next)=>{
+    res.locals.user = req.user;
+    next()
+})
 
 //VARIABLES GLOBALES DEL PROYECTO PARA LAS VISTAS
 

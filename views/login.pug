@@ -1,0 +1,25 @@
+extends layout
+	
+block content
+	section.beautypress-booking-section.beautypress-padding-bottom
+		.container
+			.beautypress-section-headinig.beautypress-version-2
+			.row
+				.col-md-12.col-sm-12.col-lg-12.col-xl-12
+					.beautypress-booking-form-wraper
+						form#beautypress-booking-form(action='/login' method='POST')
+							#beautypress-form-msg.alert.hidden.text-center
+								if flashMessage.length > 0 
+									h3 !{flashMessage}
+
+							.beautypress-personal-information
+								h2.text-center Iniciar sesion
+								.form-group.first-name-group
+									input#first-name.form-control(type='text' name='username' placeholder='Username' required)
+								.form-group.last-name-group
+									input#last-name.form-control(type='password' name='password' placeholder='Contraseña' required)
+								.form-group.button-group.text-center
+									input#beautypress-submit(type='submit' name='submit' value='submit')
+									p Olvide mi contraseña
+							// .beautypress-personal-information END
+						// #beautypress-booking-form END

@@ -2,27 +2,31 @@ var express     = require("express");
 var router = express.Router();
 var passport = require("passport");
 
-// Calling Controllers
+//Calling Controllers
 const PagesController = require('../controllers/pagesController')
+const LoginController = require('../controllers/loginController')
+const UsersController = require('../controllers/usersController')
 
-//CONTROLADOR DE MIDDLEWARE
-// var AuthMiddleware = require('../middleware/auth')
+//Calling AuthMiddleware
+var AuthMiddleware = require('../middleware/auth')
 
-//LOGIN
-// router.get("/login", LoginController.login)
+//Login
+router.get("/login", LoginController.login)
+router.post("/login", passport.authenticate('local', {
+	successRedirect: '/',
+	failureRedirect: '/login',
+	failureFlash: true
+}));
 
-// router.post("/login", passport.authenticate('local', {
-// 	successRedirect: '/',
-// 	failureRedirect: '/login',
-// 	failureFlash: true
-// }));
+//Logout
+router.get("/logout", AuthMiddleware.isLogged, LoginController.logout)
 
-//MIDDLEWARE
-// router.use((req,res,next)=> {
-// 	AuthMiddleware.isLogged(req,res,next)
-// }); 
+//Sign Up
+router.get("/registro", UsersController.signUp);
+router.post("/registro", UsersController.signUp);
 
-//RUTAS SOLO PARA AUTENTICADOS
+
+//Routes for all people.
 
 //HomePage
 router.get("/", PagesController.homePage);
@@ -32,5 +36,10 @@ router.get("/servicios", PagesController.service);
 
 //About
 router.get("/nosotros", PagesController.about);
+
+
+//Routes for only people authenticated.
+
+
 
 module.exports = router;

@@ -81,6 +81,18 @@ html.no-js(lang="zxx")
                                     ul.nav-dropdown
                                         li
                                             a(href="contact.html") contact version 1
+                                if !user
+                                    li
+                                        a(href="/registro") 
+                                            button.btn.btn-primary Registro
+                                    li
+                                        a(href="/login") 
+                                            button.btn.btn-secundary Login
+                                
+                                else 
+                                    li
+                                        a(href="#") @!{user.username}
+                                
             // .beautypress-main-header END
         // .beautypress-header-section END
         // Main menu closed

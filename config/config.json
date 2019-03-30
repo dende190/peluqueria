@@ -1,0 +1,5 @@
+{
+	"DB_NAME": "desarrollo",
+	"DB_PASS": "BBdesarrollo2020",
+	"DB_URI": "mongodb+srv://desarrollo:BBdesarrollo2020@peluqueria-mobsg.mongodb.net/test?retryWrites=true"
+}
