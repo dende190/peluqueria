@@ -9,6 +9,6 @@ module.exports = {
 	},
 	about: (req,res) => {
 	    console.log("Sending to the About")
-	    res.render('aboutFull')
+	    res.render('about')
 	},
 }
