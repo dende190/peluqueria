@@ -19,6 +19,9 @@ module.exports = {
 		console.log("Sending to the About")
 		res.render('about')
 	},
-	
+	contact: (req, res) => {
+		console.log("Sending to the Contact Page")
+		res.render("contact")
+	}
 	
 }

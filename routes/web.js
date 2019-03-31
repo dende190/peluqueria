@@ -37,6 +37,8 @@ router.get("/servicios", PagesController.service);
 //About
 router.get("/nosotros", PagesController.about);
 
+//Contact
+router.get("/contacto", PagesController.contact)
 
 //Routes for only people authenticated.
 
