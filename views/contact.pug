@@ -1,0 +1,76 @@
+extends layout
+
+block content
+    section.beautypress-inner-welocme-section.beautypress-bg.parallax-bg(data-parallax="scroll" data-image-src="img/contact_header_bg.jpg")
+        .beautypress-black-overlay
+        .container
+            .beautypress-inner-welcome-content
+                img(src="img/inner-welcome-icon.png" alt="")
+                h1.color-white contact
+                p.color-white
+                    | One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back.
+            // .beautypress-inner-welcome-content END
+            .beautypress-inner-welcome-footer-content
+                ul.beautypress-breadcrumb
+                    li
+                        a(href="") Home
+                    li
+                        a(href="") contact
+            // .beautypress-inner-welcome-footer-content END
+    // .beautypress-inner-welocme-section END
+    // Inner welcome end
+    // Contact us form section
+    section.beautypress-contact-us-section
+        .container
+            .beautypress-contact-wraper.beautypress-version-1
+                .row
+                    .col-sm-12.col-lg-4.col-xl-4
+                        .beautypress-contact-details.bg-color-purple
+                            .beautypress-separetor-sub-heading.beautypress-version-2
+                                h2 Contact Us
+                            // .beautypress-separetor-sub-heading END
+                            ul.beautypress-icon-with-text
+                                li
+                                    i.fa.fa-map-marker
+                                    | 121 King Street, Melbourne Victoria 3000 Australia
+                                li
+                                    i.xsicon.icon-phone3
+                                    | +91 00 00 00 00
+                                li
+                                    i.xsicon.icon-envelope5
+                                    | mail@domain.com
+                                li
+                                    i.fa.fa-facebook
+                                    | facebok.com/name
+                            // .beautypress-icon-with-text END
+                        // .beautypress-contact-details END
+                    .col-sm-12.col-lg-8.col-xl-8
+                        .beautypress-contact-form
+                            form#beautypress-contact(action="#" method="POST")
+                                .beautypress-spilit-container
+                                    .input-group
+                                        input#c_name(type="text" name="name" placeholder="Your name")
+                                        .input-group-addon
+                                            i.fa.fa-user
+                                    .input-group
+                                        input#c_email(type="email" name="email" placeholder="Your email")
+                                        .input-group-addon
+                                            i.xsicon.icon-envelope5
+                                // .beautypress-spilit-container END
+                                .input-group
+                                    input#c_subject(type="text" name="subject" placeholder="Subject")
+                                    .input-group-addon @
+                                .input-group
+                                    textarea#c_massage(name="massage" cols="30" rows="10" placeholder="Your comments")
+                                    .input-group-addon
+                                        i.fa.fa-pencil
+                                input#c_submit(type="submit" value="submit")
+                            // #beautypress-contact END
+                        // .beautypress-contact-form END
+            // .beautypress-contact-wraper END
+    // .beautypress-contact-us-section END
+    // Contact us form section end
+    // Maps
+    //Currently the map is disable because we have to pay to use it
+    //#beautypress_maps
+    // Maps end

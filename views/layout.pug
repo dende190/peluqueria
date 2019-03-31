@@ -51,7 +51,7 @@ html.no-js(lang="zxx")
         header.beautypress-header-section.beautypress-version-1.beautypress-extra-css.menu-skew.header-height-calc-minus.navbar-fixed
             .container
                 .beautypress-logo-wraper
-                    a.beautypress-logo.beautypress-version-2.beautypress-version-4(href="index.html")
+                    a.beautypress-logo.beautypress-version-2.beautypress-version-4(href="/")
                         img(src="img/logo-v1-1.png" alt="logo-peluqueria")
                 // .beautypress-logo-wraper END
             .beautypress-header-top.bg-navy-blue
@@ -71,25 +71,25 @@ html.no-js(lang="zxx")
                         .nav-menus-wrapper
                             ul.nav-menu
                                 li
-                                    a(href="#") Home
-                                    ul.nav-dropdown
-                                        li
-                                            a(href="index.html") home version 1
+                                    a(href="/") Home
                                 li
-                                    a(href="#") Servicios
-                                    ul.nav-dropdown
-                                        li
-                                            a(href="service.html") service version 1
+                                    a(href="/servicios") Servicios
                                 li
-                                    a(href="#") Sobre Nosotros
-                                    ul.nav-dropdown
-                                        li
-                                            a(href="about.html") about version 1
+                                    a(href="/nosotros") Sobre Nosotros
                                 li
-                                    a(href="#") Contactanos
-                                    ul.nav-dropdown
-                                        li
-                                            a(href="contact.html") contact version 1
+                                    a(href="/contacto") Contactanos
+                                if !user
+                                    li
+                                        a(href="/registro") 
+                                            button.btn.btn-primary Registro
+                                    li
+                                        a(href="/login") 
+                                            button.btn.btn-secundary Login
+                                
+                                else 
+                                    li
+                                        a(href="#") @!{user.username}
+                                
             // .beautypress-main-header END
         // .beautypress-header-section END
         // Main menu closed
@@ -99,7 +99,7 @@ html.no-js(lang="zxx")
             .container
                 .beautypress-footer-content
                     .beautypress-footer-logo
-                        a(href="index.html")
+                        a(href="/")
                             img(src="img/footer_logo.png" alt="")
                     // .beautypress-footer-logo END
                     .beautypress-subscribe-wraper

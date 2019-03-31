@@ -1,0 +1,44 @@
+extends layout
+
+block content
+	section.beautypress-booking-section.beautypress-padding-bottom
+		.container
+			.beautypress-section-headinig.beautypress-version-2
+			.row
+				.col-md-12.col-sm-12.col-lg-12.col-xl-12
+					.beautypress-booking-form-wraper
+						form#beautypress-booking-form(action='' method='POST')
+							#beautypress-form-msg.alert.hidden
+							.beautypress-personal-information
+								h2.text-center Unete a nosotros, #[strong Registrate] !
+								.beautypress-spilit-container
+									.form-group.first-name-group
+										input#first-name.form-control(type='text' name='firstName' placeholder='Nombres' required)
+									.form-group.last-name-group
+										input#last-name.form-control(type='text' name='lastName' placeholder='Apellidos' required)
+								.beautypress-spilit-container
+									.form-group.username-group
+										input#username.form-control(type='text' name='username' placeholder='Nombre de usuario' required)
+									.form-group.password-group
+										input#password.form-control(type='text' name='password' placeholder='Contraseña' required)
+								.beautypress-spilit-container
+									.form-group.email-group
+										input#email.form-control(type='email' name='email' placeholder='Correo Electronico' required)
+									.form-group.phone-group
+										input#phone.form-control(type='tel' name='phone' placeholder='Numero de celular' required)
+								.beautypress-spilit-container
+									.form-group.cc-group
+										input#cc.form-control(type='text' name='cc' placeholder='Numero de cedula' required)
+									.beautypress-select
+										.input-group
+											select#position-service.form-control(name='position')
+												option(value='') Selecciona tu servicio
+													option(value='cliente') Cliente
+													option(value='peluqueria') Peluqueria
+													option(value='barberia') Barberia
+													option(value='contabilidad') Contabilidad
+													option(value='programado') Programador
+								.form-group.button-group.text-center
+									input#beautypress-submit(type='submit' name='submit' value='submit')
+							// .beautypress-personal-information END
+						// #beautypress-booking-form END
