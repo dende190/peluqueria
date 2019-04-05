@@ -9,7 +9,6 @@ module.exports = {
 			console.log(req.user.username)
 		}
 		res.render('home')
-
 	},
 	service: (req,res) => {
 		console.log("Sending to the Service")
