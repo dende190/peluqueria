@@ -1,7 +1,3 @@
-const mongo = require('../config/database.js').conexionMongo();
-const logger = require("../logs/logger")
-const bcrypt = require("bcryptjs");
-
 module.exports = {
 	homePage: async (req,res) => {
 		console.log("Sending to the HomePage")
@@ -22,5 +18,5 @@ module.exports = {
 		console.log("Sending to the Contact Page")
 		res.render("contact")
 	}
-	
+
 }
