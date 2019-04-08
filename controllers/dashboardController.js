@@ -1,5 +1,5 @@
 module.exports = {
     dashboard: (req,res) => {
-        res.render("layout_dashboard")
+        res.render("dashboard")
     }
 }
