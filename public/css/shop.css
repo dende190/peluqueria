@@ -1,0 +1,9 @@
+.btn-log-out {
+    position: absolute!important;
+    bottom: 30px;
+}
+@media screen and (max-width: 991px) {
+    .btn-log-out {
+        position: inherit!important;
+    }
+}

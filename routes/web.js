@@ -7,6 +7,7 @@ const PagesController = require('../controllers/pagesController')
 const LoginController = require('../controllers/loginController')
 const UsersController = require('../controllers/usersController')
 const AppointmentController = require('../controllers/appointmentController')
+const DashboardController = require("../controllers/dashboardController")
 
 //Calling AuthMiddleware
 var AuthMiddleware = require('../middleware/auth')
@@ -48,6 +49,8 @@ router.get("/cita", AppointmentController.appointment)
 
 //Routes for only people authenticated.
 
+//Routes for only people authenticated in the platform.
+router.get("/dashboard", DashboardController.dashboard)
 
 
 module.exports = router;

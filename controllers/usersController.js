@@ -27,6 +27,6 @@ module.exports = {
 				});
 			})
 		}
-		res.render('sign-up')
+		res.render('sign_up')
 	},
 }
