@@ -6,6 +6,7 @@ var passport = require("passport");
 const PagesController = require('../controllers/pagesController')
 const LoginController = require('../controllers/loginController')
 const UsersController = require('../controllers/usersController')
+const DashboardController = require("../controllers/dashboardController")
 
 //Calling AuthMiddleware
 var AuthMiddleware = require('../middleware/auth')
@@ -40,7 +41,8 @@ router.get("/nosotros", PagesController.about);
 //Contact
 router.get("/contacto", PagesController.contact)
 
-//Routes for only people authenticated.
+//Routes for only people authenticated in the platform.
+router.get("/dashboard", DashboardController.dashboard)
 
 
 
