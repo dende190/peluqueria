@@ -1,4 +1,58 @@
 extends layout_dashboard
 
+append styles
+	link(href='/static/js/fullcalendar/packages/core/main.min.css' rel='stylesheet')
+	link(href='/static/js/fullcalendar/packages/daygrid/main.min.css' rel='stylesheet')
+	link(href='/static/js/fullcalendar/packages/timegrid/main.min.css' rel='stylesheet')
+	link(href='/static/js/fullcalendar/packages/list/main.min.css' rel='stylesheet')
+
+	script(src='/modules/moment/moment.js')
+	script(src='/modules/tooltip.js/dist/umd/tooltip.js')
+	script(src='/modules/popper.js/dist/umd/popper.js')
+	
 block content
-    p Dashboard
+	#calendar
+
+	if !{error}
+		h2 | Hubo un error al traer los datos por favor vuelva a intentar, ya fue informado el error a soporte tecnico
+	else
+		script(type="text/javascript").
+
+			document.addEventListener('DOMContentLoaded', function() {
+				var calendarEl = document.getElementById('calendar');
+
+				var calendar = new FullCalendar.Calendar(calendarEl, {
+					plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
+					header: {
+						left: 'prev,next today',
+						center: 'title',
+						right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+					},
+					
+					defaultDate: '2019-04-12',
+					navLinks: true, // can click day/week names to navigate views
+
+					weekNumbersWithinDays: true,
+					weekNumberCalculation: 'ISO',
+
+					eventLimit: true, // allow "more" link when too many events
+					events: !{JSON.stringify(result)},
+
+					eventClick: function(info) {
+						alert(`Servicio: ${info.event.extendedProps.service}\nCliente: ${info.event.extendedProps.name}\nFecha: ${moment(info.event.start).format('LLL')}`);
+					}
+				});
+				
+
+
+
+				calendar.render();
+			});
+
+
+append scripts
+	script(src='/static/js/fullcalendar/packages/core/main.min.js')
+	script(src='/static/js/fullcalendar/packages/interaction/main.min.js')
+	script(src='/static/js/fullcalendar/packages/daygrid/main.min.js')
+	script(src='/static/js/fullcalendar/packages/timegrid/main.min.js')
+	

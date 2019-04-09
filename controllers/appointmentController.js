@@ -16,7 +16,10 @@ module.exports = {
 							logger.error(`(ERROR) Error al iniciar sesion con usuario ${username}`, err)
 						}
 						if(result === null){
+							let start =  `${req.body.appointmentDate.replace(/\//g, '-')}T${req.body.appointmentTime}`
 							let envio = {
+								title: `${req.body.name.toLowerCase()} - ${req.body.appointmentService}`,
+								start,
 								service: req.body.appointmentService,
 								date: req.body.appointmentDate,
 								time: req.body.appointmentTime,

@@ -74,6 +74,7 @@ app.use("/", web);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 app.use('/static', express.static(__dirname + '/public'))
+app.use('/modules', express.static(__dirname + '/node_modules'))
 
 //Subir el servidor
 app.listen(app.get('port'), () => {
