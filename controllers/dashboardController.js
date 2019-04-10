@@ -19,6 +19,25 @@ module.exports = {
 				}
 			});
 		})
-
-    }
+    },
+    clients: async (req,res) => {
+    	let result 
+    	mongo.then(async db =>{
+			await db.collection("clients").find({}).toArray( (err, result) => {
+				if(err){
+					logger.error(`(ERROR) error al traer datos para graficar el calendario \n ${err}`)
+					res.render("clients", {
+			        	error: true
+			        })
+				}else{
+					console.log(result)
+					result = result
+					console.log(result[0])
+			        res.render("clients", {
+			        	result
+			        })
+				}
+			});
+		})
+    }, 
 }

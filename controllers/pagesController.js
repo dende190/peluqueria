@@ -2,7 +2,7 @@ module.exports = {
 	homePage: async (req,res) => {
 		console.log("Sending to the HomePage")
 		if (req.user) {
-			console.log(req.user.username)
+			console.log(req.user)
 		}
 		res.render('home')
 	},

@@ -87,6 +87,9 @@ html.no-js(lang="zxx")
                                             button.btn.btn-secundary Login
                                 
                                 else 
+                                    if user.position == 'programador' || user.position == 'gerente'
+                                        li
+                                            a(href="/registro") Crear Nuevo Usuario
                                     li
                                         a(href="#") @!{user.username}
                                 

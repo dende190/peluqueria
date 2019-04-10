@@ -1,0 +1,24 @@
+extends layout_dashboard
+
+block content
+	table#myTable
+		thead
+			tr
+				th Nombres
+				th Apellidos
+				th Nombre de usuario
+				th Correo
+				th Telefono
+				th Cedula
+				th Fecha de creacion
+		tbody
+			each row in result
+				tr
+					td !{row.first_name}
+					td !{row.last_name}
+					td !{row.username}
+					td 
+						a(href=`mailto:${row.email}`) !{row.email}
+					td !{row.phone}
+					td !{row.cc}
+					td '2019-04-10'
