@@ -31,6 +31,7 @@ module.exports = function(passport){
 		                        nombre: user.first_name,
 		                        correo: user.email,
 		                        username: user.username,
+		                        position: user.position
 		                    });
 		                }
 					}

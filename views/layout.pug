@@ -87,6 +87,9 @@ html.no-js(lang="zxx")
                                             button.btn.btn-secundary Login
                                 
                                 else 
+                                    if user.position == 'programador' || user.position == 'gerente'
+                                        li
+                                            a(href="/registro") Crear Nuevo Usuario
                                     li
                                         a(href="#") @!{user.username}
                                 
@@ -155,3 +158,4 @@ html.no-js(lang="zxx")
             script(src="/static/js/spectragram.min.js")
             script(src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyCy7becgYuLwns3uumNm6WdBYkBpLfy44k")
             script(src="/static/js/main.js")
+            script(src="/static/js/others/configDatePicker.js")

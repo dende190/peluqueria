@@ -19,6 +19,8 @@ html(lang="en")
             link(href="http://fonts.googleapis.com/css?family=Roboto:400,700,300" rel="stylesheet" type="text/css")
             link(href="/static/css/pe-icon-7-stroke.css" rel="stylesheet")
             link(href="/static/css/shop.css" rel="stylesheet")
+            //Data Table CSS
+            link(href="/static/js/datatable/datatables.min.css" rel="stylesheet")
     body
         .wrapper
             //Sidebar
@@ -28,7 +30,7 @@ html(lang="en")
                         a.simple-text(href="http://www.creative-tim.com")
                             | Peluqueria Barbie
                     ul.nav
-                        li.active
+                        li
                             a(href="/dashboard")
                                 i.fa.fa-home
                                 p Home
@@ -117,3 +119,6 @@ html(lang="en")
             script(src="/static/js/bootstrap.min.js" type="text/javascript")
             // Light Bootstrap Table Core javascript and methods for Demo purpose
             script(src="/static/js/light-bootstrap-dashboard.js?v=1.4.0")
+            // Data Table javascript
+            script(src="/static/js/datatable/datatables.min.js")
+            script(src="/static/js/others/datatable.js")

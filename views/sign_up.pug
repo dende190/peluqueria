@@ -20,7 +20,7 @@ block content
 									.form-group.username-group
 										input#username.form-control(type='text' name='username' placeholder='Nombre de usuario' required)
 									.form-group.password-group
-										input#password.form-control(type='text' name='password' placeholder='Contraseña' required)
+										input#password.form-control(type='password' name='password' placeholder='Contraseña' required)
 								.beautypress-spilit-container
 									.form-group.email-group
 										input#email.form-control(type='email' name='email' placeholder='Correo Electronico' required)
@@ -31,13 +31,20 @@ block content
 										input#cc.form-control(type='text' name='cc' placeholder='Numero de cedula' required)
 									.beautypress-select
 										.input-group
-											select#position-service.form-control(name='position')
-												option(value='') Selecciona tu servicio
-													option(value='cliente') Cliente
-													option(value='peluqueria') Peluqueria
-													option(value='barberia') Barberia
-													option(value='contabilidad') Contabilidad
-													option(value='programado') Programador
+											if user
+												if user.position == 'programador' || user.position == 'gerente'
+													select#position-service.form-control(name='position')
+														option(value='') Selecciona tu servicio
+															option(value='cliente') Cliente
+															option(value='peluqueria') Peluqueria
+															option(value='barberia') Barberia
+															option(value='contabilidad') Contabilidad
+															option(value='gerente') Gerente
+															option(value='programador') Programador
+												else
+													input(type="hidden" value="cliente" name="position")
+											else
+												input(type="hidden" value="cliente" name="position")
 								.form-group.button-group.text-center
 									input#beautypress-submit(type='submit' name='submit' value='submit')
 							// .beautypress-personal-information END

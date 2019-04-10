@@ -1,0 +1,16 @@
+extends layout.pug
+
+block content
+	section.beautypress-booking-section.beautypress-padding-bottom
+		.container
+			.beautypress-section-headinig.beautypress-version-2
+			.row
+				.col-md-12.col-sm-12.col-lg-12.col-xl-12
+					if error
+						h1 !{error}	
+						a.xs-btn.bg-color-purple.round-btn.box-shadow-btn(href="/servicios")
+							| Volver 
+							span
+					else 	
+						h2 Muchas gracias por realizar tu cita, recuerda que tienes un servicio de !{service} el dia !{date} a las !{time} 
+						| un correo te llegara para recordar estos datos el dia de tu cita

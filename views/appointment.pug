@@ -21,91 +21,75 @@ section.beautypress-booking-section.beautypress-padding-bottom
 				// .beautypress-booking-text-wraper END
 			.col-md-12.col-sm-12.col-lg-6.col-xl-6
 				.beautypress-booking-form-wraper
-					form#beautypress-booking-form(action='#' method='POST')
-						input(type='hidden' name='action' value='send_appointment_form')
+					form#beautypress-booking-form(action='/cita' method='POST')
 						#beautypress-form-msg.alert.hidden
 						.beautypress-service-and-date
 							h2 Seleccionar fecha y servicio deseado
 							.beautypress-select
 								.input-group
-									select#appointment-service.form-control(name='appointment-service')
+									select#appointment-service.form-control(name='appointmentService')
 										option(value='') Selecciona tu servicio
-											option(value='Oil Massage') servicio1 ($59.00)
-											option(value='Relax Day') servicio2 ($199.00)
-											option(value='Spa & Beauty') servicio3	($299.00)
-											option(value='Relax Day (for Two)') servicio4	(for Two $399.00)
+											option(value='servicio1') servicio1 ($59.00)
+											option(value='servicio2') servicio2 ($199.00)
+											option(value='servicio3') servicio3	($299.00)
+											option(value='servicio4') servicio4	(for Two $399.00)
 							// .beautypress-select END
 							.beautypress-spilit-container
 								.beautypress-date-select.beautypress-select
 									.input-group
-										input#appointment-date.form-control.datepicker(type='text' name='appointment-date' placeholder='Date Shedule')
+										input#appointment-date.form-control.datepicker(type='text' name='appointmentDate' placeholder='Date Shedule')
 								// .beautypress-date-select END
 								.beautypress-select
 									.input-group
-										select#appointment-time.form-control(name='appointment-time')
+										select#appointment-time.form-control(name='appointmentTime')
 											option(value='') Seleccionar Hora
-											option(value='12:00 AM') 12:00 AM
-											option(value='12:30 AM') 12:30 AM
-											option(value='01:00 AM') 01:00 AM
-											option(value='01:30 AM') 01:30 AM
-											option(value='02:00 AM') 02:00 AM
-											option(value='02:30 AM') 02:30 AM
-											option(value='03:00 AM') 03:00 AM
-											option(value='03:30 AM') 03:30 AM
-											option(value='04:00 AM') 04:00 AM
-											option(value='04:30 AM') 04:30 AM
-											option(value='05:00 AM') 05:00 AM
-											option(value='05:30 AM') 05:30 AM
-											option(value='06:00 AM') 06:00 AM
-											option(value='06:30 AM') 06:30 AM
-											option(value='07:00 AM') 07:00 AM
-											option(value='07:30 AM') 07:30 AM
-											option(value='08:00 AM') 08:00 AM
-											option(value='08:30 AM') 08:30 AM
-											option(value='09:00 AM') 09:00 AM
-											option(value='09:30 AM') 09:30 AM
-											option(value='10:00 AM') 10:00 AM
-											option(value='10:30 AM') 10:30 AM
-											option(value='11:00 AM') 11:00 AM
-											option(value='11:30 AM') 11:30 AM
-											option(value='12:00 PM') 12:00 PM
-											option(value='12:30 PM') 12:30 PM
-											option(value='01:00 PM') 01:00 PM
-											option(value='01:30 PM') 01:30 PM
-											option(value='02:00 PM') 02:00 PM
-											option(value='02:30 PM') 02:30 PM
-											option(value='03:00 PM') 03:00 PM
-											option(value='03:30 PM') 03:30 PM
-											option(value='04:00 PM') 04:00 PM
-											option(value='04:30 PM') 04:30 PM
-											option(value='05:00 PM') 05:00 PM
-											option(value='05:30 PM') 05:30 PM
-											option(value='06:00 PM') 06:00 PM
-											option(value='06:30 PM') 06:30 PM
-											option(value='07:00 PM') 07:00 PM
-											option(value='07:30 PM') 07:30 PM
-											option(value='08:00 PM') 08:00 PM
-											option(value='08:30 PM') 08:30 PM
-											option(value='09:00 PM') 09:00 PM
-											option(value='09:30 PM') 09:30 PM
-											option(value='10:00 PM') 10:00 PM
-											option(value='10:30 PM') 10:30 PM
-											option(value='11:00 PM') 11:00 PM
-											option(value='11:30 PM') 11:30 PM
+											option(value='06:00:00') 06:00 AM
+											option(value='06:30:00') 06:30 AM
+											option(value='07:00:00') 07:00 AM
+											option(value='07:30:00') 07:30 AM
+											option(value='08:00:00') 08:00 AM
+											option(value='08:30:00') 08:30 AM
+											option(value='09:00:00') 09:00 AM
+											option(value='09:30:00') 09:30 AM
+											option(value='10:00:00') 10:00 AM
+											option(value='10:30:00') 10:30 AM
+											option(value='11:00:00') 11:00 AM
+											option(value='11:30:00') 11:30 AM
+											option(value='12:00:00') 12:00 PM
+											option(value='12:30:00') 12:30 PM
+											option(value='13:00:00') 01:00 PM
+											option(value='13:30:00') 01:30 PM
+											option(value='14:00:00') 02:00 PM
+											option(value='14:30:00') 02:30 PM
+											option(value='15:00:00') 03:00 PM
+											option(value='15:30:00') 03:30 PM
+											option(value='16:00:00') 04:00 PM
+											option(value='16:30:00') 04:30 PM
+											option(value='17:00:00') 05:00 PM
+											option(value='17:30:00') 05:30 PM
+											option(value='18:00:00') 06:00 PM
+											option(value='18:30:00') 06:30 PM
+											option(value='19:00:00') 07:00 PM
+											option(value='19:30:00') 07:30 PM
+											option(value='20:00:00') 08:00 PM
+											option(value='20:30:00') 08:30 PM
+											option(value='21:00:00') 09:00 PM
+											option(value='21:30:00') 09:30 PM
 								// .beautypress-select END
 						// .beautypress-service-and-date END
 						.beautypress-personal-information
 							h2 Informacion Personal
 							.beautypress-spilit-container
 								.form-group.first-name-group
-									input#first-name.form-control(type='text' name='first-name' placeholder='First Name....')
+									input#first-name.form-control(type='text' name='name' placeholder='First Name....')
 								.form-group.email-group
 									input#email.form-control(type='email' name='email' placeholder='Email Address....')
 							.form-group.phone-group
-								input#phone.form-control(type='number' name='phone' placeholder='Phone Number....')
+								input#phone.form-control(type='tel' name='phone' placeholder='Phone Number....')
 							.form-group.massage-gropu
-								textarea#appointment-comment.form-control(rows='5' placeholder='Enter Message....')
+								textarea#appointment-comment.form-control(rows='5' name="message" placeholder='Enter Message....')
 							.form-group.button-group
 								input#beautypress-submit(type='submit' name='submit' value='submit')
 						// .beautypress-personal-information END
 					// #beautypress-booking-form END
+

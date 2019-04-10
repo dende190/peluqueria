@@ -6,6 +6,7 @@ var passport = require("passport");
 const PagesController = require('../controllers/pagesController')
 const LoginController = require('../controllers/loginController')
 const UsersController = require('../controllers/usersController')
+const AppointmentController = require('../controllers/appointmentController')
 const DashboardController = require("../controllers/dashboardController")
 
 //Calling AuthMiddleware
@@ -14,16 +15,20 @@ var AuthMiddleware = require('../middleware/auth')
 //Login
 router.get("/login", LoginController.login)
 router.post("/login", passport.authenticate('local', {
-	successRedirect: '/',
 	failureRedirect: '/login',
-	failureFlash: true
-}));
+}), (req, res) => {
+	if (req.user.position === 'cliente'){
+		res.redirect('/')
+	}else{
+		res.redirect('/dashboard')
+	}
+});
 
 //Logout
 router.get("/logout", AuthMiddleware.isLogged, LoginController.logout)
 
 //Sign Up
-router.get("/registro", UsersController.signUp);
+router.get("/registro", AuthMiddleware.isClientNotEntry, UsersController.signUp);
 router.post("/registro", UsersController.signUp);
 
 
@@ -41,9 +46,18 @@ router.get("/nosotros", PagesController.about);
 //Contact
 router.get("/contacto", PagesController.contact)
 
+//Appointment
+router.post("/cita", AppointmentController.appointment)
+//Thanks
+router.get("/cita", AppointmentController.appointment)
+
+//Routes for only people authenticated.
+
 //Routes for only people authenticated in the platform.
-router.get("/dashboard", DashboardController.dashboard)
+//DashBoard
+router.get("/dashboard", AuthMiddleware.isEmploye, DashboardController.dashboard)
 
-
+//List of Clients
+router.get("/clientes", AuthMiddleware.isEmploye, DashboardController.clients)
 
 module.exports = router;

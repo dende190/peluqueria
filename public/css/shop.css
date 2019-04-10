@@ -7,3 +7,7 @@
         position: inherit!important;
     }
 }
+#calendar{
+	max-width: 1400px;
+	margin: 0 auto;
+}
