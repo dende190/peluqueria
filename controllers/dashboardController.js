@@ -32,7 +32,6 @@ module.exports = {
 				}else{
 					console.log(result)
 					result = result
-					console.log(result[0])
 			        res.render("clients", {
 			        	result
 			        })
