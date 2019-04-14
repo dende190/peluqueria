@@ -1,0 +1,26 @@
+extends layout_dashboard
+
+block content
+	.row
+		.col-md-12.col-lg-12
+			.card
+				.cardbody
+					h2 Nombre: !{result[0].productsForClient[0].first_name} !{result[0].productsForClient[0].last_name}
+					h2 Correo Electronico: !{result[0].productsForClient[0].email}
+					h2 Telefono: !{result[0].productsForClient[0].phone} 
+		table#myTable
+			thead
+				tr
+					th Servicios
+					th Hecho por
+					th agendado
+					th fecha
+					th resuelto
+			tbody
+				each row in result
+					tr
+						td !{row.product}
+						td !{row.employe}
+						td !{row.appointment}
+						td !{row.date}
+						td true

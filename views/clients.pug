@@ -16,7 +16,8 @@ block content
 				tr
 					td !{row.first_name}
 					td !{row.last_name}
-					td !{row.username}
+					td 
+						a(href=`/cliente/${row.username}`) !{row.username}
 					td 
 						a(href=`mailto:${row.email}`) !{row.email}
 					td !{row.phone}

@@ -58,6 +58,9 @@ router.get("/cita", AppointmentController.appointment)
 router.get("/dashboard", AuthMiddleware.isEmploye, DashboardController.dashboard)
 
 //List of Clients
-router.get("/clientes", AuthMiddleware.isEmploye, DashboardController.clients)
+router.get("/clientes",  DashboardController.clients)
+
+//Client Data
+router.get("/cliente/:username",  DashboardController.clientData)
 
 module.exports = router;
