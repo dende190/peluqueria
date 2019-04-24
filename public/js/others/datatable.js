@@ -1,3 +1,8 @@
 $(document).ready( function () {
-    $('#myTable').DataTable();
+    $('#myTable').DataTable({
+    	responsive: true,
+    	buttons: [
+	        'copy', 'excel', 'pdf'
+	    ]
+    });
 } );

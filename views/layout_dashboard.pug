@@ -1,124 +1,121 @@
 doctype html
-html(lang="en")
+html(lang='en')
     head
-        meta(charset="utf-8")
-        link(rel="icon" type="image/png" href="/static/img/favicon.ico")
-        meta(http-equiv="X-UA-Compatible" content="IE=edge,chrome=1")
+        meta(charset='utf-8')
+        link(rel='icon', type='image/png', href='/static/img/favicon.ico')
+        meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
         title Light Bootstrap Dashboard by Creative Tim
-        meta(content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport")
-        meta(name="viewport" content="width=device-width")
+        meta(content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0', name='viewport')
+        meta(name='viewport', content='width=device-width')
         block styles
-            // Bootstrap core CSS
-            link(href="/static/css/bootstrap-v3.min.css" rel="stylesheet")
+            // Bootstrap.css
+            link(rel='stylesheet', href='/static/css/bootstrap.min.css')
             // Animation library for notifications
-            link(href="/static/css/animate.min.css" rel="stylesheet")
+            link(href='/static/css/animate.min.css', rel='stylesheet')
             // Light Bootstrap Table core CSS
-            link(href="/static/css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet")
+            link(href='/static/css/light-bootstrap-dashboard.css?v=1.4.0', rel='stylesheet')
+            // Date pixker
+            link(rel='stylesheet', href='/static/css/bootstrap-datepicker.min.css')
             // Fonts and icons
-            link(href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet")
-            link(href="http://fonts.googleapis.com/css?family=Roboto:400,700,300" rel="stylesheet" type="text/css")
-            link(href="/static/css/pe-icon-7-stroke.css" rel="stylesheet")
-            link(href="/static/css/shop.css" rel="stylesheet")
-            //Data Table CSS
-            link(href="/static/js/datatable/datatables.min.css" rel="stylesheet")
+            link(href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css', rel='stylesheet')
+            link(href='http://fonts.googleapis.com/css?family=Roboto:400,700,300', rel='stylesheet', type='text/css')
+            link(href='/static/css/pe-icon-7-stroke.css', rel='stylesheet')
+            link(href='/static/css/shop.css', rel='stylesheet')
+            // Data Table CSS
+            link(href='/static/js/DataTable/datatables.min.css', rel='stylesheet')
+
     body
         .wrapper
-            //Sidebar
-            .sidebar(data-color="purple")
+            // Sidebar
+            .sidebar(data-color='purple')
                 .sidebar-wrapper
                     .logo
-                        a.simple-text(href="http://www.creative-tim.com")
-                            | Peluqueria Barbie
+                        a.simple-text(href='http://www.creative-tim.com') Peluqueria Barbie
                     ul.nav
-                        li
-                            a(href="/dashboard")
+                        li.nav-item
+                            a.nav-link(href='/dashboard')
                                 i.fa.fa-home
                                 p Home
-                        li
-                            a(href="/reservas")
+                        li.nav-item
+                            a.nav-link(href='/reservas')
                                 i.fa.fa-calendar
                                 p Reservas
-                        li
-                            a(href="/contabilidad")
+                        li.nav-item
+                            a.nav-link(href='/contabilidad')
                                 i.fa.fa-money
                                 p Contabilidad
-                        li
-                            a(href="/clientes")
+                        li.nav-item
+                            a.nav-link(href='/clientes')
                                 i.fa.fa-user
                                 p Clientes
-                        li
-                            a(href="dashboard.html")
+                        li.nav-item
+                            a.nav-link(href='dashboard.html')
                                 i.fa.fa-users
                                 p Empleados
-                        li
-                            a(href="dashboard.html")
+                        li.nav-item
+                            a.nav-link(href='dashboard.html')
                                 i.fa.fa-scissors
                                 p Servicios
-                        li.btn-log-out
-                            a(href="/logout")
+                        li.btn-log-out.nav-item
+                            a.nav-link(href='/logout')
                                 i.fa.fa-sign-out
                                 p Cerrar Sesion
-            //End Sidebar
+            // End Sidebar
             .main-panel
-                //Navbar
-                nav.navbar.navbar-default.navbar-fixed
-                    .container-fluid
-                        .navbar-header
-                            button.navbar-toggle(type="button" data-toggle="collapse")
-                                span.sr-only Toggle navigation
-                                span
-                                    i.fa.fa-bars.fa-2x
-                        .collapse.navbar-collapse
-                            ul.nav.navbar-nav
-                                li
-                                    a(href="#")
-                                        i.fa.fa-usd
-                                        span Cobrar
-                                li.dropdown
-                                    a.dropdown-toggle(href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false")
-                                        | Dropdown 
-                                        span.caret
-                                    ul.dropdown-menu
-                                        li
-                                            a(href="#") Action
-                                        li
-                                            a(href="#") Another action
-                                        li
-                                            a(href="#") Something else here
-                                        li.divider(role="separator")
-                                        li
-                                            a(href="#") Separated link
-                                        li.divider(role="separator")
-                                        li
-                                            a(href="#") One more separated link
-                            ul.nav.navbar-nav.navbar-right
-                                li
-                                    a(href="")
-                                        | Perfil 
-                //End Navbar
+                // Navbar
+                nav.navbar.navbar-light.bg-light.navbar-fixed.navbar-expand-md
+                    button.navbar-toggler(type='button', data-toggle='collapse')
+                        span.sr-only Toggle navigation
+                        span
+                            i.fa.fa-bars.fa-2x
+                    .collapse.navbar-collapse
+                        ul.nav.navbar-nav
+                            li.nav-item
+                                a.nav-link(href='#')
+                                    i.fa.fa-usd
+                                    span Cobrar
+                            li.dropdown.nav-item
+                                a.dropdown-toggle.nav-link(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+                                    | Dropdown 
+                                    span.caret
+                                ul.dropdown-menu
+                                    li.dropdown-item
+                                        a(href='#') Action
+                                    li.dropdown-item
+                                        a(href='#') Another action
+                                    li.dropdown-item
+                                        a(href='#') Something else here
+                                    li.divider.dropdown-item(role='separator')
+                                    li.dropdown-item
+                                        a(href='#') Separated link
+                                    li.divider.dropdown-item(role='separator')
+                                    li.dropdown-item
+                                        a(href='#') One more separated link
+                        ul.nav.navbar-nav.ml-auto
+                            li.nav-item
+                                a.nav-link(href='') Perfil 
+                // End Navbar
                 .content
-                    //Main Content
+                    // Main Content
                     block content
-                //Footer
-                footer.footer
-                    .container-fluid
-                        nav.pull-left
-                            ul
-                                li
-                                    a(href="#")
-                                        | Home
-                        p.copyright.pull-right
-                            | © 
-                            script.
-                                document.write(new Date().getFullYear())
-                            |  Hecho por
-                //Footer End
+                    // Footer
+                    footer.footer
+                        .container-fluid
+                            nav.float-left
+                                ul
+                                    li
+                                        a(href='#') Home
+                            p.copyright.float-right © Hecho por
+                    // Footer End
         block scripts
             // Core JS Files
             script(src="/static/js/jquery-3.2.1.min.js" type="text/javascript")
-            script(src="/static/js/bootstrap.min.js" type="text/javascript")
+            script(src="/static/js/bootstrap.min.js")
             // Light Bootstrap Table Core javascript and methods for Demo purpose
             script(src="/static/js/light-bootstrap-dashboard.js?v=1.4.0")
             // Data Table javascript
-            script(src="/static/js/datatable/datatables.min.js")
+            script(src="/static/js/DataTable/datatables.min.js")
             script(src="/static/js/others/datatable.js")
+            // Date Picker
+            script(src="/static/js/bootstrap-datepicker.min.js")
+            script(src="/static/js/others/configDatePicker.js")

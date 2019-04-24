@@ -11,7 +11,72 @@ append styles
 	script(src='/modules/popper.js/dist/umd/popper.js')
 	
 block content
-	#calendar
+	button.btn.btn-primary(id="button_dashboard") +Nueva Reserva
+
+	#containerCalendar
+		#appointmentDashboard
+			#newAppointment
+				.contentAppointment
+					h2.text-center Agregar nueva reserva: 
+					#buttonClose
+						p x
+					.contentFormAppointment
+						form(id='formDashboard')
+							.form-row
+								.col-md-6.col-lg-6
+									input.form-control.datepicker(type='text' id="dateFormDashboard" name='appointmentDate' placeholder='Date Shedule' autocomplete="off")
+								.col-md-6.col-lg-6
+									select.form-control(name='appointmentTime' id="timeFormDashboard" required)
+											option(value='') Seleccionar Hora
+											option(value='06:00:00') 06:00 AM
+											option(value='06:30:00') 06:30 AM
+											option(value='07:00:00') 07:00 AM
+											option(value='07:30:00') 07:30 AM
+											option(value='08:00:00') 08:00 AM
+											option(value='08:30:00') 08:30 AM
+											option(value='09:00:00') 09:00 AM
+											option(value='09:30:00') 09:30 AM
+											option(value='10:00:00') 10:00 AM
+											option(value='10:30:00') 10:30 AM
+											option(value='11:00:00') 11:00 AM
+											option(value='11:30:00') 11:30 AM
+											option(value='12:00:00') 12:00 PM
+											option(value='12:30:00') 12:30 PM
+											option(value='13:00:00') 01:00 PM
+											option(value='13:30:00') 01:30 PM
+											option(value='14:00:00') 02:00 PM
+											option(value='14:30:00') 02:30 PM
+											option(value='15:00:00') 03:00 PM
+											option(value='15:30:00') 03:30 PM
+											option(value='16:00:00') 04:00 PM
+											option(value='16:30:00') 04:30 PM
+											option(value='17:00:00') 05:00 PM
+											option(value='17:30:00') 05:30 PM
+											option(value='18:00:00') 06:00 PM
+											option(value='18:30:00') 06:30 PM
+											option(value='19:00:00') 07:00 PM
+											option(value='19:30:00') 07:30 PM
+											option(value='20:00:00') 08:00 PM
+											option(value='20:30:00') 08:30 PM
+											option(value='21:00:00') 09:00 PM
+											option(value='21:30:00') 09:30 PM
+							.form-row
+								.col-md-6.col-lg-6
+									select.form-control(name="service" id="serviceFormDashboard" required)
+										option(value="") Seleccionar Servicio
+										option(value="servicio1") servicio1
+										option(value="servicio2") servicio2
+										option(value="servicio3") servicio3
+										option(value="servicio4") servicio4
+								.col-md-6.col-lg-6
+									select.form-control(name="client" id="clientFormDashboard" required)
+										option(value="") Seleccionar Cliente
+										each row in clients
+											option(value=`${row._id}`) !{row.first_name} !{row.last_name}
+							.text-center
+								button.btn.btn-primary(id="buttonFormDashboard") Crear Reserva
+		#calendar
+
 
 	if !{error}
 		h2 | Hubo un error al traer los datos por favor vuelva a intentar, ya fue informado el error a soporte tecnico
@@ -36,18 +101,20 @@ block content
 					weekNumberCalculation: 'ISO',
 
 					eventLimit: true, // allow "more" link when too many events
-					events: !{JSON.stringify(result)},
+					events: !{JSON.stringify(calendar)},
 
 					eventClick: function(info) {
-						alert(`Servicio: ${info.event.extendedProps.service}\nCliente: ${info.event.extendedProps.name}\nFecha: ${moment(info.event.start).format('LLL')}`);
+						alert(`Servicio: ${info.event.extendedProps.service}\nCliente: ${info.event.extendedProps.name}\nFecha: ${moment(info.event.start).format('LLL')}\nCorreo: ${info.event.extendedProps.email}\nPhone: ${info.event.extendedProps.phone}`);
 					}
 				});
-				
-
-
 
 				calendar.render();
 			});
+
+
+
+
+
 
 
 append scripts
@@ -55,4 +122,6 @@ append scripts
 	script(src='/static/js/fullcalendar/packages/interaction/main.min.js')
 	script(src='/static/js/fullcalendar/packages/daygrid/main.min.js')
 	script(src='/static/js/fullcalendar/packages/timegrid/main.min.js')
+	script(src='/static/js/others/add_new_appointment.js')
+	script(src='/static/js/others/dashboard_ajax.js')
 	

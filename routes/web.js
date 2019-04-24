@@ -53,9 +53,11 @@ router.get("/cita", AppointmentController.appointment)
 
 //Routes for only people authenticated.
 
-//Routes for only people authenticated in the platform.
+//Routes for only employed authenticated in the platform.
 //DashBoard
-router.get("/dashboard", AuthMiddleware.isEmploye, DashboardController.dashboard)
+router.get("/dashboard", DashboardController.dashboard)
+//Send appointment data in dashboard
+router.post("/dashboard/appointment", DashboardController.dashboardAppointment)
 
 //List of Clients
 router.get("/clientes",  DashboardController.clients)
