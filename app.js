@@ -81,7 +81,8 @@ app.set('view engine', 'pug');
 app.use('/static', express.static(__dirname + '/public'))
 app.use('/modules', express.static(__dirname + '/node_modules'))
 
-//MongoDB Connect
+
+//MongoDB Connect and upload server
 let dbo
 MongoClient.connect(DB_URI, { useNewUrlParser: true })
     .then(client => {
