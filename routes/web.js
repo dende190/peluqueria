@@ -8,6 +8,7 @@ const LoginController = require('../controllers/loginController')
 const UsersController = require('../controllers/usersController')
 const AppointmentController = require('../controllers/appointmentController')
 const DashboardController = require("../controllers/dashboardController")
+const AccountingController = require("../controllers/accountingController")
 
 //Calling AuthMiddleware
 var AuthMiddleware = require('../middleware/auth')
@@ -58,6 +59,9 @@ router.get("/cita", AppointmentController.appointment)
 router.get("/dashboard", DashboardController.dashboard)
 //Send appointment data in dashboard
 router.post("/dashboard/appointment", DashboardController.dashboardAppointment)
+
+//Create bill
+router.post("/payment", AccountingController.registerPayment)
 
 //List of Clients
 router.get("/clientes",  DashboardController.clients)

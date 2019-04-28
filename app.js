@@ -1,3 +1,4 @@
+
 const express   = require("express");
 const bodyparser = require('body-parser');
 const path      = require('path');
@@ -18,7 +19,6 @@ const {
 const web = require('./routes/web.js');
 require('./passport/passport.js')(passport);
 const logger = require("./logs/logger")
-
 //Configuraciones Generales
 app.set('port', process.env.PORT || 8000)
 // app.set('socket.io', io);
@@ -80,7 +80,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 app.use('/static', express.static(__dirname + '/public'))
 app.use('/modules', express.static(__dirname + '/node_modules'))
-
 
 //MongoDB Connect
 let dbo
