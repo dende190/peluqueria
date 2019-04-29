@@ -85,3 +85,8 @@
 .dropdown-menu{
 	visibility: visible;
 }
+/* payment section  */
+.payment-container {
+	display: flex;
+	flex-wrap: wrap;
+}
