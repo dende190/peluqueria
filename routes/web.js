@@ -9,6 +9,7 @@ const UsersController = require('../controllers/usersController')
 const AppointmentController = require('../controllers/appointmentController')
 const DashboardController = require("../controllers/dashboardController")
 const AccountingController = require("../controllers/accountingController")
+const EmployeeController = require("../controllers/employeeController")
 
 //Calling AuthMiddleware
 var AuthMiddleware = require('../middleware/auth')
@@ -61,10 +62,16 @@ router.get("/dashboard", DashboardController.dashboard)
 router.post("/dashboard/appointment", DashboardController.dashboardAppointment)
 
 //Create bill
-router.post("/payment", AccountingController.registerPayment)
+router.post("/pago", AccountingController.registerPayment)
 
 //List of Clients
 router.get("/clientes",  DashboardController.clients)
+
+//List Employees
+router.get("/empleados", EmployeeController.listEmployees)
+//Create Employee
+router.get("/crear-empleado", EmployeeController.createEmployee)
+
 
 //Client Data
 router.get("/cliente/:username",  DashboardController.clientData)
