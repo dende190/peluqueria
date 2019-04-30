@@ -70,7 +70,8 @@ router.get("/clientes",  DashboardController.clients)
 //List Employees
 router.get("/empleados", EmployeeController.listEmployees)
 //Create Employee
-router.get("/crear-empleado", EmployeeController.createEmployee)
+router.get("/crear-empleado", EmployeeController.createEmployeeForm)
+router.post("/crear-empleado", EmployeeController.createEmployee)
 
 
 //Client Data

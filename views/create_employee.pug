@@ -5,23 +5,23 @@ block content
             .box
                 h2.title-create-employee-form Datos del nuevo Empleado
                 .col-lg-8.mx-auto
-                    form#formCreateEmployee(action="#" method="POST")
+                    form#formCreateEmployee(action="/crear-empleado" method="POST")
                         .form-group.row
                             label.col-sm-3.col-form-label.label-form(for="inputEmployeeName") Nombres
                             .col-sm-9
-                                input#inputEmployeeName.form-control(type="text" name="employeeName" placeholder="Nombres")
+                                input#inputEmployeeName.form-control(type="text" name="name" placeholder="Nombres")
                         .form-group.row
                             label.col-sm-3.col-form-label.label-form(for="inputEmployeeLastname") Apellidos
                             .col-sm-9
-                                input#inputEmployeeLastname.form-control(type="text" name="employeeLastname" placeholder="Apellidos")
+                                input#inputEmployeeLastname.form-control(type="text" name="lastName" placeholder="Apellidos")
                         .form-group.row
                             label.col-sm-3.col-form-label.label-form(for="inputEmployeeEmail") Email
                             .col-sm-9
-                                input#inputEmployeeEmail.form-control(type="email" name="employeeEmail" placeholder="Email")
+                                input#inputEmployeeEmail.form-control(type="email" name="email" placeholder="Email")
                         .form-group.row
                             label.col-sm-3.col-form-label.label-form(for="inputEmployeePhone") Telefono
                             .col-sm-9
-                                input#inputEmployeePhone.form-control(type="number" name="employeePhone" placeholder="Telefono")
+                                input#inputEmployeePhone.form-control(type="number" name="phone" placeholder="Telefono")
                         .form-group.row
                             label.col-sm-3.col-form-label.label-form(for="selectPositions") Cargo
                             .col-sm-9
