@@ -1,4 +1,21 @@
-extend layout_dashboard
+extends layout_dashboard
 block content
-    p Lista de empleados
+    .container
+        h1 Vista de Empleados en la Peluqueria
+        table.table
+            thead
+                tr
+                    th #
+                    th Nombre
+                    th Correo
+                    th Telefono
+                    th Cargo
+            tbody
+                each employee,index in employees
+                    tr 
+                        td #{index+1}
+                        td #{employee.name}
+                        td #{employee.email}
+                        td #{employee.phone}
+                        td #{employee.position}
     

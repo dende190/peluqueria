@@ -1,6 +1,16 @@
 module.exports = {
     listEmployees: (req, res) => {
-        res.render("employees")
+        let dbo = req.app.locals.dbo
+        dbo.collection('employees').find({}).toArray( (err,docs)=>{
+            if(err) {
+                console.log("(ERROR) The dabase cannot find all the Employees" + err)
+            }
+            console.log("encontre a los empleados")
+            console.log(docs)
+            res.render("employees", {
+                employees: docs
+            })
+        })
     },
     createEmployeeForm: (req, res) => {
         res.render("create_employee")
