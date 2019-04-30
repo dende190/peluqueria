@@ -1,0 +1,41 @@
+extends layout_dashboard
+block content
+    .container
+        .col-lg-10.mx-auto
+            .box
+                h2.title-create-employee-form Datos del nuevo Producto
+                .col-lg-9.mx-auto
+                    form#formCreateEmployee(action="/crear-producto" method="POST")
+                        .form-group.row
+                            label.col-sm-3.col-form-label.label-form(for="inputProductProvider") Proveedor
+                            .col-sm-9
+                                input#inputProductProvider.form-control(type="text" name="provider" placeholder="Proveedor")
+                        .form-group.row
+                            label.col-sm-3.col-form-label.label-form(for="inputProductName") Nombre
+                            .col-sm-9
+                                input#inputProductName.form-control(type="text" name="name" placeholder="Nombre del Producto")
+                        .form-group.row
+                            label.col-sm-3.col-form-label.label-form(for="inputProductDescription") Descripcion
+                            .col-sm-9
+                                textarea#inputProductDescription.form-control(name="description" rows="3")
+                        .form-group.row
+                            label.col-sm-3.col-form-label.label-form(for="inputProductCost") Costo por unidad
+                            .col-sm-9
+                                input#inputProductCost.form-control(type="number" name="cost")
+                        .form-group.row
+                            label.col-sm-3.col-form-label.label-form(for="inputProductPrice") Precio
+                            .col-sm-9
+                                input#inputProductPrice.form-control(type="number" name="price" placeholder="Precio")
+                                .form-check.form-check-inline
+                                    input#radio-iva.form-check-input(type="radio" name="iva" value="1")
+                                    label.form-check-label(for="radio-iva") con IVA
+                                .form-check.form-check-inline
+                                    input#radio-notIva.form-check-input(type="radio" name="notIva" value="1")
+                                    label.form-check-label(for="radio-notIva") sin IVA
+                                p#finalPrice Precio de venta final:  
+                        .form-group.row
+                            label.col-sm-3.col-form-label.label-form(for="inputProductStock") Stock
+                            .col-sm-9
+                                input#inputProductStock.form-control(type="number" name="stock" placeholder="Stock")
+                        
+                        button.btn.btn-primary(type="submit") Crear Producto

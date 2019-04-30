@@ -10,6 +10,7 @@ const AppointmentController = require('../controllers/appointmentController')
 const DashboardController = require("../controllers/dashboardController")
 const AccountingController = require("../controllers/accountingController")
 const EmployeeController = require("../controllers/employeeController")
+const ProductController = require("../controllers/productController")
 
 //Calling AuthMiddleware
 var AuthMiddleware = require('../middleware/auth')
@@ -67,11 +68,16 @@ router.post("/pago", AccountingController.registerPayment)
 //List of Clients
 router.get("/clientes",  DashboardController.clients)
 
-//List Employees
+//List of Employees
 router.get("/empleados", EmployeeController.listEmployees)
 //Create Employee
 router.get("/crear-empleado", EmployeeController.createEmployeeForm)
 router.post("/crear-empleado", EmployeeController.createEmployee)
+//List of Products
+router.get("/productos", ProductController.listProducts)
+//Create Product
+router.get("/crear-producto", ProductController.createProductForm)
+router.post("/crear-producto", ProductController.createProduct)
 
 
 //Client Data
