@@ -1,64 +1,78 @@
 .btn-log-out {
-    position: absolute!important;
+    position: absolute !important;
     bottom: 30px;
 }
+
 @media screen and (max-width: 991px) {
     .btn-log-out {
-        position: inherit!important;
+        position: inherit !important;
     }
 }
-#containerCalendar{
-	position: relative;
+
+#containerCalendar {
+    position: relative;
 }
-#calendar{
-	max-width: 1400px;
-	margin: 0 auto;
-	padding-top: 20px;
+
+#calendar {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-top: 20px;
 }
-#calendar a{
-	cursor: pointer;
+
+#calendar a {
+    cursor: pointer;
 }
-#button_dashboard{
-	margin-bottom: 20px;
+
+#button_dashboard {
+    margin-bottom: 20px;
 }
-#appointmentDashboard{
-	border: 1px solid black;
-	background: red;
+
+#appointmentDashboard {
+    border: 1px solid black;
+    background: red;
 }
-#appointmentDashboard{
- 	display: none;
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	z-index: 4;
- 	background-color: rgba(60, 60, 60, 0.9);
- 	justify-content: center;
- 	box-shadow: 6px 7px 13px 0px rgba(0,0,0,0.75);
+
+#appointmentDashboard {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 4;
+    background-color: rgba(60, 60, 60, 0.9);
+    justify-content: center;
+    box-shadow: 6px 7px 13px 0px rgba(0, 0, 0, 0.75);
 }
-#newAppointment{
-	margin: 30px 0;
-	width: 70%;
-	z-index: 5;
-	background-color: white;
-	height: 30%;
-	box-shadow: 6px 7px 13px 0px rgba(0,0,0,0.75), -6px 7px 13px 0px rgba(0,0,0,0.75);;
+
+#newAppointment {
+    margin: 30px 0;
+    width: 70%;
+    z-index: 5;
+    background-color: white;
+    height: 30%;
+    box-shadow: 6px 7px 13px 0px rgba(0, 0, 0, 0.75), -6px 7px 13px 0px rgba(0, 0, 0, 0.75);
+    ;
 }
-.contentAppointment{
-	padding: 20px;
-	position: relative;
+
+.contentAppointment {
+    padding: 20px;
+    position: relative;
 }
-.contentFormAppointment{
-	margin-top: 30px;
-	padding: 0 100px;
+
+.contentFormAppointment {
+    margin-top: 30px;
+    padding: 0 100px;
 }
-.contentFormAppointment input, .contentFormAppointment select{
-	height: 50px !important;
-	width: 100%;
-	margin-bottom: 20px;
-	padding-left: 20px;
+
+.contentFormAppointment input,
+.contentFormAppointment select {
+    height: 50px !important;
+    width: 100%;
+    margin-bottom: 20px;
+    padding-left: 20px;
 }
-#buttonClose{
-	position: absolute;
+
+#buttonClose {
+    position: absolute;
     right: 25px;
     top: 25px;
     border: 1px solid black;
@@ -68,20 +82,51 @@
     height: 40px;
     display: flex;
     justify-content: center;
-   	align-items: center;
-   	cursor: pointer;
+    align-items: center;
+    cursor: pointer;
 }
+
 #buttonClose p {
-	font-size: 32px;
-	color: white;
-	margin-top: 10px;
+    font-size: 32px;
+    color: white;
+    margin-top: 10px;
 }
-.datepicker{
-	opacity: 1
+
+.datepicker {
+    opacity: 1
 }
-.datepicker .datepicker-days{
-	visibility: visible ;
+
+.datepicker .datepicker-days {
+    visibility: visible;
 }
-.dropdown-menu{
-	visibility: visible;
+
+.dropdown-menu {
+    visibility: visible;
+}
+
+/* payment section  */
+.payment-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.box {
+	padding: 30px 20px;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(63, 63, 68, 0.1);
+    background-color: #FFFFFF;
+    margin-bottom: 30px;
+}
+.label-form {
+	font-size: 14px;
+    font-weight: 400;
+    color: #9A9A9A;
+    margin-bottom: 0px;
+}
+.title-create-employee-form {
+	margin-top: 0;
+	margin-bottom: 10px;
+}
+#inputProductDescription {
+    resize: none;
 }

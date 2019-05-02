@@ -8,6 +8,10 @@ const LoginController = require('../controllers/loginController')
 const UsersController = require('../controllers/usersController')
 const AppointmentController = require('../controllers/appointmentController')
 const DashboardController = require("../controllers/dashboardController")
+const ClientController = require("../controllers/clientController")
+const AccountingController = require("../controllers/accountingController")
+const EmployeeController = require("../controllers/employeeController")
+const ProductController = require("../controllers/productController")
 
 //Calling AuthMiddleware
 var AuthMiddleware = require('../middleware/auth')
@@ -61,9 +65,25 @@ router.post("/dashboard/appointment", DashboardController.dashboardAppointment)
 
 //Clients List
 router.get("/clientes",  DashboardController.clients)
-
 //Client Data
 router.get("/cliente/:username",  DashboardController.clientData)
+
+//Create bill
+router.post("/pago", AccountingController.registerPayment)
+
+//List of Employees
+router.get("/empleados", EmployeeController.listEmployees)
+//Create Employee
+router.get("/crear-empleado", EmployeeController.createEmployeeForm)
+router.post("/crear-empleado", EmployeeController.createEmployee)
+//List of Products
+router.get("/productos", ProductController.listProducts)
+//Create Product
+router.get("/crear-producto", ProductController.createProductForm)
+router.post("/crear-producto", ProductController.createProduct)
+
+
+
 
 
 module.exports = router;

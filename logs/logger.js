@@ -23,7 +23,7 @@ module.exports = createLogger({
 			maxFiles: 5, // cantidad de archivos maximos (cuando lo complete sobreescrivira el primero)
 			level: 'error',
 			filename: "./logs/error.log",
-			handleExceptions: true,
+			// handleExceptions: true,
 			json: true,
             colorize: true
 		}),

@@ -1,3 +1,4 @@
+
 const express   = require("express");
 const bodyparser = require('body-parser');
 const path      = require('path');
@@ -18,7 +19,6 @@ const {
 const web = require('./routes/web.js');
 require('./passport/passport.js')(passport);
 const logger = require("./logs/logger")
-
 //Configuraciones Generales
 app.set('port', process.env.PORT || 8000)
 // app.set('socket.io', io);
