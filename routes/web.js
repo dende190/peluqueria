@@ -59,10 +59,11 @@ router.get("/dashboard", DashboardController.dashboard)
 //Send appointment data in dashboard
 router.post("/dashboard/appointment", DashboardController.dashboardAppointment)
 
-//List of Clients
+//Clients List
 router.get("/clientes",  DashboardController.clients)
 
 //Client Data
 router.get("/cliente/:username",  DashboardController.clientData)
+
 
 module.exports = router;

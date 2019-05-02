@@ -39,10 +39,6 @@ logger.stream = {
 //   });
 // });
 
-
-
-
-
 //MiddleWares
 app.use(session({
     secret: 'secret',

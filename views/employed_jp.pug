@@ -1,0 +1,28 @@
+extends layout_dashboard
+
+block content
+	table#myTable.table.table-striped.table-bordered(style="width: 100%;")
+		thead
+			tr
+				th Nombres
+				th Apellidos
+				th Nombre de usuario
+				th Correo
+				th Telefono
+				th Cedula
+				th Fecha de creacion
+				th Cargo
+		tbody
+			each row in result
+				if row.position != 'cliente'
+					tr
+						td !{row.first_name}
+						td !{row.last_name}
+						td 
+							a(href=`/cliente/${row.username}`) !{row.username}
+						td 
+							a(href=`mailto:${row.email}`) !{row.email}
+						td !{row.phone}
+						td !{row.cc}
+						td 2019-04-10
+						td !{row.position}
