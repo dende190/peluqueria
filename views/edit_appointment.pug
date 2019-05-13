@@ -1,0 +1,67 @@
+extends layout_dashboard
+
+block content
+    .container
+        .col-lg-10.mx-auto
+            .box
+                h2.title-create-employee-form Cita de "!{data.name.toUpperCase()}"
+                p #[strong Fecha] #{data.date} #{data.time}
+                p #[strong Servicio] #{data.service}
+                .col-lg-8.mx-auto.mt-5
+                    form#formCreateEmployee(method="POST" autocomplete="off")
+                        input(type="hidden" name="name" value=`${data.name}`)
+                        .form-group.row
+                                label.col-sm-3.col-form-label.label-form(for="inputEmployeeUsername") Fecha
+                                .col-sm-9
+                                    input.form-control.datepicker(type='text' id="dateFormDashboard" name='date' placeholder='Date Shedule' autocomplete="off")
+                        .form-group.row
+                            label.col-sm-3.col-form-label.label-form(for="selectTime") Hora
+                                select#selectTime.select.form-control(name="time" style="width:100%")
+                                    option(value='06:00:00') 06:00 AM
+                                    option(value='06:30:00') 06:30 AM
+                                    option(value='07:00:00') 07:00 AM
+                                    option(value='07:30:00') 07:30 AM
+                                    option(value='08:00:00') 08:00 AM
+                                    option(value='08:30:00') 08:30 AM
+                                    option(value='09:00:00') 09:00 AM
+                                    option(value='09:30:00') 09:30 AM
+                                    option(value='10:00:00') 10:00 AM
+                                    option(value='10:30:00') 10:30 AM
+                                    option(value='11:00:00') 11:00 AM
+                                    option(value='11:30:00') 11:30 AM
+                                    option(value='12:00:00') 12:00 PM
+                                    option(value='12:30:00') 12:30 PM
+                                    option(value='13:00:00') 01:00 PM
+                                    option(value='13:30:00') 01:30 PM
+                                    option(value='14:00:00') 02:00 PM
+                                    option(value='14:30:00') 02:30 PM
+                                    option(value='15:00:00') 03:00 PM
+                                    option(value='15:30:00') 03:30 PM
+                                    option(value='16:00:00') 04:00 PM
+                                    option(value='16:30:00') 04:30 PM
+                                    option(value='17:00:00') 05:00 PM
+                                    option(value='17:30:00') 05:30 PM
+                                    option(value='18:00:00') 06:00 PM
+                                    option(value='18:30:00') 06:30 PM
+                                    option(value='19:00:00') 07:00 PM
+                                    option(value='19:30:00') 07:30 PM
+                                    option(value='20:00:00') 08:00 PM
+                                    option(value='20:30:00') 08:30 PM
+                                    option(value='21:00:00') 09:00 PM
+                        .form-group.row
+                            label.col-sm-3.col-form-label.label-form(for="selectService") Servicio
+                                select#selectService.select.form-control(name="service" style="width:100%")
+                                    option(value="servicio1") servicio1
+                                    option(value="servicio2") servicio2
+                                    option(value="servicio3") servicio3
+                                    option(value="servicio4") servicio4
+                        button.btn.btn-primary(type="submit") Editar Cita
+                            
+
+
+                
+append scripts
+    script.
+        $(document).ready(function(){
+            $(".select").select2()
+        })

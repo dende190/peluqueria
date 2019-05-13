@@ -58,26 +58,59 @@ router.get("/cita", AppointmentController.appointment)
 //Routes for only people authenticated.
 
 //Routes for only employed authenticated in the platform.
+//APPOINTMENT
 //DashBoard
 router.get("/dashboard", DashboardController.dashboard)
 //Send appointment data in dashboard
 router.post("/dashboard/appointment", DashboardController.dashboardAppointment)
+//Show appointment data
+router.get("/cita/:id", DashboardController.dataAppointment)
+//Edit appointment data
+router.get("/editar/cita/:id", DashboardController.editAppointment)
+router.post("/editar/cita/:id", DashboardController.editAppointment)
+//Delete Appointment
+router.post("/borrar/cita", DashboardController.deleteAppointment)
 
+//CLIENTS
 //Clients List
-router.get("/clientes",  DashboardController.clients)
+router.get("/clientes",  ClientController.clients)
+
 //Client Data
-router.get("/cliente/:username",  DashboardController.clientData)
+router.get("/cliente/:username",  ClientController.clientData)
+
+//Create Client
+router.get("/crear-cliente",  ClientController.createClient)
+router.post("/crear-cliente",  ClientController.createClient)
+
+//Edit Cleint
+router.get("/editar/cliente/:id",  ClientController.editClient)
+router.post("/editar/cliente/:id",  ClientController.editClient)
+
+//Remove Client
+router.post("/borrar-cliente",  ClientController.deleteClient)
 
 //Create bill
 router.post("/pago", AccountingController.registerPayment)
 
+// EMPLOYEES
 //List of Employees
 router.get("/empleados", EmployeeController.listEmployees)
+
 //Create Employee
 router.get("/crear-empleado", EmployeeController.createEmployeeForm)
 router.post("/crear-empleado", EmployeeController.createEmployee)
+
+//Edit Cleint
+router.get("/editar/empleado/:id",  EmployeeController.editEmployee)
+router.post("/editar/empleado/:id",  EmployeeController.editEmployee)
+
+//Delete Empleyee
+router.post("/borrar-empleado", EmployeeController.deleteEmployee)
+
+//PRODUCTOS
 //List of Products
 router.get("/productos", ProductController.listProducts)
+
 //Create Product
 router.get("/crear-producto", ProductController.createProductForm)
 router.post("/crear-producto", ProductController.createProduct)

@@ -1,25 +1,36 @@
 extends layout_dashboard
 
 block content
-	table#myTable.table.table-striped.table-bordered(style="width: 100%;")
-		thead
-			tr
-				th Nombres
-				th Apellidos
-				th Nombre de usuario
-				th Correo
-				th Telefono
-				th Cedula
-				th Fecha de creacion
-		tbody
-			each row in result
+	.container
+		button.btn.btn-primary 
+			a(href="/crear-cliente") Crear Empleado
+		h1 Vista de Clientes en la Peluqueria
+		table.table
+			thead
 				tr
-					td !{row.first_name}
-					td !{row.last_name}
-					td 
-						a(href=`/cliente/${row.username}`) !{row.username}
-					td 
-						a(href=`mailto:${row.email}`) !{row.email}
-					td !{row.phone}
-					td !{row.cc}
-					td '2019-04-10'
+					th #
+					th Nombre
+					th Correo
+					th Telefono
+					th Editar
+					th Borrar
+			tbody
+				each client,index in result
+						tr 
+							td #{index+1}
+							td #{client.first_name} #{client.last_name}
+							td #{client.email}
+							td #{client.phone}
+							td 
+								form(action=`/editar/cliente/${client._id}`)
+									input(type="hidden" name="id" value=`${client._id}`)
+									button
+										i.fa.fa-edit
+							td 
+								form(action="/borrar-cliente" method="post")
+									input(type="hidden" name="id" value=`${client._id}`)
+									button
+										i.fa.fa-trash
+
+
+		

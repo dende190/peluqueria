@@ -1,11 +1,12 @@
 extends layout_dashboard
+
 block content
     .container
         .col-lg-10.mx-auto
             .box
-                h2.title-create-employee-form Datos del nuevo Empleado
+                h2.title-create-employee-form Datos del nuevo Cliente
                 .col-lg-8.mx-auto
-                    form#formCreateEmployee(action="/crear-empleado" method="POST")
+                    form#formCreateEmployee(action="/crear-cliente" method="POST")
                         .form-group.row
                             label.col-sm-3.col-form-label.label-form(for="inputEmployeeName") Nombres
                             .col-sm-9
@@ -14,11 +15,6 @@ block content
                             label.col-sm-3.col-form-label.label-form(for="inputEmployeeLastname") Apellidos
                             .col-sm-9
                                 input#inputEmployeeLastname.form-control(type="text" name="lastName" placeholder="Apellidos")
-                        .form-group.row
-                            label.col-sm-3.col-form-label.label-form(for="inputEmployeeUsername") Username
-                            .col-sm-9
-                                input#inputEmployeeUsername.form-control(type="text" name="username" placeholder="Username")
-                                small Primer letra del nombre y apellido
                         .form-group.row
                             label.col-sm-3.col-form-label.label-form(for="inputEmployeeEmail") Email
                             .col-sm-9
@@ -31,19 +27,4 @@ block content
                             label.col-sm-3.col-form-label.label-form(for="inputEmployeePhone") Telefono
                             .col-sm-9
                                 input#inputEmployeePhone.form-control(type="number" name="phone" placeholder="Telefono")
-                        .form-group.row
-                            label.col-sm-3.col-form-label.label-form(for="selectPositions") Cargo
-                            .col-sm-9
-                                select#selectPositions.form-control(name="position" style="width:100%")
-                                    option(value="admin") Administrador
-                                    option(value="cashier") Cajer@
-                                    option(value="hairdresser") Peluquer@
-                                    option(value="manicurist") Manicurista
-                                    option(value="barber") Barbero
                         button.btn.btn-primary(type="submit") Crear Empleado
-
-append scripts
-    script.
-        $(document).ready(function(){
-            $("#selectPositions").select2()
-        })

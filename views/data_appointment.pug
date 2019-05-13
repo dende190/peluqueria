@@ -1,0 +1,43 @@
+extends layout_dashboard
+block content
+    .container
+        .row
+            .col-md-2
+                button.btn.btn-primary 
+                    a(href=`/editar/cita/${data._id}`) Editar #[i.fa.fa-edit]
+            .col-md-2
+                form(action="/borrar/cita" method="post")
+                    input(type="hidden" name="id" value=`${data._id}`)
+                    button.btn.btn-danger Borrar #[i.fa.fa-trash]
+            .col-md-2
+                p Cita Realizada #{data.done}
+                p Cita Cancelada #{data.cancel}
+        h1.text-center Datos de cita para #{data.name}
+        .d-flex
+            .col-md-6.d-flex.align-items-center.flex-column
+                h2 Datos del cliente:
+                table
+                    tr
+                        th Cliente
+                        td.pl-5 #{data.name}
+                    tr
+                        th Email
+                        td.pl-5 #{data.email}
+                    tr
+                        th Telefono
+                        td.pl-5 #{data.phone}
+
+            .col-md-6.d-flex.align-items-center.flex-column
+                h2 Datos de la cita:
+                table.d-flex
+                    tr
+                        th Servicio
+                        td.pl-5 #{data.service}
+                    tr
+                        th Fecha
+                        td.pl-5 #{data.date} - #{data.time}
+                    tr
+                        th Asigando Por:
+                        td.pl-5 #{data.assign_for}
+                
+                    

@@ -49,30 +49,93 @@ module.exports = {
 						if(err){
 							logger.error(`(ERROR) Error al crear cita '${req.body.client.toUpperCase()}'`, err)
 						}else{
-							let start =  `${req.body.date.replace(/\//g, '-')}T${req.body.time}`
 							let envio = {
 								title: `${client.first_name} ${client.last_name} - ${req.body.service}`,
-								start,
+								start: `${req.body.date}T${req.body.time}`,
 								service: req.body.service,
 								date: req.body.date,
 								time: req.body.time,
 								name: `${client.first_name} ${client.last_name}`,
 								email: client.email,
 								phone: client.phone,
-								assign_for: "JUan Pablo"
+								assign_for: "JUan Pablo",
+								done: false,
+								cancel: false,
 							}
 
 							dbo.collection("appointment").insertOne({ ...envio }, (err, result) => {
 								if(err){
 									logger.error(`(ERROR) Error al crear cita '${req.body.client.toUpperCase()}'`, err)
 								}else{
-									logger.info(`Cita creada '${req.body.username.toUpperCase()}'`)
+									logger.info(`Cita creada '${req.body.client.toUpperCase()}'`)
 								}
 							});
 						}
 					});
 				}
 			}
-		);
+		)
+    },
+    dataAppointment: (req, res) => {
+    	let dbo = req.app.locals.dbo
+
+    	dbo.collection("appointment").findOne( { _id: ObjectId(req.params.id) }, (err, result) => {
+    		if(err){
+    			logger.error(`(ERROR) Error al traer datos de cita con id ${req.params.id} \n ${err}`)
+    		}else{
+    			logger.info(`Datos de cita con id: ${req.params.id} traidos exitosamente`)
+    			console.log(result)
+    			res.render("data_appointment", {
+    				data: result
+    			})
+    		}
+    	})
+    },
+    editAppointment: (req, res) => {
+    	let dbo = req.app.locals.dbo
+
+    	if(req.body.name){
+    		let editData = {
+    			title: `${req.body.name} - ${req.body.service}`,
+    			start: `${req.body.date}T${req.body.time}`,
+    			service: `${req.body.service}`,
+    			date: req.body.date,
+				time: req.body.time,
+
+    		}
+    		dbo.collection("appointment").updateOne( { _id: ObjectId(req.params.id) }, { $set: { ...editData } } , (err, result) => {
+				if(err){
+					console.log(err)
+				}else{
+					console.log(result)
+				} 			
+    		})
+
+    		res.redirect("/dashboard")
+    	}else{
+    		dbo.collection("appointment").findOne( { _id: ObjectId(req.params.id) }, (err, result) => {
+    		if(err){
+    			logger.error(`(ERROR) Error al traer datos de cita con id ${req.params.id} \n ${err}`)
+    		}else{
+    			logger.info(`Datos de cita con id: ${req.params.id} traidos exitosamente`)
+    			console.log(result)
+    			res.render("edit_appointment", {
+    				data: result
+    			})
+    		}
+    	})
+    	}
+    },
+    deleteAppointment: (req, res) => {
+    	let dbo = req.app.locals.dbo
+        
+        dbo.collection('appointment').remove( {_id: ObjectId(req.body.id) }, (err, r) => {
+            if(err){
+                console.log(`(ERROR) error al borrar usuario con id ${req.body.id} \n ${err}`)
+            }
+            console.log(`Usuario con id ${req.body.id} eliminado correctamente`)
+        })
+
+        res.redirect("/dashboard")
     }
 }

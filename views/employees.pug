@@ -1,6 +1,8 @@
 extends layout_dashboard
 block content
     .container
+        button.btn.btn-primary 
+            a(href="/crear-empleado") Crear Empleado
         h1 Vista de Empleados en la Peluqueria
         table.table
             thead
@@ -10,12 +12,25 @@ block content
                     th Correo
                     th Telefono
                     th Cargo
+                    th Editar
+                    th Borrar
             tbody
                 each employee,index in employees
-                    tr 
-                        td #{index+1}
-                        td #{employee.name}
-                        td #{employee.email}
-                        td #{employee.phone}
-                        td #{employee.position}
-    
+                    if(employee.position != 'cliente')
+                        tr 
+                            td #{index+1}
+                            td #{employee.first_name} #{employee.last_name}
+                            td #{employee.email}
+                            td #{employee.phone}
+                            td #{employee.position}
+                            td 
+                                form(action=`/editar/empleado/${employee._id}`)
+                                    input(type="hidden" name="id" value=`${employee._id}`)
+                                    button
+                                        i.fa.fa-edit
+                            td 
+                                form(action="/borrar-empleado" method="post")
+                                    input(type="hidden" name="id" value=`${employee._id}`)
+                                    button
+                                        i.fa.fa-trash
+        
