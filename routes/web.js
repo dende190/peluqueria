@@ -73,6 +73,7 @@ router.get("/empleados", EmployeeController.listEmployees)
 //Create Employee
 router.get("/crear-empleado", EmployeeController.createEmployeeForm)
 router.post("/crear-empleado", EmployeeController.createEmployee)
+
 //List of Products
 router.get("/productos", ProductController.listProducts)
 //Create Product

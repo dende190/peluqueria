@@ -84,14 +84,14 @@ app.use('/modules', express.static(__dirname + '/node_modules'))
 
 //MongoDB Connect and upload server
 let dbo
-MongoClient.connect(DB_URI, { useNewUrlParser: true })
+MongoClient.connect('mongodb://localhost:27017/peluqueria', { useNewUrlParser: true })
     .then(client => {
         dbo = client.db('peluqueria');
         logger.info("Base de datos iniciada correctamente")
         
         //global variable for database
         // USE CONNECTION => req.app.locals.dbo 
-        app.locals.dbo = dbo;
+        app.locals.dbo = dbo || null;
 
         //Subir el servidor
         app.listen(app.get('port'), () => {
