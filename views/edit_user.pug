@@ -1,0 +1,60 @@
+extends layout_dashboard
+
+block content
+    .container
+        .col-lg-10.mx-auto
+            .box
+                h2.title-create-employee-form Datos de "!{result.first_name.toUpperCase()} !{result.last_name.toUpperCase()}"
+                .col-lg-8.mx-auto
+                    form#formCreateEmployee(method="POST" autocomplete="off")
+                        .form-group.row
+                            label.col-sm-3.col-form-label.label-form(for="inputEmployeeName") Nombres
+                            .col-sm-9
+                                input#inputEmployeeName.form-control(type="text" name="name" placeholder="Nombres" value=`${result.first_name}`)
+                        .form-group.row
+                            label.col-sm-3.col-form-label.label-form(for="inputEmployeeLastname") Apellidos
+                            .col-sm-9
+                                input#inputEmployeeLastname.form-control(type="text" name="lastName" placeholder="Apellidos" value=`${result.last_name}`)
+                        if data == 'employee'
+                            .form-group.row
+                                label.col-sm-3.col-form-label.label-form(for="inputEmployeeUsername") Username
+                                .col-sm-9
+                                    input#inputEmployeeUsername.form-control(type="text" name="username" placeholder="Username" value=`${result.username}` readonly)
+                            .form-group.row
+                                label.col-sm-3.col-form-label.label-form(for="inputEmployeePass") Contraseña
+                                .col-sm-9
+                                    input#inputEmployeePass.form-control(type="password" name="password" placeholder="Contraseña" value=`${result.password}`)
+                                    small Si no desea cambiar la contraseña por favor no modificar campo
+                        .form-group.row
+                            label.col-sm-3.col-form-label.label-form(for="inputEmployeeEmail") Email
+                            .col-sm-9
+                                input#inputEmployeeEmail.form-control(type="email" name="email" placeholder="Email" value=`${result.email}`)
+                        .form-group.row
+                            label.col-sm-3.col-form-label.label-form(for="inputEmployeeCC") C.C.
+                            .col-sm-9
+                                input#inputEmployeeCC.form-control(type="text" name="cc" placeholder="C.C." value=`${result.cc}`)
+                        .form-group.row
+                            label.col-sm-3.col-form-label.label-form(for="inputEmployeePhone") Telefono
+                            .col-sm-9
+                                input#inputEmployeePhone.form-control(type="number" name="phone" placeholder="Telefono" value=`${result.phone}`)
+                        if data == 'employee'
+                            .form-group.row
+                                label.col-sm-3.col-form-label.label-form(for="selectPositions") Cargo
+                                .col-sm-9
+                                    select#selectPositions.form-control(name="position" style="width:100%")
+                                        option(value="admin") Administrador
+                                        option(value="cashier") Cajer@
+                                        option(value="hairdresser") Peluquer@
+                                        option(value="manicurist") Manicurista
+                                        option(value="barber") Barbero
+                        button.btn.btn-primary(type="submit") 
+                            if data == 'employee'  
+                                | Editar Usuario
+                            else
+                                | Editar Cliente
+
+append scripts
+    script.
+        $(document).ready(function(){
+            $("#selectPositions").select2()
+        })

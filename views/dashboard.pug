@@ -7,8 +7,6 @@ append styles
 	link(href='/static/js/fullcalendar/packages/list/main.min.css' rel='stylesheet')
 
 	script(src='/modules/moment/moment.js')
-	//- script(src='/modules/tooltip.js/dist/umd/tooltip.js')
-	//- script(src='/modules/popper.js/dist/umd/popper.js')
 	
 block content
 	button.btn.btn-primary(id="button_dashboard") +Nueva Reserva
@@ -83,6 +81,8 @@ block content
 	else
 		script(type="text/javascript").
 
+			var now = new Date()
+
 			document.addEventListener('DOMContentLoaded', function() {
 				var calendarEl = document.getElementById('calendar');
 
@@ -94,7 +94,7 @@ block content
 						right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
 					},
 					
-					defaultDate: '2019-04-12',
+					defaultDate: now,
 					navLinks: true, // can click day/week names to navigate views
 
 					weekNumbersWithinDays: true,
@@ -104,7 +104,8 @@ block content
 					events: !{JSON.stringify(calendar)},
 
 					eventClick: function(info) {
-						alert(`Servicio: ${info.event.extendedProps.service}\nCliente: ${info.event.extendedProps.name}\nFecha: ${moment(info.event.start).format('LLL')}\nCorreo: ${info.event.extendedProps.email}\nPhone: ${info.event.extendedProps.phone}`);
+						window.location.href = `/cita/${info.event.extendedProps._id}`;
+						// alert(`Id: ${info.event.extendedProps._id}\nServicio: ${info.event.extendedProps.service}\nCliente: ${info.event.extendedProps.name}\nFecha: ${moment(info.event.start).format('LLL')}\nCorreo: ${info.event.extendedProps.email}\nPhone: ${info.event.extendedProps.phone}`);
 					}
 				});
 
