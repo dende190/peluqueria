@@ -25,12 +25,12 @@ block content
                         .form-group.row
                             label.col-sm-3.col-form-label.label-form(for="inputProductPrice") Precio
                             .col-sm-9
-                                input#inputProductPrice.form-control(type="number" name="price" placeholder="Precio")
+                                input#inputProductPrice.form-control(type="number" name="price" placeholder="Precio" onInput="updatePVP(event)")
                                 .form-check.form-check-inline
-                                    input#radio-iva.form-check-input(type="radio" name="iva")
+                                    input#radio-iva.form-check-input(type="radio" name="iva" value="1")
                                     label.label-checkbox(for="radio-iva") con IVA (19%)
                                 .form-check.form-check-inline
-                                    input#radio-notIva.form-check-input(type="radio" name="iva")
+                                    input#radio-notIva.form-check-input(type="radio" name="iva" value="0")
                                     label.label-checkbox(for="radio-notIva") sin IVA
                         .form-group.row
                             label.col-sm-3.col-form-label.label-form(for="inputProductPrice") PVP Final
@@ -44,4 +44,29 @@ block content
                         button.btn.btn-primary(type="submit") Crear Producto
 append scripts
     script.
-        let sda = 
+        let $price = document.getElementById("inputProductPrice")
+        let $pvp = document.getElementById("inputPVPFinal")
+        let $inputIva = document.getElementById("radio-iva")
+        let $inputNotIva = document.getElementById("radio-notIva")
+        function updatePVP(event) {
+            priceValue = event.target.value
+            $pvp.value = priceValue
+        }
+        $inputIva.addEventListener("change" , function() {
+            if(this.checked) {
+                if($price.value) {
+                    let iva  = ( $price.value * 19 ) / 100
+                    $pvp.value = parseInt( $price.value) + iva 
+                }
+            }
+        })
+        $inputNotIva.addEventListener("change" , function() {
+            if(this.checked) {
+                $pvp.value = $price.value
+            }
+        })
+        //- console.log("acaa")
+        //- let $pvp = document.getElementById("inputPVPFinal")
+        //- let $price = document.getElementById("inputProductPrice").addEventListener("onkeypress", (ev)=>{
+        //-     console.log(ev)
+        //- })

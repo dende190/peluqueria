@@ -10,7 +10,7 @@ module.exports = {
             if(err) {
                 console.log("(ERROR) The dabase cannot find all the Employees" + err)
             }
-            console.log("encontre a los empleados")
+            console.log("List of empleyees")
             console.log(docs)
             res.render("employees", {
                 employees: docs
