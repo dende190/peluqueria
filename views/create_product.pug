@@ -9,11 +9,11 @@ block content
                         .form-group.row
                             label.col-sm-3.col-form-label.label-form(for="inputProductProvider") Proveedor
                             .col-sm-9
-                                input#inputProductProvider.form-control(type="text" name="provider" placeholder="Proveedor")
+                                input#inputProductProvider.form-control(type="text" name="provider" placeholder="Proveedor" required)
                         .form-group.row
                             label.col-sm-3.col-form-label.label-form(for="inputProductName") Nombre
                             .col-sm-9
-                                input#inputProductName.form-control(type="text" name="name" placeholder="Nombre del Producto")
+                                input#inputProductName.form-control(type="text" name="name" placeholder="Nombre del Producto" required)
                         .form-group.row
                             label.col-sm-3.col-form-label.label-form(for="inputProductDescription") Descripcion
                             .col-sm-9
@@ -21,21 +21,27 @@ block content
                         .form-group.row
                             label.col-sm-3.col-form-label.label-form(for="inputProductCost") Costo por unidad
                             .col-sm-9
-                                input#inputProductCost.form-control(type="number" name="cost")
+                                input#inputProductCost.form-control(type="number" name="cost" required)
                         .form-group.row
                             label.col-sm-3.col-form-label.label-form(for="inputProductPrice") Precio
                             .col-sm-9
                                 input#inputProductPrice.form-control(type="number" name="price" placeholder="Precio")
                                 .form-check.form-check-inline
-                                    input#radio-iva.form-check-input(type="radio" name="iva" value="1")
-                                    label.form-check-label(for="radio-iva") con IVA
+                                    input#radio-iva.form-check-input(type="radio" name="iva")
+                                    label.label-checkbox(for="radio-iva") con IVA (19%)
                                 .form-check.form-check-inline
-                                    input#radio-notIva.form-check-input(type="radio" name="notIva" value="1")
-                                    label.form-check-label(for="radio-notIva") sin IVA
-                                p#finalPrice Precio de venta final:  
+                                    input#radio-notIva.form-check-input(type="radio" name="iva")
+                                    label.label-checkbox(for="radio-notIva") sin IVA
+                        .form-group.row
+                            label.col-sm-3.col-form-label.label-form(for="inputProductPrice") PVP Final
+                            .col-sm-9
+                                input#inputPVPFinal.form-control(type="text" name="pvp" readonly)
                         .form-group.row
                             label.col-sm-3.col-form-label.label-form(for="inputProductStock") Stock
                             .col-sm-9
-                                input#inputProductStock.form-control(type="number" name="stock" placeholder="Stock")
+                                input#inputProductStock.form-control(type="number" name="stock" placeholder="Stock" required)
                         
                         button.btn.btn-primary(type="submit") Crear Producto
+append scripts
+    script.
+        let sda = 

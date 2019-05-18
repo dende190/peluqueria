@@ -6,6 +6,7 @@ module.exports ={
         res.render("create_product")
     },
     createProduct: (req,res) => {
+        console.log(req.body.provedor)
         res.redirect("/productos")
     },
 }

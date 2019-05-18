@@ -123,6 +123,11 @@
     color: #9A9A9A;
     margin-bottom: 0px;
 }
+.label-checkbox {
+    font-size: 13px;
+    margin: 5px 0;
+    color: #9A9A9A;
+}
 .title-create-employee-form {
 	margin-top: 0;
 	margin-bottom: 10px;
