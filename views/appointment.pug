@@ -28,11 +28,9 @@ section.beautypress-booking-section.beautypress-padding-bottom
 							.beautypress-select
 								.input-group
 									select#appointment-service.form-control(name='appointmentService')
-										option(value='') Selecciona tu servicio
-											option(value='servicio1') servicio1 ($59.00)
-											option(value='servicio2') servicio2 ($199.00)
-											option(value='servicio3') servicio3	($299.00)
-											option(value='servicio4') servicio4	(for Two $399.00)
+										opti1on(value="") Selecciona tu servicio
+										each service in services
+											option(value=`${service._id}`) !{service.service}(!{service.price})
 							// .beautypress-select END
 							.beautypress-spilit-container
 								.beautypress-date-select.beautypress-select

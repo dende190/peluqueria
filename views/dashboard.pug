@@ -62,10 +62,8 @@ block content
 								.col-md-6.col-lg-6
 									select.form-control(name="service" id="serviceFormDashboard" required)
 										option(value="") Seleccionar Servicio
-										option(value="servicio1") servicio1
-										option(value="servicio2") servicio2
-										option(value="servicio3") servicio3
-										option(value="servicio4") servicio4
+										each service in services
+											option(value=`${service._id}`) !{service.service}(!{service.price})
 								.col-md-6.col-lg-6
 									select.form-control(name="client" id="clientFormDashboard" required)
 										option(value="") Seleccionar Cliente

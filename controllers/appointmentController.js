@@ -1,4 +1,5 @@
 const logger = require("../logs/logger")
+const { ObjectId } = require("mongodb")
 
 module.exports = {
 	appointment: async function(req, res){
@@ -15,31 +16,39 @@ module.exports = {
 						logger.error(`(ERROR) Error al iniciar sesion con usuario ${username}`, err)
 					}
 					if(result === null){
-						let start =  `${req.body.appointmentDate.replace(/\//g, '-')}T${req.body.appointmentTime}`
-						let envio = {
-							title: `${req.body.name.toLowerCase()} - ${req.body.appointmentService}`,
-							start,
-							service: req.body.appointmentService,
-							date: req.body.appointmentDate,
-							time: req.body.appointmentTime,
-							name: req.body.name.toLowerCase(),
-							email: req.body.email.toLowerCase(),
-							phone: req.body.phone,
-							message: req.body.message.toLowerCase(),
-						}
-						
-						dbo.collection("appointment").insertOne({ ...envio }, (err, result) => {
+						dbo.collection('service').findOne( { _id: ObjectId(req.body.appointmentService) }, (err, service) =>{
 							if(err){
-								logger.error(`(ERROR) Error al crear cita '${req.body.name.toUpperCase()}'`, err)
+								logger.error(`(ERROR) Error al traer datos de servicio con id: ${req.body.appointmentService}\n ${err}`)
 							}else{
-								logger.info(`Cita creada '${req.body.username.toUpperCase()}'`)
-							}
-						});
+								let envio = {
+									title: `${req.body.name.toLowerCase()} - ${service.service}`,
+									start: `${req.body.appointmentDate}T${req.body.appointmentTime}`,
+									service: service.service,
+									date: req.body.appointmentDate,
+									time: req.body.appointmentTime,
+									name: req.body.name.toLowerCase(),
+									email: req.body.email.toLowerCase(),
+									phone: req.body.phone,
+									message: req.body.message.toLowerCase(),
+									assign_for: "Cliente",
+									done: false,
+									cancel: false,
+								}
+								
+								dbo.collection("appointment").insertOne({ ...envio }, (err, result) => {
+									if(err){
+										logger.error(`(ERROR) Error al crear cita '${req.body.name.toUpperCase()}'`, err)
+									}else{
+										logger.info(`Cita creada '${req.body.name.toUpperCase()}'`)
+									}
+								});
 
-						res.render('thanks', {
-							service: envio.service,
-							date: envio.date,
-							time: envio.time,
+								res.render('thanks', {
+									service: envio.service,
+									date: envio.date,
+									time: envio.time,
+								})
+							}
 						})
 					}else{
 						res.render('thanks', {

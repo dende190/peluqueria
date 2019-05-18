@@ -12,6 +12,7 @@ const ClientController = require("../controllers/clientController")
 const AccountingController = require("../controllers/accountingController")
 const EmployeeController = require("../controllers/employeeController")
 const ProductController = require("../controllers/productController")
+const ServiceController = require("../controllers/serviceController")
 
 //Calling AuthMiddleware
 var AuthMiddleware = require('../middleware/auth')
@@ -100,12 +101,27 @@ router.get("/empleados", EmployeeController.listEmployees)
 router.get("/crear-empleado", EmployeeController.createEmployeeForm)
 router.post("/crear-empleado", EmployeeController.createEmployee)
 
-//Edit Cleint
+//Edit Employee
 router.get("/editar/empleado/:id",  EmployeeController.editEmployee)
 router.post("/editar/empleado/:id",  EmployeeController.editEmployee)
 
 //Delete Empleyee
 router.post("/borrar-empleado", EmployeeController.deleteEmployee)
+
+//SERVICE
+//Service List
+router.get("/lista-servicios", ServiceController.listService)
+
+//Create Service
+router.get("/crear-servicio", ServiceController.createService)
+router.post("/crear-servicio", ServiceController.createService)
+
+//Edit Service
+router.get("/editar/servicio/:id", ServiceController.editService)
+router.post("/editar/servicio/:id", ServiceController.editService)
+
+//Delete Employee
+router.post("/borrar-servicio", ServiceController.deleteService)
 
 //PRODUCTOS
 //List of Products

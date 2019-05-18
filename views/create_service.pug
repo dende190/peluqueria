@@ -1,0 +1,41 @@
+extends layout_dashboard
+
+block content
+    .container
+        .col-lg-10.mx-auto
+            .box
+                h2.title-create-employee-form Nuevo Servicio
+                .col-lg-8.mx-auto
+                    form#formCreateEmployee(action="/crear-servicio" method="POST")
+                        .form-group.row
+                            label.col-sm-3.col-form-label.label-form(for="inputServiceName") Nombres
+                            .col-sm-9
+                                input#inputServiceName.form-control(type="text" name="name" placeholder="Nombres")
+                        .form-group.row
+                            label.col-sm-3.col-form-label.label-form(for="inputProductPrice") Precio
+                            .col-sm-9
+                                input#inputProductPrice.form-control(type="number" name="price" placeholder="Precio")
+                                .form-check.form-check-inline
+                                    input#radio-iva.form-check-input(type="radio" name="iva" value="1")
+                                    label.form-check-label(for="radio-iva") con IVA
+                                .form-check.form-check-inline
+                                    input#radio-notIva.form-check-input(type="radio" name="notIva" value="1")
+                                    label.form-check-label(for="radio-notIva") sin IVA
+                                p#finalPrice Precio de venta final:  
+                        .form-group.row
+                                label.col-sm-3.col-form-label.label-form(for="selectPositions") Cargo
+                                .col-sm-9
+                                    select#selectPositions.form-control(name="time" style="width:100%")
+                                        option(value='') Seleccionar tiempo
+                                        option(value='15') 15 minutos
+                                        option(value='30') 30 minutos
+                                        option(value='45') 45 minutos
+                                        option(value='60') 1 hora
+                                        option(value='75') 1 hora 15 minutos
+                                        option(value='90') 1 hora 30 minutos
+                                        option(value='105') 1 hora 45 minutos
+                                        option(value='120') 2 horas
+                                        option(value='135') 2 horas 15 minutos
+                                        option(value='150') 2 horas 30 minutos
+                                        option(value='165') 2 horas 45 minutos
+                        button.btn.btn-primary(type="submit") Crear Servicio

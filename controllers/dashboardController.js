@@ -5,26 +5,31 @@ module.exports = {
     dashboard: async (req,res) => {
 		let dbo = req.app.locals.dbo
 
-    	let result 
-		dbo.collection("appointment").find({}).toArray( (err, result) => {
+		dbo.collection("appointment").find({}).toArray( (err, appointment) => {
 			if(err){
 				logger.error(`(ERROR) error al traer datos para graficar el calendario \n ${err}`)
 				res.render("dashboard", {
 		        	error: true
 		        })
 			}else{
-				calendar = result
-				dbo.collection("clients").find({}).toArray( (err, result) => {
+				dbo.collection("clients").find({}).toArray( (err, clients) => {
 					if(err){
 						logger.error(`(ERROR) error al traer lista de clientes \n ${err}`)
 						res.render("dashboard", {
 				        	error: true
 				        })
 					}else{
-				        res.render("dashboard", {
-				        	calendar,
-				        	clients: result
-				        })
+						dbo.collection("service").find({}).toArray ( (err, services) => {
+							if(err){
+								logger.error(`(ERROR) Error al traer lista de servicios \n ${err}`)
+							}else{
+						        res.render("dashboard", {
+						        	calendar: appointment,
+						        	clients,
+						        	services,
+						        })
+							}
+						})
 					}
 				});
 			}
@@ -58,6 +63,7 @@ module.exports = {
 								name: `${client.first_name} ${client.last_name}`,
 								email: client.email,
 								phone: client.phone,
+								message: "",
 								assign_for: "JUan Pablo",
 								done: false,
 								cancel: false,
@@ -95,35 +101,46 @@ module.exports = {
     	let dbo = req.app.locals.dbo
 
     	if(req.body.name){
-    		let editData = {
-    			title: `${req.body.name} - ${req.body.service}`,
-    			start: `${req.body.date}T${req.body.time}`,
-    			service: `${req.body.service}`,
-    			date: req.body.date,
-				time: req.body.time,
-
-    		}
-    		dbo.collection("appointment").updateOne( { _id: ObjectId(req.params.id) }, { $set: { ...editData } } , (err, result) => {
-				if(err){
-					console.log(err)
+    		dbo.collection('service').findOne( { _id: ObjectId(req.body.service) }, (err, service) =>{
+    			if(err){
+					logger.error(`(ERROR) Error al traer datos de servicio con id: ${req.body.appointmentService}\n ${err}`)
 				}else{
-					console.log(result)
-				} 			
-    		})
+					let editData = {
+		    			title: `${req.body.name} - ${service.service}`,
+		    			start: `${req.body.date}T${req.body.time}`,
+		    			service: `${service.service}`,
+		    			date: req.body.date,
+						time: req.body.time,
+		    		}
+		    		dbo.collection("appointment").updateOne( { _id: ObjectId(req.params.id) }, { $set: { ...editData } } , (err, result) => {
+						if(err){
+							console.log(err)
+						}else{
+							console.log(result)
+						} 			
+		    		})
 
-    		res.redirect("/dashboard")
+		    		res.redirect("/dashboard")
+				}
+    		})
     	}else{
     		dbo.collection("appointment").findOne( { _id: ObjectId(req.params.id) }, (err, result) => {
-    		if(err){
-    			logger.error(`(ERROR) Error al traer datos de cita con id ${req.params.id} \n ${err}`)
-    		}else{
-    			logger.info(`Datos de cita con id: ${req.params.id} traidos exitosamente`)
-    			console.log(result)
-    			res.render("edit_appointment", {
-    				data: result
-    			})
-    		}
-    	})
+	    		if(err){
+	    			logger.error(`(ERROR) Error al traer datos de cita con id ${req.params.id} \n ${err}`)
+	    		}else{
+	    			logger.info(`Datos de cita con id: ${req.params.id} traidos exitosamente`)
+	    			dbo.collection("service").find({}).toArray ( (err, services) => {
+						if(err){
+							logger.error(`(ERROR) Error al traer lista de servicios \n ${err}`)
+						}else{
+			    			res.render("edit_appointment", {
+			    				data: result,
+			    				services
+			    			})
+						}
+					})
+	    		}
+	    	})
     	}
     },
     deleteAppointment: (req, res) => {

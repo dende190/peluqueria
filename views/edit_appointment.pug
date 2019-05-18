@@ -51,10 +51,9 @@ block content
                         .form-group.row
                             label.col-sm-3.col-form-label.label-form(for="selectService") Servicio
                                 select#selectService.select.form-control(name="service" style="width:100%")
-                                    option(value="servicio1") servicio1
-                                    option(value="servicio2") servicio2
-                                    option(value="servicio3") servicio3
-                                    option(value="servicio4") servicio4
+                                    option(value="") Seleccionar Servicio
+                                    each service in services
+                                        option(value=`${service._id}`) !{service.service}(!{service.price})
                         button.btn.btn-primary(type="submit") Editar Cita
                             
 
