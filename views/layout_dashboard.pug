@@ -104,58 +104,50 @@ html(lang='en')
                 //Payment Form
                 #collapsePaymentForm.collapse
                     .card.card-body
-                        .payment-container
-                            .col-md-6
-                                .card.card-body
-                                    .form-group
-                                        label(for="FormControlSelectEmployee") Cajero
-                                        select#FormControlSelectEmployee.form-control.select-payment
-                                            option 1
-                                            option 2
-                                            option 3
-                                            option 4
-                                            option 5
-                                    .form-group
-                                        label(for="FormControlSelectClient") Cliente
-                                        select#FormControlSelectClient.form-control.select-payment
-                                            option Jose Cucalon Ortiz
-                                            option Jose Cucalon Sande
-                                            option Brayan Yesid Cata
-                                            option Jhonatan Layton
-                                            option Jhonatan Meneses
-                                    .form-group
-                                        label(for="FormControlSelectServices") Servicios
-                                        select#FormControlSelectServices.form-control(multiple="multiple")
-                                            option Jose Cucalon Ortiz
-                                            option Jose Cucalon Sande
-                                            option Brayan Yesid Cata
-                                            option Jhonatan Layton
-                                            option Jhonatan Meneses
-                                    .form-group
-                                        label(for="FormControlSelectProducts") Productos
-                                        select#FormControlSelectProducts.form-control(multiple="multiple")
-                                            option 1
-                                            option 2
-                                            option 3
-                                            option 4
-                                            option 5
-                                    .form-group
-                                        .form-check.form-check-inline
-                                            input#radio-cash.form-check-input(type="radio" name="inlineRadioOptions" value="option1")
-                                            label.form-check-label(for="radio-cash") Efectivo
-                                        .form-check.form-check-inline
-                                            input#radio-creditCard.form-check-input(type="radio" name="inlineRadioOptions" value="option2")
-                                            label.form-check-label(for="radio-creditCard") Targeta de Credito
-                                    button.btn.btn-primary(type="submit") Cobrar
-                            .col-md-6
-                                .card.card-body
-                                    label A cobrar:
-                                        span $0
-                                    div
-                                        label(for="inputClientCash") El cliente paga con: 
-                                        input#inputClientCash(type="number")
-                                    label Hay que devolverle:
-                                        span $0
+                        form(action="/pago" method="POST")
+                            .payment-container
+                                    .col-md-6
+                                        .card.card-body
+                                            .form-group
+                                                label(for="FormControlSelectEmployee") Cajero
+                                                select#FormControlSelectEmployee.form-control.select-payment(name="employee" required)
+                                            .form-group
+                                                label(for="FormControlSelectClient") Cliente
+                                                select#FormControlSelectClient.form-control.select-payment(name="client" required)
+                                            .form-group
+                                                label(for="FormControlSelectServices") Servicios
+                                                select#FormControlSelectServices.form-control
+                                                input#inputServices(type="hidden" name="services" value="")
+                                                #list-services
+                                            .form-group
+                                                label(for="FormControlSelectProducts") Productos
+                                                select#FormControlSelectProducts.form-control
+                                                input#inputProducts(type="hidden" name="products" value="")
+                                                #list-products
+                                            .form-group
+                                                .form-check.form-check-inline
+                                                    input#radio-cash.form-check-input(type="radio" name="methodPay" value="cash")
+                                                    label.form-check-label(for="radio-cash") Efectivo
+                                                .form-check.form-check-inline
+                                                    input#radio-creditCard.form-check-input(type="radio" name="methodPay" value="credit")
+                                                    label.form-check-label(for="radio-creditCard") Targeta de Credito
+                                    .col-md-6
+                                        .card.card-body
+                                            .d-flex.align-items-center
+                                                p.payment-title
+                                                    | Total A Pagar: $
+                                                input#inputTotalPrice.input-payment-form.input-read-only(name="totalPrice" value="0" readonly)
+                                            #changeSection
+                                                .d-flex.align-items-center
+                                                    p.m-0
+                                                        | El cliente paga con: 
+                                                    input#inputClientCash(type="number" name="clientMoney")
+                                                .d-flex.align-items-center
+                                                    p.payment-title
+                                                        | Cambio : $
+                                                    .d-flex.align-items-center
+                                                        input#inputChange.input-payment-form.input-read-only(name="totalChange" value="0" readonly)
+                                            button.btn.btn-primary(type="submit") Cobrar
                 //End Payment Form
                 .content
                     // Main Content
@@ -186,6 +178,152 @@ html(lang='en')
             script(src="/static/js/others/configDatePicker.js")
             script.
                 $(document).ready(function() {
-                    $('#FormControlSelectServices').select2();
-                    $('#FormControlSelectProducts').select2();
+                    $('#FormControlSelectServices').select2({
+                        placeholder: 'Escoge uno...',
+                        width: '100%',
+                        minimumResultsForSearch: -1,
+                        ajax: {
+                            url: '/select-servicios',
+                            dataType: 'json',
+                        },
+                    });
+                    $('#FormControlSelectProducts').select2({
+                        placeholder: 'Escoge uno...',
+                        width: '100%',
+                        minimumResultsForSearch: -1,
+                        ajax: {
+                            url: '/select-productos',
+                            dataType: 'json',
+                        }
+                    });
+                    $('#FormControlSelectClient').select2({
+                        placeholder: 'Escoge uno...',
+                        width: '100%',
+                        ajax: {
+                            url: '/select-clientes',
+                            dataType: 'json',
+                        }
+                    });
+                    $('#FormControlSelectEmployee').select2({
+                        placeholder: 'Escoge uno...',
+                        width: '100%',
+                        ajax: {
+                            url: '/select-empleados',
+                            dataType: 'json',
+                        }
+                    });
+                    
+                    function risePrice(e) {
+                        let currentPrice = $('#inputTotalPrice').val()
+                        let { price } = e.params.data
+                        $('#inputTotalPrice').val((parseInt(currentPrice) + parseInt(price)))
+                    }
+                    function lowerPrice(unselectedPrice) {
+                        let currentPrice = $('#inputTotalPrice').val()
+                        $('#inputTotalPrice').val(parseInt(currentPrice) - parseInt(unselectedPrice))
+                    }
+
+                    $('#FormControlSelectServices').on('select2:select', (e) =>  {
+                        risePrice(e)
+                        let serviceTemplate = `<div class="item-selected service animated fadeInRight">
+                                                    <span class="fa fa-times-circle-o delete-icon text-danger" data-price='${e.params.data.price}' data-service='${e.params.data.id}'></span>
+                                                    <p class="item-name">${e.params.data.text}</p>
+                                                    <hr/>
+                                                    <p class="item-price">$${ parseInt(e.params.data.price).toLocaleString() }</p>
+                                                </div>`
+                        //- console.log(serviceTemplate)
+                        let services = $('#inputServices').val()
+                        if(services) {
+                            services = services.split(',')
+                            services.push(e.params.data.id)
+                        } else {
+                            services = e.params.data.id
+                        }
+                        $('#inputServices').val(services)
+                        $('#list-services').append(serviceTemplate)
+                        $("#FormControlSelectServices").val(null).trigger("change");
+                    })
+
+                    $('body').on('click', '.delete-icon', function () {
+                        let removePrice = $(this).attr('data-price')
+                        let serviceId = $(this).attr('data-service')
+                        let productId = $(this).attr('data-product')
+                        console.log(serviceId)
+                        console.log(productId)
+                        lowerPrice(removePrice)
+                        if(serviceId) {
+                            let services = $('#inputServices').val().split(',')
+                            for (var i=services.length-1; i>=0; i--) {
+                                if (services[i] == serviceId) {
+                                    services.splice(i, 1);
+                                    break;
+                                }
+                            }
+                            $('#inputServices').val(services)
+                        } else {
+                            let products = $('#inputProducts').val().split(',')
+                            for (var i=products.length-1; i>=0; i--) {
+                                if (products[i] == productId) {
+                                    products.splice(i, 1);
+                                    break;
+                                }
+                            }
+                            $('#inputProducts').val(products)
+                        }
+                        $(this).parent().hide()
+                    });
+
+
+                    $('#FormControlSelectProducts').on('select2:select', (e) =>  {
+                        risePrice(e)
+                        let productTemplate = `<div class="item-selected product animated fadeInRight">
+                                                    <span class="fa fa-times-circle-o delete-icon text-danger" data-product='${e.params.data.id}' data-price='${e.params.data.price}'></span>
+                                                    <p class="item-name">${e.params.data.text}</p>
+                                                    <hr/>
+                                                    <p class="item-price">$${ parseInt(e.params.data.price).toLocaleString() }</p>
+                                                </div>`
+                        //- console.log(serviceTemplate)
+                        let products = $('#inputProducts').val()
+                        if(products) {
+                            products = products.split(',')
+                            products.push(e.params.data.id)
+                        } else {
+                            products = e.params.data.id
+                        }
+                        $('#inputProducts').val(products)
+                        $('#list-products').append(productTemplate)
+                        $("#FormControlSelectProducts").val(null).trigger("change");
+                    })
+
+                    $('#radio-creditCard').on('change', function() {
+                        if(this.checked) {
+                            console.log('camv')
+                            $('#changeSection').hide()
+                        }
+                    })
+                    $('#radio-cash').on('change', function() {
+                        if(this.checked) {
+                            $('#changeSection').show()
+                        }
+                    })
+
+                    $('#inputClientCash').keyup( (e) => {
+                        let totalPrice = parseInt(document.getElementById('inputTotalPrice').value)
+                        let clientCash = parseInt(document.getElementById('inputClientCash').value)
+                        let change = 0
+                        if(clientCash >= totalPrice && totalPrice != 0) {
+                            change = clientCash - totalPrice
+                        } else {
+                            change = 0.0
+                        }
+                        let $inputChange = document.getElementById('inputChange')
+                        $inputChange.value = change
+                    })
+
+                    function formatResultData (data) {
+                        if (!data.id) return data.text;
+                        if (data.element.selected) return
+                        return data.text;
+                    };
+
                 });

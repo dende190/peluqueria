@@ -1,3 +1,40 @@
 extends layout_dashboard
 block content
-    p vista pata vertodos los productos
+    .container
+        button.btn.btn-primary 
+            a(href="/crear-producto") Crear Productos
+        h1 Vista de Productos en la Peluqueria
+        table.table
+            thead
+                tr
+                    th #
+                    th Nombre
+                    th Proveedor
+                    th Descripcion
+                    th Costo
+                    th Precio
+                    th IVA
+                    th PVP
+                    th Stock
+            tbody
+                each product,index in products
+                        tr 
+                            td #{index+1}
+                            td #{product.name}
+                            td #{product.provider}
+                            td #{product.description}
+                            td #{product.cost}
+                            td #{product.price}
+                            td #{product.iva}
+                            td #{product.pvp}
+                            td #{product.stock}
+                            td 
+                                form(action=`/editar/producto/${product._id}`)
+                                    input(type="hidden" name="id" value=`${product._id}`)
+                                    button
+                                        i.fa.fa-edit
+                            td 
+                                form(action="/borrar-producto" method="post")
+                                    input(type="hidden" name="id" value=`${product._id}`)
+                                    button
+                                        i.fa.fa-trash

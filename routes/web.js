@@ -107,7 +107,7 @@ router.post("/editar/empleado/:id",  EmployeeController.editEmployee)
 //Delete Empleyee
 router.post("/borrar-empleado", EmployeeController.deleteEmployee)
 
-//PRODUCTOS
+//PRODUCTS
 //List of Products
 router.get("/productos", ProductController.listProducts)
 
@@ -115,8 +115,20 @@ router.get("/productos", ProductController.listProducts)
 router.get("/crear-producto", ProductController.createProductForm)
 router.post("/crear-producto", ProductController.createProduct)
 
+//Edit Product
+router.get("/editar/producto/:id", ProductController.editProduct)
+router.post("/editar/producto/:id", ProductController.editProduct)
 
+//Delete Product
+router.post("/borrar-producto", ProductController.deleteProduct)
 
-
+//Select Available Products
+router.get("/select-productos", AccountingController.availableProducts)
+//Select Available Servicies
+router.get("/select-servicios", AccountingController.availableServices)
+// Select Available Clients
+router.get("/select-clientes", AccountingController.availableClients)
+// Select Available Employees
+router.get("/select-empleados", AccountingController.availableEmployees)
 
 module.exports = router;

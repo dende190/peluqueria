@@ -1,3 +1,17 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0;
+    /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+    /* Firefox */
+}
+
+
 .btn-log-out {
     position: absolute !important;
     bottom: 30px;
@@ -111,27 +125,91 @@
 }
 
 .box {
-	padding: 30px 20px;
+    padding: 30px 20px;
     border-radius: 4px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(63, 63, 68, 0.1);
     background-color: #FFFFFF;
     margin-bottom: 30px;
 }
+
 .label-form {
-	font-size: 14px;
+    font-size: 14px;
     font-weight: 400;
     color: #9A9A9A;
     margin-bottom: 0px;
 }
+
 .label-checkbox {
     font-size: 13px;
     margin: 5px 0;
     color: #9A9A9A;
 }
+
 .title-create-employee-form {
-	margin-top: 0;
-	margin-bottom: 10px;
+    margin-top: 0;
+    margin-bottom: 10px;
 }
+
 #inputProductDescription {
     resize: none;
+}
+
+.input-read-only {
+    background-color: transparent !important;
+    cursor: auto !important;
+    border: none !important;
+    padding: 0!important;
+}
+
+.payment-title {
+    font-weight: 700;
+    color: #4f4f4f;
+    margin: 0;
+    font-size: 25px;
+}
+
+.input-payment-form {
+    color: #4f4f4f !important;
+    max-width: 200px;
+    font-size: 30px;
+    padding-top: 10px;
+    font-weight: 700;
+}
+
+
+#list-products,
+#list-services {
+    margin-top: 20px;
+}
+
+.item-selected {
+    max-width: 180px;
+    position: relative;
+    padding: 10px;
+    margin: 5px;
+    display: inline-block;
+    background-color: #f5f5f5;
+    border: 1px solid #e1e1e1;
+    border-radius: 5px;
+}
+.item-selected hr {
+    margin: 5px;
+}
+.item-name,
+.item-price {
+    text-align: center;
+    margin: 0;
+    color: #5d5d5d;
+}
+
+.item-price {
+    font-weight: 700;
+}
+
+.delete-icon {
+    position: absolute;
+    top: -9px;
+    right: -9px;
+    cursor: pointer;
+    font-size: 20px;
 }

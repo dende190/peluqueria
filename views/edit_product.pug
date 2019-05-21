@@ -3,31 +3,31 @@ block content
     .container
         .col-lg-10.mx-auto
             .box
-                h2.title-create-employee-form Datos del nuevo Producto
+                h2.title-create-employee-form Datos del Producto
                 .col-lg-9.mx-auto
-                    form#formCreateEmployee(action="/crear-producto" method="POST")
+                    form#formCreateEmployee(action=`/editar/producto/${product._id}` method="POST")
                         .form-group.row
                             label.col-sm-3.col-form-label.label-form(for="inputProductProvider") Proveedor
                             .col-sm-9
-                                input#inputProductProvider.form-control(type="text" name="provider" placeholder="Proveedor" required)
-                        .form-group.row
+                                input#inputProductProvider.form-control(type="text" name="provider" placeholder="Proveedor" value=`${product.provider}` required)
+                        .form-group.row 
                             label.col-sm-3.col-form-label.label-form(for="inputProductName") Nombre
-                            .col-sm-9
-                                input#inputProductName.form-control(type="text" name="name" placeholder="Nombre del Producto" required)
+                            .col-sm-9s
+                                input#inputProductName.form-control(type="text" name="name" placeholder="Nombre del Producto" value=`${product.name}` required)
                         .form-group.row
                             label.col-sm-3.col-form-label.label-form(for="inputProductDescription") Descripcion
                             .col-sm-9
-                                textarea#inputProductDescription.form-control(name="description" rows="3")
+                                textarea#inputProductDescription.form-control(name="description" rows="3")=product.description
                         .form-group.row
                             label.col-sm-3.col-form-label.label-form(for="inputProductCost") Costo por unidad
                             .col-sm-9
-                                input#inputProductCost.form-control(type="number" name="cost" required)
+                                input#inputProductCost.form-control(type="number" name="cost" value="12" required)
                         .form-group.row
                             label.col-sm-3.col-form-label.label-form(for="inputProductPrice") Precio
                             .col-sm-9
-                                input#inputProductPrice.form-control(type="number" name="price" placeholder="Precio" onInput="updatePVP(event)")
+                                input#inputProductPrice.form-control(type="number" name="price" placeholder="Precio" value=`${product.price}` onInput="updatePVP(event)")
                                 .form-check.form-check-inline
-                                    input#radio-iva.form-check-input(type="radio" name="iva" value="1")
+                                    input#radio-iva.form-check-input(type="radio" name="iva" value="1" checked=product.iva)
                                     label.label-checkbox(for="radio-iva") con IVA (19%)
                                 .form-check.form-check-inline
                                     input#radio-notIva.form-check-input(type="radio" name="iva" value="0")
@@ -35,13 +35,13 @@ block content
                         .form-group.row
                             label.col-sm-3.col-form-label.label-form(for="inputProductPrice") PVP Final
                             .col-sm-9
-                                input#inputPVPFinal.form-control(type="text" name="pvp" readonly)
+                                input#inputPVPFinal.form-control(type="text" name="pvp" value=`${product.pvp}` readonly)
                         .form-group.row
                             label.col-sm-3.col-form-label.label-form(for="inputProductStock") Stock
                             .col-sm-9
-                                input#inputProductStock.form-control(type="number" name="stock" placeholder="Stock" required)
+                                input#inputProductStock.form-control(type="number" name="stock" placeholder="Stock" value=`${product.stock}` required)
                         
-                        button.btn.btn-primary(type="submit") Crear Producto
+                        button.btn.btn-primary(type="submit") Editar producto
 append scripts
     script.
         let $price = document.getElementById("inputProductPrice")
