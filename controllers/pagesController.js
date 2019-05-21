@@ -1,21 +1,53 @@
 module.exports = {
 	homePage: async (req,res) => {
-		console.log("Sending to the HomePage")
-		if (req.user) {
-			console.log(req.user.username)
-		}
-		res.render('home')
+		let dbo = req.app.locals.dbo
+
+		dbo.collection("service").find({}).toArray ( (err, services) => {
+			if(err){
+				logger.error(`(ERROR) Error al traer lista de servicios \n ${err}`)
+			}else{
+		        if (req.user) {
+					console.log(req.user.username)
+				}
+				res.render('home', {
+					services
+				})
+			}
+		})
 	},
 	service: (req,res) => {
-		console.log("Sending to the Service")
-		res.render('service')
+		let dbo = req.app.locals.dbo
+
+		dbo.collection("service").find({}).toArray ( (err, services) => {
+			if(err){
+				logger.error(`(ERROR) Error al traer lista de servicios \n ${err}`)
+			}else{
+		        if (req.user) {
+					console.log(req.user.username)
+				}
+				res.render('service', {
+					services
+				})
+			}
+		})
 	},
 	about: (req,res) => {
-		console.log("Sending to the About")
-		res.render('about')
+		let dbo = req.app.locals.dbo
+
+		dbo.collection("service").find({}).toArray ( (err, services) => {
+			if(err){
+				logger.error(`(ERROR) Error al traer lista de servicios \n ${err}`)
+			}else{
+		        if (req.user) {
+					console.log(req.user.username)
+				}
+				res.render('about', {
+					services
+				})
+			}
+		})
 	},
 	contact: (req, res) => {
-		console.log("Sending to the Contact Page")
 		res.render("contact")
 	}
 

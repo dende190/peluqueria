@@ -3,8 +3,9 @@ block content
     .container
         .row
             .col-md-2
-                button.btn.btn-primary 
-                    a(href=`/editar/cita/${data._id}`) Editar #[i.fa.fa-edit]
+                a(href=`/editar/cita/${data._id}`)
+                    button.btn.btn-primary 
+                        | Editar #[i.fa.fa-edit]
             .col-md-2
                 form(action="/borrar/cita" method="post")
                     input(type="hidden" name="id" value=`${data._id}`)

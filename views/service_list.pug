@@ -1,0 +1,32 @@
+extends layout_dashboard
+block content
+    .container
+        a(href="/crear-servicio")
+            button.btn.btn-primary 
+                | Crear Servicio
+        h1 Vista de Servicios de la Peluqueria
+        table.table
+            thead
+                tr
+                    th #
+                    th Nombre
+                    th Precio
+                    th Editar
+                    th Borrar
+            tbody
+                each service,index in services
+                        tr 
+                            td #{index+1}
+                            td #{service.service}
+                            td #{service.price}
+                            td 
+                                form(action=`/editar/servicio/${service._id}`)
+                                    input(type="hidden" name="id" value=`${service._id}`)
+                                    button
+                                        i.fa.fa-edit
+                            td 
+                                form(action="/borrar-servicio" method="post")
+                                    input(type="hidden" name="id" value=`${service._id}`)
+                                    button
+                                        i.fa.fa-trash
+        
