@@ -213,3 +213,31 @@ input[type=number] {
     cursor: pointer;
     font-size: 20px;
 }
+
+.nav-item {
+    width: 100%;
+    padding: 5px 0;
+}
+
+.nav-link {
+    cursor: pointer;
+}
+.nav-item-collapse {
+    width: 100%;
+    margin: 0!important;
+    padding: 10px 45px;
+    cursor: pointer;
+}
+.nav-item-collapse:hover {
+    background-color: rgba(255, 255, 255, 0.13);
+}
+.nav-item-collapse  a {
+    text-decoration: none;
+    color: white;
+}
+.label-coin {
+    font-size: 16px!important;
+} 
+.form-coin-group {
+    margin: 15px 0;
+}

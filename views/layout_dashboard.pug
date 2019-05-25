@@ -43,9 +43,19 @@ html(lang='en')
                                 i.fa.fa-calendar
                                 p Reservas
                         li.nav-item
-                            a.nav-link(href='/contabilidad')
+                            a.nav-link(data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne")
                                 i.fa.fa-money
                                 p Contabilidad
+                            #collapseOne.collapse
+                                p.nav-item-collapse 
+                                    a(href="#")
+                                        | Facturas
+                                p.nav-item-collapse 
+                                    a(href="/contar-caja")
+                                        | Contar Caja
+                                p.nav-item-collapse 
+                                    a(href="#")
+                                        | Gastos
                         li.nav-item
                             a.nav-link(href='/clientes')
                                 i.fa.fa-user

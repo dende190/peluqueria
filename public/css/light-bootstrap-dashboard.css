@@ -347,10 +347,7 @@ input:focus {
 
 .sidebar .nav p {
     margin: 0;
-    line-height: 30px;
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
+    font-weight: 400;
     margin-left: 45px;
 }
 

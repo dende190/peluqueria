@@ -147,4 +147,10 @@ router.get("/select-clientes", AccountingController.availableClients)
 // Select Available Employees
 router.get("/select-empleados", AccountingController.availableEmployees)
 
+
+//Total cash register
+router.get("/contar-caja" , AccountingController.countRegister)
+
+
+
 module.exports = router;

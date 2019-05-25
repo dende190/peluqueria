@@ -113,5 +113,8 @@ module.exports = {
                     results: employees
                 });
             });
+    },
+    countRegister: (req,res)=> {
+        res.render("count-register")
     }
 };
