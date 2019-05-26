@@ -145,11 +145,15 @@ router.get("/select-servicios", AccountingController.availableServices)
 // Select Available Clients
 router.get("/select-clientes", AccountingController.availableClients)
 // Select Available Employees
-router.get("/select-empleados", AccountingController.availableEmployees)
+router.get("/select-empleados", AccountingController.availableUsers)
 
 
 //Total cash register
 router.get("/contar-caja" , AccountingController.countRegister)
+
+//Total cash register
+router.get("/facturas" , AccountingController.listBills)
+router.get("/today-bills" , AccountingController.todayBills)
 
 
 

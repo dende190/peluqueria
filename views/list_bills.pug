@@ -1,0 +1,28 @@
+extends layout_dashboard
+block content
+    h1 
+        | Resumen de las Facturas
+    .container-list-bill
+        table#table-bills
+            //- thead
+            //-     td Fecha de Cobro
+            //-     td Cliente
+            //-     td Cobrador
+            //-     td Forma de Pago
+            //-     td Total
+
+
+append scripts 
+    script.
+
+        function todayBills() {
+            $('#table-bills').dataTable({
+                "ajax": "/today-bills",
+                "columns": [
+                    {
+                        "data": 
+                    }
+                ]
+            })
+
+        }

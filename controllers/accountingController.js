@@ -1,33 +1,36 @@
-const moment = require('moment')
-
+const moment = require("moment");
+const { ObjectId } = require("mongodb");
 module.exports = {
     registerPayment: (req, res) => {
-
         let dbo = req.app.locals.dbo;
-        let { employee } = req.body;
+        let { user } = req.body;
+        user = ObjectId(user);
         let { client } = req.body;
+        client = ObjectId(client);
         let { services } = req.body;
-        services = services.split(',')
+        services = services.split(",");
+        services = services.map(service => ObjectId(service));
         let { products } = req.body;
-        products = products.split(',')
+        products = products.split(",");
+        products = products.map(product => ObjectId(product));
         let { methodPay } = req.body;
         let { totalPrice } = req.body;
-        let date = moment().format('YYYY-MM-DD HH:mm');
+        let date = new Date();
 
         let bill = {
-            employee,
+            user,
             client,
             services,
             products,
             methodPay,
-            totalPrice,
+            totalPrice
         };
 
-        if(methodPay == 'cash') {
-            bill.clientMoney = req.body.clientMoney
-            bill.change = req.body.totalChange
+        if (methodPay == "cash") {
+            bill.clientMoney = req.body.clientMoney;
+            bill.change = req.body.totalChange;
         }
-        bill.date = date
+        bill.date = date;
         // console.log(bill);
         dbo.collection("bills").insertOne(bill, (err, r) => {
             if (err) {
@@ -69,9 +72,9 @@ module.exports = {
                     let tmp = {
                         id: service._id,
                         text: service.service,
-                        price: service.price,
+                        price: service.price
                     };
-                    services.push(tmp)
+                    services.push(tmp);
                 }
                 res.send({
                     results: services
@@ -89,32 +92,87 @@ module.exports = {
                         id: client._id,
                         text: `${client.first_name} ${client.last_name}`
                     };
-                    clients.push(tmp)
+                    clients.push(tmp);
                 }
                 res.send({
                     results: clients
                 });
             });
     },
-    availableEmployees: (req, res) => {
+    availableUsers: (req, res) => {
         let dbo = req.app.locals.dbo;
-        let employees = [];
+        let users = [];
         dbo.collection("users")
             .find({})
             .toArray((err, docs) => {
-                for (employee of docs) {
+                for (user of docs) {
                     let tmp = {
-                        id: employee._id,
-                        text: `${employee.first_name} ${employee.last_name}`
+                        id: user._id,
+                        text: `${user.first_name} ${user.last_name}`
                     };
-                    employees.push(tmp)
+                    users.push(tmp);
                 }
                 res.send({
-                    results: employees
+                    results: users
                 });
             });
     },
-    countRegister: (req,res)=> {
-        res.render("count-register")
+    countRegister: (req, res) => {
+        res.render("count-register");
+    },
+    todayBills: (req, res) => {
+        let dbo = req.app.locals.dbo;
+        let today = moment().format("YYYY-MM-DD");
+        today = new Date(today);
+        console.log(today);
+        dbo.collection("bills")
+            .aggregate([
+                {
+                    $match: {
+                        date: { $gte: today }
+                    }
+                },
+                {
+                    $lookup: {
+                        from: "clients",
+                        localField: "client",
+                        foreignField: "_id",
+                        as: "common_client"
+                    }
+                },
+                {
+                    $lookup: {
+                        from: "service",
+                        localField: "services",
+                        foreignField: "_id",
+                        as: "common_services"
+                    }
+                },
+                {
+                    $lookup: {
+                        from: "users",
+                        localField: "user",
+                        foreignField: "_id",
+                        as: "common_user"
+                    }
+                },
+                {
+                    $lookup: {
+                        from: "products",
+                        localField: "products",
+                        foreignField: "_id",
+                        as: "common_products"
+                    }
+                }
+            ])
+            .toArray((err, docs) => {
+                if (err) {
+                    console.log("ERROR Cannot get today bills" + err);
+                }
+                res.send(docs);
+            });
+    },
+    listBills: (req, res) => {
+        res.render("list_bills");
     }
 };
