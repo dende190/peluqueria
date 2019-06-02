@@ -13,8 +13,9 @@ module.exports = {
         let { products } = req.body;
         products = products.split(",");
         products = products.map(product => ObjectId(product));
-        let { methodPay } = req.body;
-        let { totalPrice } = req.body;
+        let { method_pay } = req.body;
+        let { total_price } = req.body;
+        let { total_taxes } = req.body;
         let date = new Date();
 
         let bill = {
@@ -22,11 +23,12 @@ module.exports = {
             client,
             services,
             products,
-            methodPay,
-            totalPrice
+            method_pay,
+            total_price,
+            total_taxes,
         };
 
-        if (methodPay == "cash") {
+        if (method_pay == "cash") {
             bill.clientMoney = req.body.clientMoney;
             bill.change = req.body.totalChange;
         }
@@ -52,7 +54,8 @@ module.exports = {
                     let tmp = {
                         id: product._id,
                         text: product.name,
-                        price: product.pvp
+                        price: product.pvp,
+                        iva: product.iva
                     };
                     products.push(tmp);
                 }
@@ -72,7 +75,8 @@ module.exports = {
                     let tmp = {
                         id: service._id,
                         text: service.service,
-                        price: service.price
+                        price: service.price,
+                        iva: service.iva
                     };
                     services.push(tmp);
                 }
@@ -121,7 +125,7 @@ module.exports = {
         res.render("count-register");
     },
     todayBills: (req, res) => {
-        let dbo = req.app.locals.dbo;
+        /* let dbo = req.app.locals.dbo;
         let today = moment().format("YYYY-MM-DD");
         today = new Date(today);
         console.log(today);
@@ -142,35 +146,22 @@ module.exports = {
                 },
                 {
                     $lookup: {
-                        from: "service",
-                        localField: "services",
-                        foreignField: "_id",
-                        as: "common_services"
-                    }
-                },
-                {
-                    $lookup: {
                         from: "users",
                         localField: "user",
                         foreignField: "_id",
                         as: "common_user"
                     }
                 },
-                {
-                    $lookup: {
-                        from: "products",
-                        localField: "products",
-                        foreignField: "_id",
-                        as: "common_products"
-                    }
-                }
             ])
             .toArray((err, docs) => {
                 if (err) {
                     console.log("ERROR Cannot get today bills" + err);
                 }
+                let result = docs.map((x)=>{
+
+                })
                 res.send(docs);
-            });
+            }); */
     },
     listBills: (req, res) => {
         res.render("list_bills");

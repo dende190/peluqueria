@@ -27,11 +27,11 @@ block content
                             .col-sm-9
                                 input#inputProductPrice.form-control(type="number" name="price" placeholder="Precio" onInput="updatePVP(event)")
                                 .form-check.form-check-inline
-                                    input#radio-iva.form-check-input(type="radio" name="iva" value="1")
-                                    label.label-checkbox(for="radio-iva") con IVA (19%)
+                                    input#radio-iva.form-check-input(type="radio" name="iva" value="")
+                                    label.label-checkbox(for="radio-iva") IVA incluido(19%)
                                 .form-check.form-check-inline
-                                    input#radio-notIva.form-check-input(type="radio" name="iva" value="0")
-                                    label.label-checkbox(for="radio-notIva") sin IVA
+                                    input#radio-notIva.form-check-input(type="radio" name="iva" value="")
+                                    label.label-checkbox(for="radio-notIva") sin IVA incluido
                         .form-group.row
                             label.col-sm-3.col-form-label.label-form(for="inputProductPrice") PVP Final
                             .col-sm-9
@@ -55,14 +55,18 @@ append scripts
         $inputIva.addEventListener("change" , function() {
             if(this.checked) {
                 if($price.value) {
-                    let iva  = ( $price.value * 19 ) / 100
-                    $pvp.value = parseInt( $price.value) + iva 
+                    $pvp.value = parseInt($price.value)
+                    $inputIva.value = parseFloat(( $price.value * 19 ) / 100)
                 }
             }
         })
         $inputNotIva.addEventListener("change" , function() {
             if(this.checked) {
-                $pvp.value = $price.value
+                if($price.value) {
+                    let iva  = ( $price.value * 19 ) / 100
+                    $pvp.value = parseFloat( $price.value) + iva
+                    $inputNotIva.value = iva
+                }
             }
         })
         //- console.log("acaa")

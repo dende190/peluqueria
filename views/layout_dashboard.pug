@@ -128,25 +128,33 @@ html(lang='en')
                                                 label(for="FormControlSelectServices") Servicios
                                                 select#FormControlSelectServices.form-control
                                                 input#inputServices(type="hidden" name="services" value="")
-                                                #list-services
+                                                #list-services.items-container
                                             .form-group
                                                 label(for="FormControlSelectProducts") Productos
                                                 select#FormControlSelectProducts.form-control
                                                 input#inputProducts(type="hidden" name="products" value="")
-                                                #list-products
+                                                #list-products.items-container
                                             .form-group
                                                 .form-check.form-check-inline
-                                                    input#radio-cash.form-check-input(type="radio" name="methodPay" value="cash")
+                                                    input#radio-cash.form-check-input(type="radio" name="method_pay" value="cash" required)
                                                     label.form-check-label(for="radio-cash") Efectivo
                                                 .form-check.form-check-inline
-                                                    input#radio-creditCard.form-check-input(type="radio" name="methodPay" value="credit")
+                                                    input#radio-creditCard.form-check-input(type="radio" name="method_pay" value="credit" required)
                                                     label.form-check-label(for="radio-creditCard") Targeta de Credito
                                     .col-md-6
                                         .card.card-body
                                             .d-flex.align-items-center
                                                 p.payment-title
+                                                    | Subtotal: $
+                                                input#inputSubtotalPrice.input-payment-form.input-read-only(name="subtotal_price" value="0" readonly)
+                                            .d-flex.align-items-center
+                                                p.payment-title
+                                                    | Impuestos: $
+                                                input#inputTaxes.input-payment-form.input-read-only(name="total_taxes" value="0" readonly)
+                                            .d-flex.align-items-center
+                                                p.payment-title
                                                     | Total A Pagar: $
-                                                input#inputTotalPrice.input-payment-form.input-read-only(name="totalPrice" value="0" readonly)
+                                                input#inputTotalPrice.input-payment-form.input-read-only(name="total_price" value="0" readonly)
                                             #changeSection
                                                 .d-flex.align-items-center
                                                     p.m-0
@@ -222,21 +230,50 @@ html(lang='en')
                             dataType: 'json',
                         }
                     });
-                    
                     function risePrice(e) {
-                        let currentPrice = $('#inputTotalPrice').val()
+                        let currentPrice = $('#inputSubtotalPrice').val()
+                        let currentIVA = $('#inputTaxes').val()
                         let { price } = e.params.data
-                        $('#inputTotalPrice').val((parseInt(currentPrice) + parseInt(price)))
-                    }
-                    function lowerPrice(unselectedPrice) {
-                        let currentPrice = $('#inputTotalPrice').val()
-                        $('#inputTotalPrice').val(parseInt(currentPrice) - parseInt(unselectedPrice))
-                    }
+                        let { iva } = e.params.data
 
+                        let total = parseInt(currentPrice) + parseInt(price)
+                        let totalIva = parseFloat(currentIVA)  + parseFloat(iva)
+
+                        $('#inputSubtotalPrice').val(total)
+                        $('#inputTaxes').val(totalIva)
+                    }
+                    function lowerPrice(unselectedPrice, unselectedIVA) {
+                        let currentPrice = $('#inputSubtotalPrice').val()
+                        let currentIVA = $('#inputTaxes').val()
+
+                        let total = parseInt(currentPrice) - parseInt(unselectedPrice)
+                        let iva = parseFloat(currentIVA) - parseFloat(unselectedIVA)
+                        
+                        $('#inputSubtotalPrice').val(total)
+                        $('#inputTaxes').val(iva)
+                    }
+                    function updateTotalPrice() {
+                        let currentPrice = $('#inputSubtotalPrice').val()
+                        let currentIVA = $('#inputTaxes').val()
+                        let total = parseFloat(currentPrice) + parseFloat(currentIVA)
+                        $('#inputTotalPrice').val(total)
+                    }
+                    function updateClientChange() {
+                        let totalPrice = parseFloat($('#inputTotalPrice').val())
+                        let clientCash = parseFloat($('#inputClientCash').val())
+                        let change = 0
+                        if(clientCash >= totalPrice && totalPrice != 0) {
+                            change = clientCash - totalPrice
+                        } else {
+                            change = 0.0
+                        }
+                        let $inputChange = $('#inputChange')
+                        $inputChange.val(change)
+                    }
                     $('#FormControlSelectServices').on('select2:select', (e) =>  {
                         risePrice(e)
                         let serviceTemplate = `<div class="item-selected service animated fadeInRight">
-                                                    <span class="fa fa-times-circle-o delete-icon text-danger" data-price='${e.params.data.price}' data-service='${e.params.data.id}'></span>
+                                                    <span class="fa fa-times-circle-o delete-icon text-danger" data-price='${e.params.data.price}' data-iva='${e.params.data.iva}' data-service='${e.params.data.id}'></span>
                                                     <p class="item-name">${e.params.data.text}</p>
                                                     <hr/>
                                                     <p class="item-price">$${ parseInt(e.params.data.price).toLocaleString() }</p>
@@ -252,15 +289,17 @@ html(lang='en')
                         $('#inputServices').val(services)
                         $('#list-services').append(serviceTemplate)
                         $("#FormControlSelectServices").val(null).trigger("change");
+                        updateTotalPrice()
+                        updateClientChange()
                     })
-
                     $('body').on('click', '.delete-icon', function () {
                         let removePrice = $(this).attr('data-price')
+                        let removeIVA = $(this).attr('data-iva')
                         let serviceId = $(this).attr('data-service')
                         let productId = $(this).attr('data-product')
-                        console.log(serviceId)
-                        console.log(productId)
-                        lowerPrice(removePrice)
+                        //- console.log(serviceId)
+                        //- console.log(productId)
+                        lowerPrice(removePrice,removeIVA)
                         if(serviceId) {
                             let services = $('#inputServices').val().split(',')
                             for (var i=services.length-1; i>=0; i--) {
@@ -281,13 +320,13 @@ html(lang='en')
                             $('#inputProducts').val(products)
                         }
                         $(this).parent().hide()
+                        updateTotalPrice()
+                        updateClientChange()
                     });
-
-
                     $('#FormControlSelectProducts').on('select2:select', (e) =>  {
                         risePrice(e)
                         let productTemplate = `<div class="item-selected product animated fadeInRight">
-                                                    <span class="fa fa-times-circle-o delete-icon text-danger" data-product='${e.params.data.id}' data-price='${e.params.data.price}'></span>
+                                                    <span class="fa fa-times-circle-o delete-icon text-danger" data-product='${e.params.data.id}' data-price='${e.params.data.price}' data-iva='${e.params.data.iva}'></span>
                                                     <p class="item-name">${e.params.data.text}</p>
                                                     <hr/>
                                                     <p class="item-price">$${ parseInt(e.params.data.price).toLocaleString() }</p>
@@ -303,8 +342,9 @@ html(lang='en')
                         $('#inputProducts').val(products)
                         $('#list-products').append(productTemplate)
                         $("#FormControlSelectProducts").val(null).trigger("change");
+                        updateTotalPrice()
+                        updateClientChange()
                     })
-
                     $('#radio-creditCard').on('change', function() {
                         if(this.checked) {
                             console.log('camv')
@@ -316,24 +356,12 @@ html(lang='en')
                             $('#changeSection').show()
                         }
                     })
-
+                    //faltaria este por arreglar
                     $('#inputClientCash').keyup( (e) => {
-                        let totalPrice = parseInt(document.getElementById('inputTotalPrice').value)
-                        let clientCash = parseInt(document.getElementById('inputClientCash').value)
-                        let change = 0
-                        if(clientCash >= totalPrice && totalPrice != 0) {
-                            change = clientCash - totalPrice
-                        } else {
-                            change = 0.0
-                        }
-                        let $inputChange = document.getElementById('inputChange')
-                        $inputChange.value = change
+                        updateClientChange()
                     })
 
-                    function formatResultData (data) {
-                        if (!data.id) return data.text;
-                        if (data.element.selected) return
-                        return data.text;
-                    };
-
+                    $('#inputTotalPrice').on('change', function(){
+                        console.log($(this))
+                    })
                 });

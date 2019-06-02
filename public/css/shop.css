@@ -241,3 +241,8 @@ input[type=number] {
 .form-coin-group {
     margin: 15px 0;
 }
+.items-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
