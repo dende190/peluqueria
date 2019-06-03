@@ -2,6 +2,7 @@ const moment = require("moment");
 const { ObjectId } = require("mongodb");
 module.exports = {
     registerPayment: (req, res) => {
+        console.log(req.body)
         let dbo = req.app.locals.dbo;
         let { user } = req.body;
         user = ObjectId(user);
@@ -42,8 +43,8 @@ module.exports = {
         };
 
         if (method_pay == "cash") {
-            bill.clientMoney = req.body.clientMoney;
-            bill.change = req.body.totalChange;
+            bill.client_money = req.body.client_money;
+            bill.change = req.body.total_change;
         }
         bill.date = date;
         // console.log(bill);

@@ -102,7 +102,7 @@ html(lang='en')
                                     div
                                 p.loader-title 
                                     | Registrando Cobro
-                        form(action="/pago" method="POST")
+                        form#paymentForm()
                             .payment-container
                                     .col-md-6
                                         .card.card-body
@@ -147,12 +147,12 @@ html(lang='en')
                                                 .d-flex.align-items-center
                                                     p.m-0
                                                         | El cliente paga con: 
-                                                    input#inputClientCash(type="number" name="clientMoney")
+                                                    input#inputClientCash(type="number" name="client_money")
                                                 .d-flex.align-items-center
                                                     p.payment-title
                                                         | Cambio : $
                                                     .d-flex.align-items-center
-                                                        input#inputChange.input-payment-form.input-read-only(name="totalChange" value="0" readonly)
+                                                        input#inputChange.input-payment-form.input-read-only(name="total_change" value="0" readonly)
                                             button.btn.btn-primary(type="submit") Cobrar
                 //End Payment Form
                 .content
@@ -377,3 +377,40 @@ html(lang='en')
                         updateClientChange()
                     })
                 });
+
+                const $paymentForm = document.getElementById("paymentForm")
+                $paymentForm.addEventListener('submit', function(e){
+                    e.preventDefault();
+                    const user = $("select[name=user]").val()
+                    const client = $("select[name=client]").val()
+                    const services = $("input[name=services]").val()
+                    const products = $("input[name=products]").val()
+                    const method_pay = $("input[name=method_pay]").val()
+                    const subtotal_price = $("input[name=subtotal_price]").val()
+                    const total_taxes = $("input[name=total_taxes]").val()
+                    const total_price = $("input[name=total_price]").val()
+                    const client_money = $("input[name=client_money]").val()
+                    const total_change = $("input[name=total_change]").val()
+
+                    let bill = {
+                        user,
+                        client,
+                        services,
+                        products,
+                        method_pay,
+                        subtotal_price,
+                        total_taxes,
+                        total_price,
+                    }
+                    if (method_pay == "cash") {
+                        bill.client_money = $("input[name=client_money]").val()
+                        bill.total_change = $("input[name=total_change]").val()
+                    }
+                    let options = {
+                        method: 'POST',
+                        body: JSON.stringify(bill),
+                        headers: { "Content-Type": "application/json" }
+                    }
+                    console.log(bill)
+                    //- fetch('/pago', options)
+                })
