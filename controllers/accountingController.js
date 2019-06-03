@@ -7,13 +7,25 @@ module.exports = {
         user = ObjectId(user);
         let { client } = req.body;
         client = ObjectId(client);
+
         let { services } = req.body;
-        services = services.split(",");
-        services = services.map(service => ObjectId(service));
+        if (services) {
+            services = services.split(",");
+            services = services.map(service => ObjectId(service));
+        } else {
+            services = null;
+        }
+
         let { products } = req.body;
-        products = products.split(",");
-        products = products.map(product => ObjectId(product));
+        if (products) {
+            products = products.split(",");
+            products = products.map(product => ObjectId(product));
+        } else {
+            products = null;
+        }
+
         let { method_pay } = req.body;
+        let { subtotal_price } = req.body;
         let { total_price } = req.body;
         let { total_taxes } = req.body;
         let date = new Date();
@@ -24,8 +36,9 @@ module.exports = {
             services,
             products,
             method_pay,
-            total_price,
-            total_taxes
+            subtotal_price: parseFloat(subtotal_price),
+            total_price: parseFloat(total_price),
+            total_taxes: parseFloat(total_taxes)
         };
 
         if (method_pay == "cash") {
@@ -128,7 +141,6 @@ module.exports = {
         let dbo = req.app.locals.dbo;
         let today = moment().format("YYYY-MM-DD");
         today = new Date(today);
-        console.log(today);
         dbo.collection("bills")
             .aggregate([
                 {
@@ -179,7 +191,36 @@ module.exports = {
                     console.log("ERROR Cannot get today bills" + err);
                 }
                 // let result = docs.map(x => {});
-                res.send({data:docs});
+                res.send({ data: docs });
+            });
+    },
+    summaryBills: (req, res) => {
+        let dbo = req.app.locals.dbo;
+        let today = moment().format("YYYY-MM-DD");
+        today = new Date(today);
+        dbo.collection("bills")
+            .aggregate([
+                {
+                    $match: {
+                        date: { $gte: today }
+                    }
+                },
+                {
+                    $group: {
+                        _id: null,
+                        number_bills: { $sum: 1 },
+                        subtotal_price: { $sum: "$subtotal_price" },
+                        total_taxes: { $sum: "$total_taxes" },
+                        total_price: { $sum: "$total_price" }
+                    }
+                }
+            ])
+            .toArray((err, docs) => {
+                if (err) {
+                    console.log("ERROR trayendo el resumen de las facturas");
+                } else {
+                    res.send(docs);
+                }
             });
     },
     listBills: (req, res) => {

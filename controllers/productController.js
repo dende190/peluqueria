@@ -35,11 +35,11 @@ module.exports = {
             provider,
             name,
             description,
-            cost,
-            price,
-            iva,
-            pvp,
-            stock
+            cost : parseFloat(cost),
+            price : parseFloat(price),
+            iva : parseFloat(iva),
+            pvp : parseFloat(pvp),
+            stock : parseInt(stock),
         };
         dbo.collection("products").insertOne(product, (err, result) => {
             if (err) {

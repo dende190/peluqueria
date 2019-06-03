@@ -154,6 +154,7 @@ router.get("/contar-caja" , AccountingController.countRegister)
 //Total cash register
 router.get("/facturas" , AccountingController.listBills)
 router.get("/today-bills" , AccountingController.todayBills)
+router.get("/summary-bills" , AccountingController.summaryBills)
 
 
 

@@ -1,7 +1,24 @@
 extends layout_dashboard
 block content
-    h1 
-        | Resumen de las Facturas
+    .list-balance
+        h1 Resumen de las Facturas
+        .d-flex
+            .item-balance
+                p#count-balance
+                span
+                    | COBROS
+            .item-balance
+                p#subtotal-balance
+                span
+                    | IMPORTE
+            .item-balance
+                p#taxes-balance
+                span
+                    | IMPUESTOS
+            .item-balance
+                p#total-balance
+                span
+                    | TOTAL
     .container-list-bill
         .card
             .card-body
@@ -17,10 +34,23 @@ block content
                             strong Forma de Pago
                         td 
                             strong Total
-
-
 append scripts 
     script.
+        function getBalanceSummary() {
+            fetch('/summary-bills')
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                console.log(data)
+                let balance  = data[0]
+                $('#count-balance').html('$' + balance.number_bills.toLocaleString())
+                $('#subtotal-balance').html('$' + balance.subtotal_price.toLocaleString())
+                $('#taxes-balance').html('$' + balance.total_taxes.toLocaleString())
+                $('#total-balance').html('$' + balance.total_price.toLocaleString())
+            })
+            .catch(error => console.error('Error:', error))
+        }
         $(document).ready(function(){
             let billsTable = $('#table-bills').dataTable({
                 "ajax": "/today-bills",
@@ -62,5 +92,8 @@ append scripts
                 ],
                 "language": spanishDataTable,
             })
+
+            getBalanceSummary()
+
         })
 
