@@ -25,7 +25,7 @@ module.exports = {
             products,
             method_pay,
             total_price,
-            total_taxes,
+            total_taxes
         };
 
         if (method_pay == "cash") {
@@ -125,7 +125,7 @@ module.exports = {
         res.render("count-register");
     },
     todayBills: (req, res) => {
-        /* let dbo = req.app.locals.dbo;
+        let dbo = req.app.locals.dbo;
         let today = moment().format("YYYY-MM-DD");
         today = new Date(today);
         console.log(today);
@@ -146,22 +146,41 @@ module.exports = {
                 },
                 {
                     $lookup: {
+                        from: "service",
+                        localField: "services",
+                        foreignField: "_id",
+                        as: "common_services"
+                    }
+                },
+                {
+                    $lookup: {
                         from: "users",
                         localField: "user",
                         foreignField: "_id",
                         as: "common_user"
                     }
                 },
+                {
+                    $project: {
+                        _id: 1,
+                        date: 1,
+                        total_price: 1,
+                        total_taxes: 1,
+                        method_pay: 1,
+                        "common_client.first_name": 1,
+                        "common_client.last_name": 1,
+                        "common_user.first_name": 1,
+                        "common_user.last_name": 1
+                    }
+                }
             ])
             .toArray((err, docs) => {
                 if (err) {
                     console.log("ERROR Cannot get today bills" + err);
                 }
-                let result = docs.map((x)=>{
-
-                })
-                res.send(docs);
-            }); */
+                // let result = docs.map(x => {});
+                res.send({data:docs});
+            });
     },
     listBills: (req, res) => {
         res.render("list_bills");

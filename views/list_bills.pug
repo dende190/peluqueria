@@ -3,26 +3,64 @@ block content
     h1 
         | Resumen de las Facturas
     .container-list-bill
-        table#table-bills
-            //- thead
-            //-     td Fecha de Cobro
-            //-     td Cliente
-            //-     td Cobrador
-            //-     td Forma de Pago
-            //-     td Total
+        .card
+            .card-body
+                table#table-bills.table
+                    thead
+                        td 
+                            strong Fecha de Cobro
+                        td 
+                            strong Cliente
+                        td 
+                            strong Cobrador
+                        td 
+                            strong Forma de Pago
+                        td 
+                            strong Total
 
 
 append scripts 
     script.
-
-        function todayBills() {
-            $('#table-bills').dataTable({
+        $(document).ready(function(){
+            let billsTable = $('#table-bills').dataTable({
                 "ajax": "/today-bills",
                 "columns": [
                     {
-                        "data": 
-                    }
-                ]
+                        "data": "date",
+                        "render": function(data, type, row) {
+                            return moment(data).format("LLL")
+                        }
+                    },
+                    {
+                        "data": "common_client",
+                        "render": function(data,type,row) {
+                            return `${data[0].first_name} ${data[0].last_name}`
+                        }
+                    },
+                    {
+                        "data": "common_user",
+                        "render": function(data,type,row) {
+                            return `${data[0].first_name} ${data[0].last_name}`
+                        }
+                    },
+                    {
+                        "data": "method_pay",
+                        "render": function(data, type, row){
+                            if(data == 'cash') {
+                                return `Efectivo`
+                            } else {
+                                return `Targeta de Credito`
+                            }
+                        }
+                    },
+                    {
+                        "data": "total_price",
+                        "render": function(data, type, row){
+                            return '$' + parseFloat(data).toLocaleString()
+                        }
+                    },
+                ],
+                "language": spanishDataTable,
             })
+        })
 
-        }
