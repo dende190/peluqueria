@@ -1,5 +1,14 @@
 extends layout_dashboard
+append styles
+    link(rel="stylesheet", href="/static/css/daterangepicker.min.css")
 block content
+    .container-date
+        h1 Escoge la fecha
+        #reportrange(style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%")
+            i.fa.fa-calendar-o
+            | &nbsp;
+            span
+            i.fa.fa-caret-down
     .list-balance
         h1 Resumen de las Facturas
         .d-flex
@@ -22,7 +31,7 @@ block content
     .container-list-bill
         .card
             .card-body
-                table#table-bills.table
+                table#table-bills.table.animated.fadeIn
                     thead
                         td 
                             strong Fecha de Cobro
@@ -35,25 +44,43 @@ block content
                         td 
                             strong Total
 append scripts 
+    script(src="/static/js/daterangepicker.min.js")
     script.
-        function getBalanceSummary() {
-            fetch('/summary-bills')
-            .then(function(response) {
-                return response.json();
-            })
-            .then(function(data) {
-                console.log(data)
-                let balance  = data[0]
-                $('#count-balance').html('$' + balance.number_bills.toLocaleString())
-                $('#subtotal-balance').html('$' + balance.subtotal_price.toLocaleString())
-                $('#taxes-balance').html('$' + balance.total_taxes.toLocaleString())
-                $('#total-balance').html('$' + balance.total_price.toLocaleString())
-            })
-            .catch(error => console.error('Error:', error))
+        async function requestData(url, start, end) {
+            const options = {
+                method: 'POST',
+                body: JSON.stringify({ start, end }),
+                headers: { "Content-Type": "application/json" }
+            }
+            const response = await fetch(url, options)
+            if(response.ok) {
+                const data = await response.json()
+                return data
+            } else {
+                return undefined
+            }
         }
-        $(document).ready(function(){
+        function createBalance(data) {
+            if(typeof data !== 'undefined' && data.length > 0) {
+                let balance  = data[0]
+                $('#count-balance').hide().html(balance.number_bills.toLocaleString()).fadeIn()
+                $('#subtotal-balance').hide().html('$' + balance.subtotal_price.toLocaleString()).fadeIn()
+                $('#taxes-balance').hide().html('$' + balance.total_taxes.toLocaleString()).fadeIn()
+                $('#total-balance').hide().html('$' + balance.total_price.toLocaleString()).fadeIn()
+            } else {
+                $('#count-balance').hide().html('0').fadeIn()
+                $('#subtotal-balance').hide().html('$0').fadeIn()
+                $('#taxes-balance').hide().html('$0').fadeIn()
+                $('#total-balance').hide().html('$0').fadeIn()
+            }
+        }
+        function createTable(data) {
+            if ($.fn.dataTable.isDataTable('#table-bills')) {
+                $('#table-bills').DataTable().destroy();
+            }
+            
             let billsTable = $('#table-bills').dataTable({
-                "ajax": "/today-bills",
+                "data": data,
                 "columns": [
                     {
                         "data": "date",
@@ -92,8 +119,39 @@ append scripts
                 ],
                 "language": spanishDataTable,
             })
-
-            getBalanceSummary()
-
+        }
+        async function createReport(start, end) {
+            const dataReport = await requestData('/bills', start, end)
+            createTable(dataReport)
+            const dataBalance = await requestData('/balance', start, end)
+            createBalance(dataBalance)
+        }
+        function createPickerRange(start, end) {
+            $('#reportrange').daterangepicker({
+                startDate: start,
+                endDate: end,
+                maxDate: end,
+                ranges: {
+                    'Hoy': [moment(), moment()],
+                    'Ayer': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Ultimos 7 Dias': [moment().subtract(6, 'days'), moment()],
+                    'Ultimos 30 Dias': [moment().subtract(29, 'days'), moment()],
+                    'Este Mes': [moment().startOf('month'), moment().endOf('month')],
+                    'Mes Pasado': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                },
+                opens: 'right'
+            }, selectedPickerRange);
+        }
+        function selectedPickerRange(start, end) {
+            $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+            start = start.startOf('day').format("YYYY-MM-DD HH:mm");
+            end = end.endOf('day').format("YYYY-MM-DD HH:mm");
+            createReport(start, end)
+        }
+        $(document).ready(function(){
+            let startToday = moment();
+            let endToday = moment();
+            createPickerRange(startToday, endToday)
+            selectedPickerRange(startToday,endToday)
         })
 

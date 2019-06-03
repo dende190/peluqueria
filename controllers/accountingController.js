@@ -137,15 +137,19 @@ module.exports = {
     countRegister: (req, res) => {
         res.render("count-register");
     },
-    todayBills: (req, res) => {
+    bills: (req, res) => {
         let dbo = req.app.locals.dbo;
-        let today = moment().format("YYYY-MM-DD");
-        today = new Date(today);
+        let { start } = req.body;
+        let { end } = req.body;
+        // console.log(start);
+        // console.log(end);
+        start =  new Date(start)
+        end =  new Date(end)
         dbo.collection("bills")
             .aggregate([
                 {
                     $match: {
-                        date: { $gte: today }
+                        date: { $lt: end, $gte: start  }
                     }
                 },
                 {
@@ -190,19 +194,20 @@ module.exports = {
                 if (err) {
                     console.log("ERROR Cannot get today bills" + err);
                 }
-                // let result = docs.map(x => {});
-                res.send({ data: docs });
+                res.send(docs);
             });
     },
-    summaryBills: (req, res) => {
+    balanceBills: (req, res) => {
         let dbo = req.app.locals.dbo;
-        let today = moment().format("YYYY-MM-DD");
-        today = new Date(today);
+        let { start } = req.body;
+        let { end } = req.body;
+        start =  new Date(start)
+        end =  new Date(end)
         dbo.collection("bills")
             .aggregate([
                 {
                     $match: {
-                        date: { $gte: today }
+                        date: { $gte: start, $lt: end }
                     }
                 },
                 {
@@ -223,7 +228,7 @@ module.exports = {
                 }
             });
     },
-    listBills: (req, res) => {
+    viewBills: (req, res) => {
         res.render("list_bills");
     }
 };
