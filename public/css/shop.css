@@ -158,7 +158,7 @@ input[type=number] {
     background-color: transparent !important;
     cursor: auto !important;
     border: none !important;
-    padding: 0!important;
+    padding: 0 !important;
 }
 
 .payment-title {
@@ -192,9 +192,11 @@ input[type=number] {
     border: 1px solid #e1e1e1;
     border-radius: 5px;
 }
+
 .item-selected hr {
     margin: 5px;
 }
+
 .item-name,
 .item-price {
     text-align: center;
@@ -222,27 +224,94 @@ input[type=number] {
 .nav-link {
     cursor: pointer;
 }
+
 .nav-item-collapse {
     width: 100%;
-    margin: 0!important;
+    margin: 0 !important;
     padding: 10px 45px;
     cursor: pointer;
 }
+
 .nav-item-collapse:hover {
     background-color: rgba(255, 255, 255, 0.13);
 }
-.nav-item-collapse  a {
+
+.nav-item-collapse a {
     text-decoration: none;
     color: white;
 }
+
 .label-coin {
-    font-size: 16px!important;
-} 
+    font-size: 16px !important;
+}
+
 .form-coin-group {
     margin: 15px 0;
 }
+
 .items-container {
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
+}
+
+.loader-container {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: linear-gradient(to bottom, #9368E9 0%, #943bea 100%);
+    z-index: 10;
+    transition: .5s;
+    /* opacity: 0; */
+}
+.loader {
+    text-align: center;
+}
+
+.loader-title  {
+    color: white;
+    font-weight: 700;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+}
+.lds-ripple {
+    display: inline-block;
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+.lds-ripple div {
+    position: absolute;
+    border: 4px solid #fff;
+    opacity: 1;
+    border-radius: 50%;
+    animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+.lds-ripple div:nth-child(2) {
+    animation-delay: -0.5s;
+}
+
+@keyframes lds-ripple {
+    0% {
+        top: 50px;
+        left: 50px;
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+
+    100% {
+        top: -1px;
+        left: -1px;
+        width: 100px;
+        height: 100px;
+        opacity: 0;
+    }
 }
