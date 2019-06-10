@@ -152,7 +152,7 @@ router.get("/select-empleados", AccountingController.availableUsers)
 router.get("/contar-caja" , AccountingController.countRegister)
 
 //Total cash register
-router.get("/facturas" , AccountingController.viewBills)
+router.get("/cobros" , AccountingController.viewBills)
 router.post("/bills" , AccountingController.bills)
 router.post("/balance" , AccountingController.balanceBills)
 
