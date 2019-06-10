@@ -104,56 +104,58 @@ html(lang='en')
                                     | Registrando Cobro
                         form#paymentForm()
                             .payment-container
-                                    .col-md-6
-                                        .card.card-body
-                                            .form-group
-                                                label(for="FormControlSelectEmployee") Cajero
-                                                select#FormControlSelectEmployee.form-control.select-payment(name="user" required)
-                                            .form-group
-                                                label(for="FormControlSelectClient") Cliente
-                                                select#FormControlSelectClient.form-control.select-payment(name="client" required)
-                                            .form-group
-                                                label(for="FormControlSelectServices") Servicios
-                                                select#FormControlSelectServices.form-control
-                                                input#inputServices(type="hidden" name="services" value="")
-                                                #list-services.items-container
-                                            .form-group
-                                                label(for="FormControlSelectProducts") Productos
-                                                select#FormControlSelectProducts.form-control
-                                                input#inputProducts(type="hidden" name="products" value="")
-                                                #list-products.items-container
-                                            .form-group
-                                                .form-check.form-check-inline
-                                                    input#radio-cash.form-check-input(type="radio" name="method_pay" value="cash" required)
-                                                    label.form-check-label(for="radio-cash") Efectivo
-                                                .form-check.form-check-inline
-                                                    input#radio-creditCard.form-check-input(type="radio" name="method_pay" value="credit" required)
-                                                    label.form-check-label(for="radio-creditCard") Targeta de Credito
-                                    .col-md-6
-                                        .card.card-body
+                                .col-md-6
+                                    .card.card-body
+                                        .form-group
+                                            label(for="FormControlSelectEmployee") Cajero
+                                            select#FormControlSelectEmployee.form-control.select-payment(name="user" required)
+                                        .form-group
+                                            label(for="FormControlSelectClient") Cliente
+                                            select#FormControlSelectClient.form-control.select-payment(name="client" required)
+                                        .form-group
+                                            label(for="FormControlSelectServices") Servicios
+                                            select#FormControlSelectServices.form-control
+                                            input#inputServices(type="hidden" name="services" value="")
+                                            #list-services.items-container
+                                        .form-group
+                                            label(for="FormControlSelectProducts") Productos
+                                            select#FormControlSelectProducts.form-control
+                                            input#inputProducts(type="hidden" name="products" value="")
+                                            #list-products.items-container
+                                        .form-group
+                                            .form-check.form-check-inline
+                                                input#radio-cash.form-check-input(type="radio" name="method_pay" value="cash" required)
+                                                label.form-check-label(for="radio-cash") Efectivo
+                                            .form-check.form-check-inline
+                                                input#radio-creditCard.form-check-input(type="radio" name="method_pay" value="credit" required)
+                                                label.form-check-label(for="radio-creditCard") Targeta de Credito
+                                .col-md-6
+                                    .card.card-body
+                                        .d-flex.align-items-center
+                                            p.payment-title
+                                                | Subtotal: $
+                                            input#inputSubtotalPrice.input-payment-form.input-read-only(name="subtotal_price" value="0" readonly)
+                                        .d-flex.align-items-center
+                                            p.payment-title
+                                                | Impuestos: $
+                                            input#inputTaxes.input-payment-form.input-read-only(name="total_taxes" value="0" readonly)
+                                        .d-flex.align-items-center
+                                            p.payment-title
+                                                | Total A Pagar: $
+                                            input#inputTotalPrice.input-payment-form.input-read-only(name="total_price" value="0" readonly)
+                                        #changeSection
+                                            .d-flex.align-items-center
+                                                p.m-0
+                                                    | El cliente paga con: 
+                                                input#inputClientCash(type="number" name="client_money")
                                             .d-flex.align-items-center
                                                 p.payment-title
-                                                    | Subtotal: $
-                                                input#inputSubtotalPrice.input-payment-form.input-read-only(name="subtotal_price" value="0" readonly)
-                                            .d-flex.align-items-center
-                                                p.payment-title
-                                                    | Impuestos: $
-                                                input#inputTaxes.input-payment-form.input-read-only(name="total_taxes" value="0" readonly)
-                                            .d-flex.align-items-center
-                                                p.payment-title
-                                                    | Total A Pagar: $
-                                                input#inputTotalPrice.input-payment-form.input-read-only(name="total_price" value="0" readonly)
-                                            #changeSection
+                                                    | Cambio : $
                                                 .d-flex.align-items-center
-                                                    p.m-0
-                                                        | El cliente paga con: 
-                                                    input#inputClientCash(type="number" name="client_money")
-                                                .d-flex.align-items-center
-                                                    p.payment-title
-                                                        | Cambio : $
-                                                    .d-flex.align-items-center
-                                                        input#inputChange.input-payment-form.input-read-only(name="total_change" value="0" readonly)
-                                            button.btn.btn-primary(type="submit") Cobrar
+                                                    input#inputChange.input-payment-form.input-read-only(name="total_change" value="0" readonly)
+                                        button.btn.btn-primary(type="submit") Cobrar
+                                p#error-payment.text-danger.d-none
+                                    | Error al registrar la factura
                 //End Payment Form
                 .content
                     // Main Content
@@ -212,6 +214,62 @@ html(lang='en')
                     }
                 }
             script.
+                async function sendBill(bill) {
+                    const options = {
+                        method: 'POST',
+                        body: JSON.stringify(bill),
+                        headers: { "Content-Type": "application/json" }
+                    }
+                    let response = await fetch('/pago', options)
+                    if(response.ok) {
+                        $('#error-payment').addClass('d-none')
+                        setTimeout(()=>{
+                            $(".loader-container").css({ opacity: 0, 'z-index': -1 })
+                            setTimeout(()=>{
+                                $("#collapsePaymentForm").collapse("toggle")
+                                setTimeout(()=>{
+                                    cleanUpForm()
+                                },500)
+                            },500)
+                        },1500)
+                    } else {
+                        $(".loader-container").css({ opacity: 0, 'z-index': -1 })
+                        $('#error-payment').removeClass('d-none')
+                        console.log("Error al registrar el pago")
+                    }
+                }
+                function cleanUpForm() {
+                    $("#FormControlSelectEmployee").select2("val", ' ');
+                    $("#FormControlSelectClient").select2("val", ' ');
+                    $("#inputServices").val('');
+                    $("#inputProducts").val('');
+                    $("#list-services").empty();
+                    $("#list-products").empty();
+                    $("input[name=method_pay]").prop('checked', false)
+                    $("#inputSubtotalPrice").val('0');
+                    $("#inputTaxes").val('0');
+                    $("#inputTotalPrice").val('0');
+                    $("#inputClientCash").val('');
+                    $("#inputChange").val('0');
+                }
+                function getDataForm() {
+                    const user = $("select[name=user]").val()
+                    const client = $("select[name=client]").val()
+                    const services = $("input[name=services]").val()
+                    const products = $("input[name=products]").val()
+                    const method_pay = $("input[name=method_pay]:checked").val()
+                    const subtotal_price = $("input[name=subtotal_price]").val()
+                    const total_taxes = $("input[name=total_taxes]").val()
+                    const total_price = $("input[name=total_price]").val()
+                    const client_money = $("input[name=client_money]").val()
+                    const total_change = $("input[name=total_change]").val()
+                    const bill = { user, client, services, products, method_pay, subtotal_price, total_taxes, total_price }
+                    if (method_pay == "cash") {
+                        bill.client_money = $("input[name=client_money]").val()
+                        bill.total_change = $("input[name=total_change]").val()
+                    }
+                    return bill
+                }
                 function risePrice(e) {
                     let currentPrice = $('#inputSubtotalPrice').val()
                     let currentIVA = $('#inputTaxes').val()
@@ -376,41 +434,10 @@ html(lang='en')
                     $('#inputClientCash').keyup( (e) => {
                         updateClientChange()
                     })
+                    $('#paymentForm').submit( function(e){
+                        $(".loader-container").css({opacity: 1, 'z-index': 10})
+                        e.preventDefault();
+                        const bill = getDataForm()
+                        sendBill(bill)
+                    })
                 });
-
-                const $paymentForm = document.getElementById("paymentForm")
-                $paymentForm.addEventListener('submit', function(e){
-                    e.preventDefault();
-                    const user = $("select[name=user]").val()
-                    const client = $("select[name=client]").val()
-                    const services = $("input[name=services]").val()
-                    const products = $("input[name=products]").val()
-                    const method_pay = $("input[name=method_pay]").val()
-                    const subtotal_price = $("input[name=subtotal_price]").val()
-                    const total_taxes = $("input[name=total_taxes]").val()
-                    const total_price = $("input[name=total_price]").val()
-                    const client_money = $("input[name=client_money]").val()
-                    const total_change = $("input[name=total_change]").val()
-
-                    let bill = {
-                        user,
-                        client,
-                        services,
-                        products,
-                        method_pay,
-                        subtotal_price,
-                        total_taxes,
-                        total_price,
-                    }
-                    if (method_pay == "cash") {
-                        bill.client_money = $("input[name=client_money]").val()
-                        bill.total_change = $("input[name=total_change]").val()
-                    }
-                    let options = {
-                        method: 'POST',
-                        body: JSON.stringify(bill),
-                        headers: { "Content-Type": "application/json" }
-                    }
-                    console.log(bill)
-                    //- fetch('/pago', options)
-                })

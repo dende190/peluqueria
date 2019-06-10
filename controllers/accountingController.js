@@ -51,10 +51,10 @@ module.exports = {
         dbo.collection("bills").insertOne(bill, (err, r) => {
             if (err) {
                 console.log("ERROR REGISTRANDO FACTURA");
+                res.status(500).send('se rompio weyy')
             }
             console.log("factura ingresada correctamenrte en la db");
-            // console.log(r)
-            res.redirect("/dashboard");
+            res.send({response: "factura creadaaaaa"})
         });
     },
     availableProducts: (req, res) => {

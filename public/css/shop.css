@@ -256,7 +256,7 @@ input[type=number] {
 }
 
 .loader-container {
-    display: none;
+    display: flex;
     justify-content: center;
     align-items: center;
     position: absolute;
@@ -265,9 +265,9 @@ input[type=number] {
     right: 0;
     left: 0;
     background: linear-gradient(to bottom, #9368E9 0%, #943bea 100%);
-    z-index: 10;
+    z-index: -1;
     transition: .5s;
-    /* opacity: 0; */
+    opacity: 0;
 }
 .loader {
     text-align: center;
