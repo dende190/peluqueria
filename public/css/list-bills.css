@@ -1,0 +1,57 @@
+.report-picker {
+    background-color: #fff;
+    cursor: pointer;
+    padding: 5px 10px;
+    border: 1px solid #943bea;
+    width: 100%;
+    border-radius: 15px;
+}
+.card-header p {
+    margin: 0;
+    text-transform: capitalize;
+    font-weight: bold;
+}
+
+.item-balance {
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid rgba(0,0,0,.125);
+    margin: 0 10px;
+    /* margin: 10px; */
+    /* background-color: aqua; */
+}
+
+.item-balance p {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    padding: 15px;
+
+}
+.item-balance span {
+    text-align: center;
+    font-weight: 700;
+    padding: 5px 10px;
+    border-bottom-left-radius: 7px;
+    color: white;
+}
+
+.list-balance h1 {
+    font-size: 25px;
+    font-weight: bold;
+    margin: 0;
+    margin-bottom: 15px;
+}
+
+.icon-dollar {
+    background-color: #11b719;
+    padding: 5px 8px;
+    color: white;
+    border-radius: 50%;
+    font-size: 14px;
+}
+
+.icon-hastag {
+    color: white;
+}

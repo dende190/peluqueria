@@ -1,48 +1,55 @@
 extends layout_dashboard
 append styles
     link(rel="stylesheet", href="/static/css/daterangepicker.min.css")
+    link(rel="stylesheet", href="/static/css/list-bills.css")
 block content
-    .container-date
-        h1 Escoge la fecha
-        #reportrange(style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%")
-            i.fa.fa-calendar-o
-            | &nbsp;
-            span
-            i.fa.fa-caret-down
-    .list-balance
-        h1 Resumen de las Facturas
-        .d-flex
-            .item-balance
-                p#count-balance
-                span
-                    | COBROS
-            .item-balance
-                p#subtotal-balance
-                span
-                    | IMPORTE
-            .item-balance
-                p#taxes-balance
-                span
-                    | IMPUESTOS
-            .item-balance
-                p#total-balance
-                span
-                    | TOTAL
-    .container-list-bill
-        .card
-            .card-body
-                table#table-bills.table.animated.fadeIn
-                    thead
-                        td 
-                            strong Fecha de Cobro
-                        td 
-                            strong Cliente
-                        td 
-                            strong Cobrador
-                        td 
-                            strong Forma de Pago
-                        td 
-                            strong Total
+    .container
+        .row
+            .col-lg-5
+                .card
+                    .card-header
+                        p Escoge una fecha
+                    .card-body
+                        .container-date
+                            #reportrange.report-picker
+                                i.fa.fa-calendar-o
+                                | &nbsp;
+                                span
+                                i.fa.fa-caret-down
+            .col-lg-7.list-balance
+                h1 Balance General
+                .d-flex
+                    .item-balance.d-flex.flex-column.justify-content-between
+                        p#count-balance
+                        span.bg-dark
+                            |  COBROS
+                    .item-balance.d-flex.flex-column.justify-content-between
+                        p#subtotal-balance
+                        span.bg-warning
+                            | IMPORTE
+                    .item-balance.d-flex.flex-column.justify-content-between
+                        p#taxes-balance
+                        span.bg-danger
+                            | IMPUESTOS
+                    .item-balance.d-flex.flex-column.justify-content-between
+                        p#total-balance
+                        span.bg-success
+                            |  TOTAL
+        .container-list-bill
+            .card
+                .card-body
+                    table#table-bills.table.animated.fadeIn
+                        thead
+                            td 
+                                strong Fecha de Cobro
+                            td 
+                                strong Cliente
+                            td 
+                                strong Cobrador
+                            td 
+                                strong Forma de Pago
+                            td 
+                                strong Total
 append scripts 
     script(src="/static/js/daterangepicker.min.js")
     script.
@@ -66,7 +73,7 @@ append scripts
                 $('#count-balance').hide().html(balance.number_bills.toLocaleString()).fadeIn()
                 $('#subtotal-balance').hide().html('$' + balance.subtotal_price.toLocaleString()).fadeIn()
                 $('#taxes-balance').hide().html('$' + balance.total_taxes.toLocaleString()).fadeIn()
-                $('#total-balance').hide().html('$' + balance.total_price.toLocaleString()).fadeIn()
+                $('#total-balance').hide().html(balance.total_price.toLocaleString()).fadeIn()
             } else {
                 $('#count-balance').hide().html('0').fadeIn()
                 $('#subtotal-balance').hide().html('$0').fadeIn()

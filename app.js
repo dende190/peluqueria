@@ -80,7 +80,7 @@ app.use('/modules', express.static(__dirname + '/node_modules'))
 
 //MongoDB Connect and upload server
 let dbo
-MongoClient.connect('mongodb://127.0.0.1:27017/peluqueria', { useNewUrlParser: true })
+MongoClient.connect(DB_URI, { useNewUrlParser: true })
     .then(client => {
         dbo = client.db('peluqueria');
         logger.info("Base de datos iniciada correctamente")
