@@ -38,7 +38,7 @@ block content
         .container-list-bill
             .card
                 .card-body
-                    table#table-bills.table.animated.fadeIn
+                    table#table-bills.table.table-hover.animated.fadeIn
                         thead
                             td 
                                 strong Fecha de Cobro
@@ -85,7 +85,6 @@ append scripts
             if ($.fn.dataTable.isDataTable('#table-bills')) {
                 $('#table-bills').DataTable().destroy();
             }
-            
             let billsTable = $('#table-bills').dataTable({
                 "data": data,
                 "columns": [
@@ -119,9 +118,7 @@ append scripts
                     },
                     {
                         "data": "total_price",
-                        "render": function(data, type, row){
-                            return '$' + parseFloat(data).toLocaleString()
-                        }
+                        "render": (data, type, row) => `<a href="/cobro/${row._id}">$${parseFloat(data).toLocaleString()}</a>`
                     },
                 ],
                 "language": spanishDataTable,

@@ -230,6 +230,15 @@ module.exports = {
             });
     },
     viewBills: (req, res) => {
-        res.render("list_bills");
+        res.render('bills');
+    },
+    billDetails: (req,res) => {
+        const idBill = req.params.id
+        const dbo = req.app.locals.dbo
+        
+
+        console.log(idBill)
+
+        res.render('bill_details')
     }
 };
