@@ -6,11 +6,10 @@ input::-webkit-inner-spin-button {
     /* <-- Apparently some margin are still there even though it's hidden */
 }
 
-input[type=number] {
+input[type="number"] {
     -moz-appearance: textfield;
     /* Firefox */
 }
-
 
 .btn-log-out {
     position: absolute !important;
@@ -63,8 +62,8 @@ input[type=number] {
     z-index: 5;
     background-color: white;
     height: 30%;
-    box-shadow: 6px 7px 13px 0px rgba(0, 0, 0, 0.75), -6px 7px 13px 0px rgba(0, 0, 0, 0.75);
-    ;
+    box-shadow: 6px 7px 13px 0px rgba(0, 0, 0, 0.75),
+        -6px 7px 13px 0px rgba(0, 0, 0, 0.75);
 }
 
 .contentAppointment {
@@ -107,7 +106,7 @@ input[type=number] {
 }
 
 .datepicker {
-    opacity: 1
+    opacity: 1;
 }
 
 .datepicker .datepicker-days {
@@ -122,27 +121,28 @@ input[type=number] {
 .payment-container {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
 .box {
     padding: 30px 20px;
     border-radius: 4px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(63, 63, 68, 0.1);
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     margin-bottom: 30px;
 }
 
 .label-form {
     font-size: 14px;
     font-weight: 400;
-    color: #9A9A9A;
+    color: #9a9a9a;
     margin-bottom: 0px;
 }
 
 .label-checkbox {
     font-size: 13px;
     margin: 5px 0;
-    color: #9A9A9A;
+    color: #9a9a9a;
 }
 
 .title-create-employee-form {
@@ -162,10 +162,10 @@ input[type=number] {
 }
 
 .payment-title {
-    font-weight: 700;
+    font-weight: 300;
     color: #4f4f4f;
     margin: 0;
-    font-size: 25px;
+    font-size: 18px;
 }
 
 .input-payment-form {
@@ -175,7 +175,6 @@ input[type=number] {
     padding-top: 10px;
     font-weight: 700;
 }
-
 
 #list-products,
 #list-services {
@@ -264,19 +263,19 @@ input[type=number] {
     bottom: 0;
     right: 0;
     left: 0;
-    background: linear-gradient(to bottom, #9368E9 0%, #943bea 100%);
+    background: linear-gradient(to bottom, #9368e9 0%, #943bea 100%);
     z-index: -1;
-    transition: .5s;
+    transition: 0.5s;
     opacity: 0;
 }
 .loader {
     text-align: center;
 }
 
-.loader-title  {
+.loader-title {
     color: white;
     font-weight: 700;
-    letter-spacing: .5px;
+    letter-spacing: 0.5px;
     text-transform: uppercase;
 }
 .lds-ripple {
@@ -296,6 +295,98 @@ input[type=number] {
 
 .lds-ripple div:nth-child(2) {
     animation-delay: -0.5s;
+}
+.background-btn {
+    background: linear-gradient(to bottom, #9368e9 0%, #d804c8 100%);
+    background: -moz-linear-gradient(top, #9368e9 0%, #d804c8 100%);
+    background: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0%, #9368e9),
+        color-stop(100%, #d804c8)
+    );
+    background: -webkit-linear-gradient(top, #9368e9 0%, #d804c8 100%);
+    background: -ms-linear-gradient(top, #9368e9 0%, #d804c8 100%);
+    background: linear-gradient(to bottom, #9368e9 0%, #d804c8 100%);
+    padding: 2px;
+    border-radius: 5px;
+}
+.btn-payment {
+    border: none;
+    background-color: white;
+    color: #424242;
+    width: 100%;
+    text-transform: uppercase;
+    padding: 5px 0;
+}
+
+.background-btn:hover .btn-charge {
+    background: linear-gradient(to bottom, #9368e9 0%, #d804c8 100%);
+    color: white;
+}
+.btn-charge {
+    background-color: white;
+    padding: 10px 15px;
+    cursor: pointer;
+    color: #424242;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: 0.5s;
+}
+
+.main-background {
+    background-color: #d804c8;
+}
+.main-text {
+    color: #d804c8;
+}
+
+#radio-cash,
+#radio-creditCard {
+    display: none;
+}
+
+.label-radio div {
+    width: 23px;
+    height: 23px;
+    display: inline-block;
+    border: 2px solid #d804c8;
+    text-align: center;
+    line-height: 20px;
+    margin-right: 6px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.label-radio i {
+    font-size: 16px;
+    opacity: 0;
+    transition: 0.5s;
+    color: #d804c8;
+}
+#radio-cash:checked + label i {
+    opacity: 1;
+}
+#radio-creditCard:checked + label i {
+    opacity: 1;
+}
+
+#inputClientCash {
+    border: none;
+    border-bottom: 1px solid black;
+    text-align: end;
+    max-width: 100px;
+}
+
+.horizontal-line {
+    text-align: -webkit-right;
+    margin: 10px 0;
+}
+.horizontal-line hr {
+    background-color: black;
+    max-width: 100px;
+    margin: 0;
 }
 
 @keyframes lds-ripple {

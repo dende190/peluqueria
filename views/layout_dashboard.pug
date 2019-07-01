@@ -86,10 +86,10 @@ html(lang='en')
                             i.fa.fa-bars.fa-2x
                     .collapse.navbar-collapse
                         ul.nav.navbar-nav
-                            li.nav-item
-                                a.btn.btn-primary(data-toggle="collapse" aria-expanded="true" aria-controls="collapsePaymentForm"  data-target="#collapsePaymentForm")
-                                    i.fa.fa-usd
-                                    span Cobrar
+                            .background-btn
+                                .btn-charge(data-toggle="collapse" aria-expanded="true" aria-controls="collapsePaymentForm"  data-target="#collapsePaymentForm")
+                                    i.fa.fa-database
+                                    span  Cobrar
                 // End Navbar
                 //Payment Form
                 #collapsePaymentForm.collapse
@@ -125,35 +125,53 @@ html(lang='en')
                                         .form-group
                                             .form-check.form-check-inline
                                                 input#radio-cash.form-check-input(type="radio" name="method_pay" value="cash" required)
-                                                label.form-check-label(for="radio-cash") Efectivo
+                                                label.form-check-label.label-radio(for="radio-cash")
+                                                    div
+                                                        i.fa.fa-check
+                                                    | Efectivo
                                             .form-check.form-check-inline
                                                 input#radio-creditCard.form-check-input(type="radio" name="method_pay" value="credit" required)
-                                                label.form-check-label(for="radio-creditCard") Targeta de Credito
-                                .col-md-6
+                                                label.form-check-label.label-radio(for="radio-creditCard")
+                                                    div
+                                                        i.fa.fa-check
+                                                    | Targeta de Credito
+                                .col-md-4
                                     .card.card-body
-                                        .d-flex.align-items-center
+                                        .d-flex.align-items-center.justify-content-between.my-1
                                             p.payment-title
-                                                | Subtotal: $
-                                            input#inputSubtotalPrice.input-payment-form.input-read-only(name="subtotal_price" value="0" readonly)
-                                        .d-flex.align-items-center
+                                                | Subtotal
+                                            div
+                                                span#textSubtotalPrice $0
+                                                input#inputSubtotalPrice.input-payment-form.input-read-only(type="hidden" name="subtotal_price" value="0" readonly)
+                                        .d-flex.align-items-center.justify-content-between.my-1
                                             p.payment-title
-                                                | Impuestos: $
-                                            input#inputTaxes.input-payment-form.input-read-only(name="total_taxes" value="0" readonly)
-                                        .d-flex.align-items-center
+                                                | Impuestos
+                                            div
+                                                span#textTaxes $0
+                                                input#inputTaxes.input-payment-form.input-read-only(type="hidden" name="total_taxes" value="0" readonly)
+                                        div.horizontal-line
+                                            hr
+                                        .d-flex.align-items-center.justify-content-between.my-1
                                             p.payment-title
-                                                | Total A Pagar: $
-                                            input#inputTotalPrice.input-payment-form.input-read-only(name="total_price" value="0" readonly)
+                                                | Total a pagar
+                                            div
+                                                span#textTotalPrice $0
+                                                input#inputTotalPrice.input-payment-form.input-read-only(type="hidden" name="total_price" value="0" readonly)
                                         #changeSection
-                                            .d-flex.align-items-center
-                                                p.m-0
-                                                    | El cliente paga con: 
-                                                input#inputClientCash(type="number" name="client_money")
-                                            .d-flex.align-items-center
+                                            .d-flex.align-items-center.justify-content-between.my-1
                                                 p.payment-title
-                                                    | Cambio : $
-                                                .d-flex.align-items-center
-                                                    input#inputChange.input-payment-form.input-read-only(name="total_change" value="0" readonly)
-                                        button.btn.btn-primary(type="submit") Cobrar
+                                                    | El cliente paga con
+                                                div
+                                                    input#inputClientCash(type="number" name="client_money")
+                                            .d-flex.align-items-center.justify-content-between.my-1
+                                                p.payment-title
+                                                    | Cambio
+                                                div
+                                                    span#textChange $0
+                                                    input#inputChange.input-payment-form.input-read-only(type="hidden" name="total_change" value="0" readonly)
+                                            br
+                                            .background-btn
+                                                button.btn-payment(type="submit") Cobrar
                                 p#error-payment.text-danger.d-none
                                     | Error al registrar la factura
                 //End Payment Form
@@ -251,6 +269,10 @@ html(lang='en')
                     $("#inputTotalPrice").val('0');
                     $("#inputClientCash").val('');
                     $("#inputChange").val('0');
+                    $("#textSubtotalPrice").html('$0');
+                    $("#textTaxes").html('$0');
+                    $("#textTotalPrice").html('$0');
+                    $("#textChange").html('$0');
                 }
                 function getDataForm() {
                     const user = $("select[name=user]").val()
@@ -281,6 +303,8 @@ html(lang='en')
 
                     $('#inputSubtotalPrice').val(total)
                     $('#inputTaxes').val(totalIva)
+                    $('#textSubtotalPrice').html(`$ ${total.toLocaleString()}`)
+                    $('#textTaxes').html(`$ ${totalIva.toLocaleString()}`)
                 }
                 function lowerPrice(unselectedPrice, unselectedIVA) {
                     let currentPrice = $('#inputSubtotalPrice').val()
@@ -297,6 +321,7 @@ html(lang='en')
                     let currentIVA = $('#inputTaxes').val()
                     let total = parseFloat(currentPrice) + parseFloat(currentIVA)
                     $('#inputTotalPrice').val(total)
+                    $('#textTotalPrice').html(`$ ${total.toLocaleString()}`)
                 }
                 function updateClientChange() {
                     let totalPrice = parseFloat($('#inputTotalPrice').val())
@@ -307,8 +332,8 @@ html(lang='en')
                     } else {
                         change = 0.0
                     }
-                    let $inputChange = $('#inputChange')
-                    $inputChange.val(change)
+                    $('#inputChange').val(change)
+                    $('#textChange').html(`$ ${change.toLocaleString()}`)
                 }
                 $(document).ready(function() {
                     $('#FormControlSelectServices').select2({
@@ -348,7 +373,7 @@ html(lang='en')
                     $('#FormControlSelectServices').on('select2:select', (e) =>  {
                         risePrice(e)
                         let serviceTemplate = `<div class="item-selected service animated fadeInRight">
-                                                    <span class="fa fa-times-circle-o delete-icon text-danger" data-price='${e.params.data.price}' data-iva='${e.params.data.iva}' data-service='${e.params.data.id}'></span>
+                                                    <span class="fa fa-times-circle-o delete-icon main-text" data-price='${e.params.data.price}' data-iva='${e.params.data.iva}' data-service='${e.params.data.id}'></span>
                                                     <p class="item-name">${e.params.data.text}</p>
                                                     <hr/>
                                                     <p class="item-price">$${ parseInt(e.params.data.price).toLocaleString() }</p>
@@ -401,7 +426,7 @@ html(lang='en')
                     $('#FormControlSelectProducts').on('select2:select', (e) =>  {
                         risePrice(e)
                         let productTemplate = `<div class="item-selected product animated fadeInRight">
-                                                    <span class="fa fa-times-circle-o delete-icon text-danger" data-product='${e.params.data.id}' data-price='${e.params.data.price}' data-iva='${e.params.data.iva}'></span>
+                                                    <span class="fa fa-times-circle-o delete-icon main-text" data-product='${e.params.data.id}' data-price='${e.params.data.price}' data-iva='${e.params.data.iva}'></span>
                                                     <p class="item-name">${e.params.data.text}</p>
                                                     <hr/>
                                                     <p class="item-price">$${ parseInt(e.params.data.price).toLocaleString() }</p>
