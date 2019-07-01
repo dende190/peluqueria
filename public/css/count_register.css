@@ -1,0 +1,27 @@
+.container-total {
+    justify-content: space-evenly;
+    margin-top: 10px;
+}
+.total-register {
+    width: 150px;
+    height: 61px;
+    background-color: #a856df;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    color: white;
+    overflow: hidden;
+}
+.total-register p {
+    margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+    .container-total {
+        flex-direction: column;
+        align-items: center;
+    }
+    .total-register {
+        margin: 10px 0;
+    }
+}

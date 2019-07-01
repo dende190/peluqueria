@@ -136,7 +136,7 @@ module.exports = {
             });
     },
     countRegister: (req, res) => {
-        res.render("count-register");
+        res.render("count_register");
     },
     bills: (req, res) => {
         let dbo = req.app.locals.dbo;
